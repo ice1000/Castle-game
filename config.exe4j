@@ -6,11 +6,11 @@
       <principalLanguage id="en" customLocalizationFile="" />
     </languages>
   </application>
-  <executable name="城堡游戏" type="2" iconSet="true" iconFile="C:/Users/asus1/Desktop/城堡游戏/studio.ico" executableDir="" redirectStderr="false" stderrFile="error.log" stderrMode="overwrite" redirectStdout="false" stdoutFile="output.log" stdoutMode="overwrite" failOnStderrOutput="true" executableMode="2" changeWorkingDirectory="true" workingDirectory="." singleInstance="true" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" checkConsoleParameter="false" globalSingleInstance="false" amd64="false">
+  <executable name="城堡游戏" type="2" iconSet="true" iconFile="C:/Users/asus1/Desktop/城堡游戏/studio.ico" executableDir="." redirectStderr="false" stderrFile="error.log" stderrMode="overwrite" redirectStdout="false" stdoutFile="output.log" stdoutMode="overwrite" failOnStderrOutput="true" executableMode="2" changeWorkingDirectory="true" workingDirectory="." singleInstance="true" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" checkConsoleParameter="false" globalSingleInstance="false" amd64="false">
     <messageSet />
     <versionInfo include="false" fileVersion="" fileDescription="" legalCopyright="" internalName="" productName="" companyName="" productVersion="" />
   </executable>
-  <splashScreen show="true" autoOff="true" alwaysOnTop="true" width="0" height="0" bitmapFile="C:/Users/asus1/Desktop/城堡游戏/launch.png" java6SplashScreen="false">
+  <splashScreen show="true" autoOff="true" alwaysOnTop="true" width="0" height="0" bitmapFile="C:/Users/asus1/Desktop/城堡游戏/launch.png" java6SplashScreen="true">
     <text>
       <statusLine x="20" y="20" text="" font="Arial" fontSize="8" fontColor="0,0,0" fontWeight="500" />
       <versionLine x="20" y="40" text="version %VERSION%" font="Arial" fontSize="8" fontColor="0,0,0" fontWeight="500" />
