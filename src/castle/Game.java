@@ -223,6 +223,7 @@ public class Game {
 			file.createNewFile();
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(currentRoom.toString());
+			writer.close();
 			System.out.println("保存成功。");
 		} catch (IOException e) {
 			// e.printStackTrace();

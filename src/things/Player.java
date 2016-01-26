@@ -122,7 +122,7 @@ public class Player extends Cell {
 	}
 
 	public void saveState(){
-		System.out.println("正在保存数据。。");
+//		System.out.println("正在保存数据。。");
 		BufferedWriter writer;
 		try {
 			if(file.exists()){
@@ -132,7 +132,6 @@ public class Player extends Cell {
 			writer = new BufferedWriter(new FileWriter(file));
 
 			writer.write(name + "\r\n");
-
 			writer.write(
 					this.blood + "\r\n" +
 							this.strike + "\r\n" +
