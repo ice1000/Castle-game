@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <exe4j version="4.5" transformSequenceNumber="1">
-  <directoryPresets config="C:/Users/asus1/Desktop/城堡游戏/drawable" />
+  <directoryPresets config="C:/Users/asus1/Desktop/城堡游戏" />
   <application name="城堡游戏" distributionSourceDir="C:/Users/asus1/Desktop/城堡游戏">
     <languages>
       <principalLanguage id="en" customLocalizationFile="" />
