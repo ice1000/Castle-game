@@ -16,12 +16,13 @@ public class Room {
     public Room(String description) {
     	this.description = description;
     }
-    
+
     public Room(String description, String BossName, int blood, int strike, int miss, int experience, String dieText) {	
     	this.description = description;
     	Boss = new Boss(BossName,blood,strike,miss,experience,dieText);
     	cells.add(Boss);
     }
+
 //    设置一个出口。
     public void setExit(String str,Room room){
     	exits.put(str, room);

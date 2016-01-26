@@ -142,7 +142,7 @@ public class Player extends Cell {
 			);
 			
 			writer.close();
-			
+			System.out.println("∂¡»°≥…π¶°£");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

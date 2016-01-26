@@ -46,9 +46,9 @@ public class Game {
       funcs.put(funcsString[5], new FuncFight(this));
       funcs.put(funcsString[6], new FuncSleep(this));
       funcs.put(funcsString[7], new FuncSave(this));
-        
+
     }
-    
+
     public String[] getFuncs(){
     	return funcsString;
     }
@@ -68,11 +68,15 @@ public class Game {
         		10,6,3,1,"女仆被你推倒了！"));
         /*5*/theRooms.add(new Room("二楼睡房","公主的管家",		
         		300,20,5,15,"管家扑街、公主被你推倒了！"));
-        /*6*/theRooms.add(new Room("负一楼","奇怪的人",			
-        		200,30,15,25,"这个人。。总之就是很奇怪"));
+        /*6*/theRooms.add(new Room("负一楼","奇怪的男人",			
+        		200,30,15,25,"男人身边站出来一名浑身是伤的女孩。。"));
         /*7*/theRooms.add(new Room("负二楼","穿着霸气的绅士",			
         		100,50,35,35,"绅士的衣服脏了！"));
-        /*8*/theRooms.add(new Room("神秘空间","冰封",
+        /*8*/theRooms.add(new Room("负三楼","身穿铠甲的战士",			
+        		300,30,25,45,"战士被自己绊倒了！"));
+        /*8*/theRooms.add(new Room("负四楼","持剑的骑士",			
+        		400,40,35,60,"骑士的剑断了！"));
+        /*null*/theRooms.add(new Room("神秘空间","冰封",
         		1000,100,100,200,"冰封继续开发中。。。"));
 
         theRooms.get(0).setExit("east", theRooms.get(1));
@@ -89,10 +93,14 @@ public class Game {
         theRooms.get(6).setExit("up", 	theRooms.get(1));
         theRooms.get(6).setExit("down", theRooms.get(7));
         theRooms.get(7).setExit("up", 	theRooms.get(6));
-
+        theRooms.get(7).setExit("down", theRooms.get(8));
+        theRooms.get(8).setExit("up", 	theRooms.get(7));
+        theRooms.get(8).setExit("down", theRooms.get(9));
+        theRooms.get(9).setExit("up", 	theRooms.get(8));
+        
         currentRoom = theRooms.get(0);  //	从城堡门外开始
     }
-    
+
     private void createItems() {
     	@SuppressWarnings("unused")
 		Item wilder;
@@ -103,7 +111,7 @@ public class Game {
         System.out.println("欢迎来到城堡！");
 //        System.out.println("这是一个超级无聊的游戏。");
 //        System.out.println("不过在经过了冰封的改造后，你会觉得这个很有意思。");
-        Player.setFileName("D://save.ice");
+        Player.setFileName("D://save//player.ice");
         if(!Player.isFileExist()){
 	        System.out.println("请键入你的名字：");
 			Scanner name = new Scanner(System.in);
@@ -113,6 +121,7 @@ public class Game {
         else {
         	System.out.println("检测到存档。正在读取...");
         	player = new Player();
+        	System.out.println("读取成功");
         }
         System.out.println("你好"+player);
         System.out.println("如果需要帮助，请输入 '\\help' 。\n");
