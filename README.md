@@ -1,27 +1,30 @@
 # 城堡游戏
+![icon](https://github.com/ice1000/Castle-game/blob/master/drawable/castle.ico)
 
 ## 内容介绍
 
 这是一个很~~淫荡~~励志的DOS游戏。你是一名勇士，你要闯荡城堡，~~推倒~~拯救公主。<br/>
 我从初学Java开始就在写这个玩意了，这是一个纯Java项目，希望大家喜欢。<br/>
-等我学了Swing，这个游戏就有GUI了！
+等我学了Swing，这个游戏就有GUI了！<br/>
 
 ## 运行方法
-
+根据你的个人情况进行选择：
 ### 你是一名Java coder
 > 那就简单了，下载代码编译运行
 
-### 你不是Java coder，但是你用windows
+### 你不是Java coder，但是你使用瘟都死操作系统
 > ~~去学习如何编译运行~~<br/>
 首先确保你安装了Java环境。<br/>
 右上角"download zip"看到了吗，下载下来，解压，<br/>
 然后找到城堡游戏.exe<br/>
-双击运行就行了。
+双击运行就行了。<br/>
+x64架构亲测可行，x86没人帮我测试让我很是惆怅。。
 
-### 你既不是Java coder，也不用windows
+### 你既不是Java coder，也不用瘟都死操作系统
 > 很抱歉！我还没有针对Linux和SOX的支持！
 
 ## 实现情况
+- [X] 图标
 - [X] 地图系统
 - [X] 存档系统
 - [X] 战斗系统

@@ -111,7 +111,6 @@ public class Game {
 	}
 
 	private void createItems() {
-		@SuppressWarnings("unused")
 		Item wilder;
 		theItems.add(wilder = new Item("传送门"));
 	}
@@ -182,7 +181,7 @@ public class Game {
 	 * 检查是否可以睡觉
 	 */
 	public boolean TreatRoomCheck() {
-		return (currentRoom.equals("宾馆")||currentRoom.equals("卧室"));
+		return currentRoom.toString().matches("宾馆|卧室");
 	}
 	/**
 	 * 显示玩家数据
@@ -266,7 +265,6 @@ public class Game {
 		game.gameRun();
 
 		System.out.println("退出游戏。再见！");
-		return ;
 	}
 
 }

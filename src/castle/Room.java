@@ -9,8 +9,7 @@ public class Room {
 
 	private Boss Boss = null;
 	private String description;
-	private HashMap<String, Room> exits = new HashMap<String, Room>();
-	private ArrayList<Cell> cells = new ArrayList<Cell>();
+	private HashMap<String, Room> exits = new HashMap<>();
 
 	//构造方法
 	public Room(String description) {
@@ -18,8 +17,9 @@ public class Room {
 	}
 
 	public Room(String description, String BossName, int blood, int strike, int miss, int experience, String dieText) {
-		this.description = description;
+		this(description);
 		Boss = new Boss(BossName,blood,strike,miss,experience,dieText);
+		ArrayList<Cell> cells = new ArrayList<>();
 		cells.add(Boss);
 	}
 
@@ -46,7 +46,7 @@ public class Room {
 		System.out.println("你在" + this.description);
 		System.out.print("出口有: ");
 		for ( String str : exits.keySet() ){
-			sb.append(str+' ');
+			sb.append(str).append(' ');
 		}
 		System.out.println(sb);
 		if(Boss != null) {

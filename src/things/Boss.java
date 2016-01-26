@@ -12,13 +12,13 @@ public class Boss extends Player {
 	boolean getItem = true;
 
 	public Boss(String name, int blood, int strike, int miss, int experience, String dieText) {
-		super(name,blood,strike,miss);
+		this(name,blood,strike,miss,experience);
 		this.dieText = dieText;
-		this.experience = experience;
 	}
 
 	public Boss(String name, int blood, int strike, int miss, int experience) {
 		super(name,blood,strike,miss);
+		this.experience = experience;
 		dieText = name + "跪着向你哀求，不过你残忍地！";
 	}
 
