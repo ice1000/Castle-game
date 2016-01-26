@@ -10,7 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Player extends Cell {
-	
+
 	public int blood = 0;
 	protected int strike = 0;
 	protected int miss = 0;
@@ -38,15 +38,15 @@ public class Player extends Cell {
 			99999999,
 	};
 	private static File file;
-	
-//	ÔÚÍæ¼ÒÖĞ£¬¾­Ñé±íÊ¾ÓµÓĞµÄ¾­Ñé£¬ÔÚ¹ÖÎïÖĞ±íÊ¾´ò°ÜºóµÃµ½µÄ¾­Ñé¡£
+
+	//	åœ¨ç©å®¶ä¸­ï¼Œç»éªŒè¡¨ç¤ºæ‹¥æœ‰çš„ç»éªŒï¼Œåœ¨æ€ªç‰©ä¸­è¡¨ç¤ºæ‰“è´¥åå¾—åˆ°çš„ç»éªŒã€‚
 	public Player(String name, int blood, int strike, int miss) {
 		super(name);
 		this.blood = blood;
 		this.strike = strike;
 		this.miss = miss;
 	}
-	
+
 	public Player(){
 		loadState();
 	}
@@ -54,7 +54,7 @@ public class Player extends Cell {
 	public int getStrike() {
 		return strike;
 	}
-	
+
 	public int getMiss() {
 		return miss;
 	}
@@ -64,20 +64,20 @@ public class Player extends Cell {
 	}
 
 	public String stateToString() {
-		return "µÈ¼¶£º" + (level+1) +
-				"\n¾­ÑéÖµ£º" + experience +
+		return "ç­‰çº§ï¼š" + (level+1) +
+				"\nç»éªŒå€¼ï¼š" + experience +
 				"/" + limit[level] +
-				"\nĞÕÃû£º" + name +
-				"\n¹¥»÷£º" + strike +
-				"\n·ÀÓù£º" + miss +
-				"\nÌåÁ¦Öµ£º" + blood;
+				"\nå§“åï¼š" + name +
+				"\næ”»å‡»ï¼š" + strike +
+				"\né˜²å¾¡ï¼š" + miss +
+				"\nä½“åŠ›å€¼ï¼š" + blood;
 	}
 
 	@Override
 	public String toString() {
 		return name;
 	}
-	
+
 	public int win(int experience) {
 		this.experience += experience;
 		if( this.experience >= limit[level] ){
@@ -86,34 +86,34 @@ public class Player extends Cell {
 			strike += level*2;
 			miss += level*2;
 			blood += level*20;
-			System.out.println("¹§Ï²ÄúÉı¼¶À²~\\(¨R¨Œ¨Q)/~À²À²À²\n¸÷ÖÖÊôĞÔ¼Ó³ÉÅ¶~");
+			System.out.println("æ­å–œæ‚¨å‡çº§å•¦~\\(â‰§â–½â‰¦)/~å•¦å•¦å•¦\nå„ç§å±æ€§åŠ æˆå“¦~");
 		}
 		return experience;
 	}
-	
+
 	public boolean treat(){
 		if( blood <= 120 ){
-    		blood = 120;
-    		return true;
-    	}
-    	else
-    		return false;
+			blood = 120;
+			return true;
+		}
+		else
+			return false;
 	}
-	
+
 	public void loadState(){
 		BufferedReader reader;
 		try {
 			if(!file.exists())
 				return;
-			
+
 			reader = new BufferedReader(new FileReader(file));
 			this.name = reader.readLine();
 			this.blood = Integer.parseInt(reader.readLine());
 			this.strike = Integer.parseInt(reader.readLine());
 			this.miss = Integer.parseInt(reader.readLine());
 			this.level = Integer.parseInt(reader.readLine());
-			this.experience = Integer.parseInt(reader.readLine());; 
-			
+			this.experience = Integer.parseInt(reader.readLine());;
+
 			reader.close();
 		} catch (Exception e) {
 			// e.printStackTrace();
@@ -122,7 +122,7 @@ public class Player extends Cell {
 	}
 
 	public void saveState(){
-		System.out.println("ÕıÔÚ±£´æÊı¾İ¡£¡£");
+		System.out.println("æ­£åœ¨ä¿å­˜æ•°æ®ã€‚ã€‚");
 		BufferedWriter writer;
 		try {
 			if(file.exists()){
@@ -132,17 +132,17 @@ public class Player extends Cell {
 			writer = new BufferedWriter(new FileWriter(file));
 
 			writer.write(name + "\r\n");
-			
+
 			writer.write(
 					this.blood + "\r\n" +
-					this.strike + "\r\n" +
-					this.miss + "\r\n" +
-					this.level + "\r\n" +
-					this.experience + "\r\n" 
+							this.strike + "\r\n" +
+							this.miss + "\r\n" +
+							this.level + "\r\n" +
+							this.experience + "\r\n"
 			);
-			
+
 			writer.close();
-			System.out.println("¶ÁÈ¡³É¹¦¡£");
+			System.out.println("è¯»å–æˆåŠŸã€‚");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

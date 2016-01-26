@@ -201,7 +201,13 @@ public class Game {
 		File file = new File(savePath_2);
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
-			String
+			String roomName = reader.readLine();
+			for (Room room : theRooms) {
+				if(roomName.equals(room.toString())){
+					currentRoom = room;
+					break;
+				}
+			}
 		} catch (IOException e) {
 			// e.printStackTrace();
 		}

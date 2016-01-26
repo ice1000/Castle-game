@@ -5,7 +5,7 @@ import funcs.FuncSleep;
 //import java.util.Scanner;
 
 public class Boss extends Player {
-//	ºÍÍæ¼ÒÒ»Ñù£¬ÓĞÑª¡¢¹¥·À
+	//	å’Œç©å®¶ä¸€æ ·ï¼Œæœ‰è¡€ã€æ”»é˜²
 	private String dieText = "";
 
 	boolean survive = true;
@@ -19,7 +19,7 @@ public class Boss extends Player {
 
 	public Boss(String name, int blood, int strike, int miss, int experience) {
 		super(name,blood,strike,miss);
-		dieText = name + "¹ò×ÅÏòÄã°§Çó£¬²»¹ıÄã²ĞÈÌµØ£¡";
+		dieText = name + "è·ªç€å‘ä½ å“€æ±‚ï¼Œä¸è¿‡ä½ æ®‹å¿åœ°ï¼";
 	}
 
 	public Player fight(Player player) {
@@ -32,35 +32,35 @@ public class Boss extends Player {
 		if( beBeat <= 0 ) {
 			beBeat = 0;
 		}
-//			´ò²»¹ı
+//			æ‰“ä¸è¿‡
 		if( Beat <= 0 ){
 			player.blood -= 10;
-			System.out.println("ÄãµÄ¹¥»÷Á¦Ğ¡ÓÚ"+this.name+"µÄ·ÀÓùÁ¦£¡\nÂä»Ä¶øÌÓ£¡ËğÊ§10µãÌåÁ¦Öµ£¡");
+			System.out.println("ä½ çš„æ”»å‡»åŠ›å°äº"+this.name+"çš„é˜²å¾¡åŠ›ï¼\nè½è’è€Œé€ƒï¼æŸå¤±10ç‚¹ä½“åŠ›å€¼ï¼");
 		}
 		else{
 			while(survive){
-//					»¥Ïà¿ÛÑª
+//					äº’ç›¸æ‰£è¡€
 				this.blood -= Beat;
 				player.blood -= beBeat;
-//					ÅĞ¶Ï
+//					åˆ¤æ–­
 				if( player.blood <= 0 ){
-					
+
 					bloodsave2 -= 5;
 					player.blood = bloodsave2;
 
 					this.blood = bloodsave;
-					System.out.println("ÒÔÄãÏÖÓĞµÄÌåÁ¦ÖµÎŞ·¨´òµ¹"+this.name+"£¡\nÂä»Ä¶øÌÓ£¡ËğÊ§5µãÌåÁ¦Öµ£¡");
+					System.out.println("ä»¥ä½ ç°æœ‰çš„ä½“åŠ›å€¼æ— æ³•æ‰“å€’"+this.name+"ï¼\nè½è’è€Œé€ƒï¼æŸå¤±5ç‚¹ä½“åŠ›å€¼ï¼");
 					break;
 				}
 				if( this.blood <= 0 ){
-//						ÏÈ°ÑÑª²¹»ØÈ¥
+//						å…ˆæŠŠè¡€è¡¥å›å»
 					this.blood = bloodsave;
-					System.out.println(dieText+"\nÊ¤Àû¶ø¹é£¡Äã»¹Ê£"+player.blood+"µãÌåÁ¦Öµ£¡");
-					System.out.println("±¾´ÎÕ½¶·»ñµÃÁË"+player.win(GetExperience())+"µã¾­ÑéÖµ£¡");
+					System.out.println(dieText+"\nèƒœåˆ©è€Œå½’ï¼ä½ è¿˜å‰©"+player.blood+"ç‚¹ä½“åŠ›å€¼ï¼");
+					System.out.println("æœ¬æ¬¡æˆ˜æ–—è·å¾—äº†"+player.win(GetExperience())+"ç‚¹ç»éªŒå€¼ï¼");
 					survive = false;
 					getItem = false;
 					FuncSleep sleep = new FuncSleep();
-					System.out.print("Õ½¶·½áÊø");
+					System.out.print("æˆ˜æ–—ç»“æŸ");
 					for( int i = 800; i >= 0; i -= 100 ){
 						sleep.SleepTime(i);
 					}
@@ -75,18 +75,16 @@ public class Boss extends Player {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return this.name;
 	}
-	
+
 	public boolean IfGet() {
-		// TODO Auto-generated method stub
 		return getItem;
 	}
-	
+
 	public int GetExperience() {
 		if( getItem ){
-			System.out.println("BossÌôÕ½³É¹¦£¬»ñµÃÌôÕ½½±ÀøºÍ¶îÍâ5µã¾­Ñé½±Àø£¡");
+			System.out.println("BossæŒ‘æˆ˜æˆåŠŸï¼Œè·å¾—æŒ‘æˆ˜å¥–åŠ±å’Œé¢å¤–5ç‚¹ç»éªŒå¥–åŠ±ï¼");
 			return (this.experience+5);
 		}
 		else{
