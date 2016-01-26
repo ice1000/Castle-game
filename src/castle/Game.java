@@ -72,6 +72,8 @@ public class Game {
         		200,30,15,25,"这个人。。总之就是很奇怪"));
         /*7*/theRooms.add(new Room("负二楼","穿着霸气的绅士",			
         		100,50,35,35,"绅士的衣服脏了！"));
+        /*8*/theRooms.add(new Room("神秘空间","冰封",
+        		1000,100,100,200,"冰封继续开发中。。。"));
 
         theRooms.get(0).setExit("east", theRooms.get(1));
         theRooms.get(0).setExit("south",theRooms.get(3));

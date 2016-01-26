@@ -85,13 +85,11 @@ public class Boss extends Player {
 	}
 	
 	public int GetExperience() {
-		if( getItem )
-		{
+		if( getItem ){
 			System.out.println("Boss挑战成功，获得挑战奖励和额外5点经验奖励！");
 			return (this.experience+5);
 		}
-		else
-		{
+		else{
 			return this.experience;
 		}
 	}

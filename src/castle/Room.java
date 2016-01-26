@@ -37,12 +37,12 @@ public class Room {
 		}
         System.out.println(sb);
         if(Boss != null) {
-        	if( Boss.IfGet() )
-        	{
-        		ifaBoss = "这里的Boss是"+Boss+",威风堂堂看起来好厉害的样子！";
+        	if( Boss.IfGet() ){
+        		ifaBoss = "冰封".equals(Boss.toString()) ? 
+        				"你来到了神秘空间。这里只能通过\\wild传送离开。冰封正坐在这写码呢。"
+        				: "这里的Boss是"+Boss+",正准备接受你的挑战呢！";
         	}
-        	else
-        	{
+        	else{
         		ifaBoss = "这里的Boss是"+Boss+",已经被你打败过啦O(∩_∩)O哈哈~";
         	}
         }
