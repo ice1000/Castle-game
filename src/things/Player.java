@@ -37,7 +37,6 @@ public class Player extends Cell {
 			1000,
 			99999999,
 	};
-	private static String fileName = "";
 	private static File file;
 	
 //	在玩家中，经验表示拥有的经验，在怪物中表示打败后得到的经验。
@@ -61,7 +60,6 @@ public class Player extends Cell {
 	}
 
 	public static void setFileName(String fileName) {
-		Player.fileName = fileName;
 		file = new File(fileName);
 	}
 

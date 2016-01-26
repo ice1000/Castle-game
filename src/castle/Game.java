@@ -54,7 +54,6 @@ public class Game {
 
     private void createRooms(){
 
-
         //	构造地图结构
         /*0*/theRooms.add(new Room("城堡外","英俊的小偷头目",		
         		200,25,10,8,"小偷头目的钱全掉出来了！"));
@@ -70,6 +69,8 @@ public class Game {
         		300,20,5,15,"管家扑街、公主被你推倒了！"));
         /*6*/theRooms.add(new Room("负一楼","奇怪的人",			
         		200,30,15,25,"这个人。。总之就是很奇怪"));
+        /*7*/theRooms.add(new Room("负二楼","穿着霸气的绅士",			
+        		100,50,35,35,"绅士的衣服脏了！"));
 
         theRooms.get(0).setExit("east", theRooms.get(1));
         theRooms.get(0).setExit("south",theRooms.get(3));
@@ -83,6 +84,8 @@ public class Game {
         theRooms.get(5).setExit("down", theRooms.get(1));
         theRooms.get(1).setExit("down", theRooms.get(6));
         theRooms.get(6).setExit("up", 	theRooms.get(1));
+        theRooms.get(6).setExit("down", theRooms.get(7));
+        theRooms.get(7).setExit("up", 	theRooms.get(6));
 
         currentRoom = theRooms.get(0);  //	从城堡门外开始
     }
@@ -141,7 +144,6 @@ public class Game {
 //    	currentRoom.fightBoss( player.getStrike(), player.getMiss(), player.blood );
     	currentRoom.showPrompt();
 	}
-    
 	/**
 	 * 指定数量的补血
 	 */
