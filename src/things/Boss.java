@@ -61,8 +61,7 @@ public class Boss extends Player {
 					getItem = false;
 					FuncSleep sleep = new FuncSleep();
 					System.out.print("Õ½¶·½áÊø");
-					for( int i = 800; i >= 0; i -= 100 )
-					{
+					for( int i = 800; i >= 0; i -= 100 ){
 						sleep.SleepTime(i);
 					}
 					System.out.println();

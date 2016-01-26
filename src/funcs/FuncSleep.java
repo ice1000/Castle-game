@@ -35,8 +35,7 @@ public class FuncSleep extends Funcsrc {
 	}
 	
 	public void SleepTime(int time) {
-		try   
-	    {   
+		try{   
 		    Thread.currentThread();
 			Thread.sleep(time);  
 	    }  

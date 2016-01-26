@@ -113,7 +113,9 @@ public class Game {
         System.out.print("现在");
         currentRoom.showPrompt();
     }
-//    到达
+	/**
+	 * 到达
+	 */
     public void goRoom(String direction){
     	if( currentRoom.CheckExit(direction) )
     		currentRoom = currentRoom.showRoom(direction);
@@ -121,14 +123,18 @@ public class Game {
     		System.out.println("没有这个出口。");
 		currentRoom.showPrompt();
     }
-//    随机传送
+	/**
+	 * 随机传送
+	 */
     public void WildRoom(){
     	int index = (int) (Math.random()*2000);
 		index %= theRooms.size();
 		currentRoom = theRooms.get(index);
 		currentRoom.showPrompt();
     }
-//    战斗函数
+	/**
+	 * 战斗函数
+	 */
     public void Fight() {
 //    	减血赋值给原来的
     	player = currentRoom.fightBoss(player);
@@ -136,15 +142,21 @@ public class Game {
     	currentRoom.showPrompt();
 	}
     
-//    指定数量的补血
+	/**
+	 * 指定数量的补血
+	 */
     public void Treat(int bloodMore) {
     	player.blood += bloodMore;
 	}
-//    补满
+    /**
+     * 补血
+     */
     public boolean Treat() {
     	return player.treat();
 	}
-//   检查是否可以睡觉
+	/**
+	 * 检查是否可以睡觉
+	 */
     public boolean TreatRoomCheck() {
     	return (currentRoom.equals("宾馆")||currentRoom.equals("卧室"));
 	}
@@ -195,7 +207,7 @@ public class Game {
 		}
 		in.close();
     }
-	
+
 	public static void main(String[] args) {
 		
 		Game game = new Game();
