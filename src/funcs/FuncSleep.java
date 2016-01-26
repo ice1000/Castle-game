@@ -2,7 +2,7 @@ package funcs;
 
 import castle.Game;
 
-public class FuncSleep extends Funcsrc {
+public class FuncSleep extends FuncSrc {
 
 	public FuncSleep(Game game) {
 		super(game);
@@ -17,30 +17,30 @@ public class FuncSleep extends Funcsrc {
 //		int bloodMore = Integer.parseInt(cmd);
 		if( game.TreatRoomCheck() ){
 			if( !game.BossGetItem() ){
-				System.out.print("Å®ÆÍË³´ÓµØËÍÄã½øÈëÃÎÏç¡£Ë¯¾õÖĞ");
-			    for(int i = 0; i < 8; i ++ ) {
-			    	SleepTime(50);
-			    }
-			    System.out.print("\nÒÑ¾­Ë¯¾õ£¬ÌåÁ¦");
+				System.out.print("å¥³ä»†é¡ºä»åœ°é€ä½ è¿›å…¥æ¢¦ä¹¡ã€‚ç¡è§‰ä¸­");
+				for(int i = 0; i < 8; i ++ ) {
+					SleepTime(50);
+				}
+				System.out.print("\nå·²ç»ç¡è§‰ï¼Œä½“åŠ›");
 				if( game.Treat() )
-					System.out.println("»Ö¸´ÖÁ120.");
+					System.out.println("æ¢å¤è‡³120.");
 				else
-					System.out.println("³¬¹ı120²»ÓÃ»Ö¸´µÄ~");
+					System.out.println("è¶…è¿‡120ä¸ç”¨æ¢å¤çš„~");
 			}
 			else
-				System.out.println("Ë¯¾õĞèÒªÅ®ÆÍ·şÊÌ£¬È»¶øËı¿´ÆğÀ´²»´óÔ¸Òâ°¡¡£¡£¡£");
+				System.out.println("ç¡è§‰éœ€è¦å¥³ä»†æœä¾ï¼Œç„¶è€Œå¥¹çœ‹èµ·æ¥ä¸å¤§æ„¿æ„å•Šã€‚ã€‚ã€‚");
 		}
 		else
-			System.out.println("Ö»ÓĞ±ö¹İ»òÎÔÊÒÄÜË¯¾õ¡£");
+			System.out.println("åªæœ‰å®¾é¦†æˆ–å§å®¤èƒ½ç¡è§‰ã€‚");
 	}
-	
+
 	public void SleepTime(int time) {
-		try{   
-		    Thread.currentThread();
-			Thread.sleep(time);  
-	    }  
-	    catch(Exception e){}
-		System.out.print("¡£");
+		try{
+			Thread.currentThread();
+			Thread.sleep(time);
+		}
+		catch(Exception e){}
+		System.out.print("ã€‚");
 	}
 
 }

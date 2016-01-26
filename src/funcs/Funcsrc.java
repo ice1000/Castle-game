@@ -2,17 +2,17 @@ package funcs;
 
 import castle.Game;
 
-public abstract class Funcsrc {
+public abstract class FuncSrc {
 	
 	protected Game game;
 	protected boolean isGameEnded = false;
 	
-	public Funcsrc(Game game) {
+	public FuncSrc(Game game) {
 		this.game = game;
 	}
 	
-	protected Funcsrc(){
-	};
+	protected FuncSrc(){
+	}
 	
 	public boolean isGameEnded() {
 		return isGameEnded;

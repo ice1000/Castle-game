@@ -2,7 +2,7 @@ package funcs;
 
 import castle.Game;
 
-public class FuncPack extends Funcsrc {
+public class FuncPack extends FuncSrc {
 
 	public FuncPack(Game game) {
 		super(game);

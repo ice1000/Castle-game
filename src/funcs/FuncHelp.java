@@ -2,20 +2,19 @@ package funcs;
 
 import castle.Game;
 
-public class FuncHelp extends Funcsrc {
+public class FuncHelp extends FuncSrc {
 
 	public FuncHelp(Game game) {
 		super(game);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-    public void DoFunc(String cmd) {
-    	 System.out.println("迷路了吗？你可以做的命令有：");
-    	 String[] strings = game.getFuncs();
-    	 for(String s : strings){
-    		 System.out.println("\\" + s);
-    	 }
-         System.out.println("如：\\go east");
-    }
+	public void DoFunc(String cmd) {
+		System.out.println("杩疯矾浜嗗悧锛熶綘鍙互鍋氱殑鍛戒护鏈夛細");
+		String[] strings = game.getFuncs();
+		for(String s : strings){
+			System.out.println("\\" + s);
+		}
+		System.out.println("濡傦細\\go east");
+	}
 }

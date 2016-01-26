@@ -2,7 +2,7 @@ package funcs;
 
 import castle.Game;
 
-public class FuncSave extends Funcsrc{
+public class FuncSave extends FuncSrc {
 
 	public FuncSave(Game game) {
 		super(game);

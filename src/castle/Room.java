@@ -11,69 +11,70 @@ public class Room {
 	private String description;
 	private HashMap<String, Room> exits = new HashMap<String, Room>();
 	private ArrayList<Cell> cells = new ArrayList<Cell>();
-//¹¹Ôì·½·¨
 
-    public Room(String description) {
-    	this.description = description;
-    }
+	//æ„é€ æ–¹æ³•
+	public Room(String description) {
+		this.description = description;
+	}
 
-    public Room(String description, String BossName, int blood, int strike, int miss, int experience, String dieText) {	
-    	this.description = description;
-    	Boss = new Boss(BossName,blood,strike,miss,experience,dieText);
-    	cells.add(Boss);
-    }
+	public Room(String description, String BossName, int blood, int strike, int miss, int experience, String dieText) {
+		this.description = description;
+		Boss = new Boss(BossName,blood,strike,miss,experience,dieText);
+		cells.add(Boss);
+	}
 
-//    ÉèÖÃÒ»¸ö³ö¿Ú¡£
-    public void setExit(String str,Room room){
-    	exits.put(str, room);
-    }
-//   ÏÔÊ¾·¿¼äµÄÏêÇé¡£
-    public void showPrompt() {
-    	StringBuffer sb = new StringBuffer();
-    	String ifaBoss = "ÕâÀï°²È«¡£";
-    	System.out.println("ÄãÔÚ" + this.description);
-		System.out.print("³ö¿ÚÓĞ: ");
+	//    è®¾ç½®ä¸€ä¸ªå‡ºå£ã€‚
+	public void setExit(String str,Room room){
+		exits.put(str, room);
+	}
+	//   æ˜¾ç¤ºæˆ¿é—´çš„è¯¦æƒ…ã€‚
+	public void showPrompt() {
+		StringBuffer sb = new StringBuffer();
+		String ifaBoss = "è¿™é‡Œå®‰å…¨ã€‚";
+		System.out.println("ä½ åœ¨" + this.description);
+		System.out.print("å‡ºå£æœ‰: ");
 		for ( String str : exits.keySet() ){
 			sb.append(str+' ');
 		}
-        System.out.println(sb);
-        if(Boss != null) {
-        	if( Boss.IfGet() ){
-        		ifaBoss = "±ù·â".equals(Boss.toString()) ? 
-        				"ÄãÀ´µ½ÁËÉñÃØ¿Õ¼ä¡£ÕâÀïÖ»ÄÜÍ¨¹ı\\wild´«ËÍÀë¿ª¡£±ù·âÕı×øÔÚÕâĞ´ÂëÄØ¡£"
-        				: "ÕâÀïµÄBossÊÇ"+Boss+",Õı×¼±¸½ÓÊÜÄãµÄÌôÕ½ÄØ£¡";
-        	}
-        	else{
-        		ifaBoss = "ÕâÀïµÄBossÊÇ"+Boss+",ÒÑ¾­±»Äã´ò°Ü¹ıÀ²O(¡É_¡É)O¹ş¹ş~";
-        	}
-        }
-        System.out.println(ifaBoss);
-    }
-//   Ê¹ÓÃ´ËÀàµÄ·µ»ØÖµ£¬¸³¸øÔ­±¾µÄRoom¡£
-    public Room showRoom(String direction) {
-	    return exits.get(direction);
-    }
-//   Õ½¶·º¯Êı
-    public Player fightBoss(Player player) {
+		System.out.println(sb);
+		if(Boss != null) {
+			if( Boss.IfGet() ){
+				ifaBoss = "å†°å°".equals(Boss.toString()) ?
+						"ä½ æ¥åˆ°äº†ç¥ç§˜ç©ºé—´ã€‚è¿™é‡Œåªèƒ½é€šè¿‡\\wildä¼ é€ç¦»å¼€ã€‚å†°å°æ­£ååœ¨è¿™å†™ç å‘¢ã€‚"
+						: "è¿™é‡Œçš„Bossæ˜¯"+Boss+",æ­£å‡†å¤‡æ¥å—ä½ çš„æŒ‘æˆ˜å‘¢ï¼";
+			}
+			else{
+				ifaBoss = "è¿™é‡Œçš„Bossæ˜¯"+Boss+",å·²ç»è¢«ä½ æ‰“è´¥è¿‡å•¦O(âˆ©_âˆ©)Oå“ˆå“ˆ~";
+			}
+		}
+		System.out.println(ifaBoss);
+	}
+
+	//   ä½¿ç”¨æ­¤ç±»çš„è¿”å›å€¼ï¼Œèµ‹ç»™åŸæœ¬çš„Roomã€‚
+	public Room showRoom(String direction) {
+		return exits.get(direction);
+	}
+	//   æˆ˜æ–—å‡½æ•°
+	public Player fightBoss(Player player) {
 		return Boss.fight(player);
 	}
-//    ·µ»Ø·¿¼äÃû
-    @Override
-    public String toString()
-    {
-        return description;
-    }
-//    ¼ì²é·¿¼äÃû
-    @Override
+	//    è¿”å›æˆ¿é—´å
+	@Override
+	public String toString()
+	{
+		return description;
+	}
+	//    æ£€æŸ¥æˆ¿é—´å
+	@Override
 	public boolean equals(Object anotherOne) {
 		return description.equals(anotherOne);
 	}
-//    ¼ì²éBossÊÇ·ñÒÑ¾­±»ÌôÕ½¹ı
-    public boolean BossGetItem() {
+	//    æ£€æŸ¥Bossæ˜¯å¦å·²ç»è¢«æŒ‘æˆ˜è¿‡
+	public boolean BossGetItem() {
 		return Boss.IfGet();
 	}
-    
-    public boolean CheckExit(String exit) {
-    	return exits.containsKey(exit);
+
+	public boolean CheckExit(String exit) {
+		return exits.containsKey(exit);
 	}
 }

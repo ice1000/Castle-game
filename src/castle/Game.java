@@ -1,235 +1,263 @@
 package castle;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.FileWriter;
 import java.util.ArrayList;
-//import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-import castle.Room;
+
 import funcs.*;
 import things.*;
 
 public class Game {
-	
-	private HashMap<String, Funcsrc> funcs = new HashMap<String, Funcsrc>();
+
+	private HashMap<String, FuncSrc> funcs = new HashMap<String, FuncSrc>();
 	private String[] funcsString ;
 	public  ArrayList<Room> theRooms = new ArrayList<Room>();
 	public  ArrayList<Item> theItems = new ArrayList<Item>();
-    private Room currentRoom;
-    private Player player;
+	private Room currentRoom;
+	private Player player;
+	public final String savePath_1 = "D://save//player.ice";
+	public final String savePath_2 = "D://save//envi.ice";
 
-//    ¹¹Ôì·½·¨
-    public Game(){
-        createRooms();
-        createItems();
-        
-        funcsString = new String[]{
-        	"help",
-        	"go",
-        	"wild",
-        	"exit",
-        	"state",
-    //    	"pack",
-        	"fight",
-        	"sleep",
-        	"save"
-        };
-        
-        funcs.put(funcsString[0], new FuncHelp(this));
-        funcs.put(funcsString[1], new FuncGo(this));
-        funcs.put(funcsString[2], new FuncWild(this));
-        funcs.put(funcsString[3], new FuncBye(this));
-        funcs.put(funcsString[4], new FuncState(this));
+	//    æ„é€ æ–¹æ³•
+	public Game(){
+		createRooms();
+		createItems();
+
+		funcsString = new String[]{
+				"help",
+				"go",
+				"wild",
+				"exit",
+				"state",
+				//    	"pack",
+				"fight",
+				"sleep",
+				"save"
+		};
+
+		funcs.put(funcsString[0], new FuncHelp(this));
+		funcs.put(funcsString[1], new FuncGo(this));
+		funcs.put(funcsString[2], new FuncWild(this));
+		funcs.put(funcsString[3], new FuncBye(this));
+		funcs.put(funcsString[4], new FuncState(this));
 //      funcs.put(funcsString[5], new FuncPack(this));
 //      funcs.put(funcsString[6], new FuncFight(this));
 //      funcs.put(funcsString[7], new FuncSleep(this));
 //      funcs.put(funcsString[8], new FuncSave(this));
-      funcs.put(funcsString[5], new FuncFight(this));
-      funcs.put(funcsString[6], new FuncSleep(this));
-      funcs.put(funcsString[7], new FuncSave(this));
+		funcs.put(funcsString[5], new FuncFight(this));
+		funcs.put(funcsString[6], new FuncSleep(this));
+		funcs.put(funcsString[7], new FuncSave(this));
 
-    }
+	}
 
-    public String[] getFuncs(){
-    	return funcsString;
-    }
+	public String[] getFuncs(){
+		return funcsString;
+	}
 
-    private void createRooms(){
+	private void createRooms(){
 
-        //	¹¹ÔìµØÍ¼½á¹¹
-        /*0*/theRooms.add(new Room("³Ç±¤Íâ","Ó¢¿¡µÄĞ¡ÍµÍ·Ä¿",		
-        		200,25,10,8,"Ğ¡ÍµÍ·Ä¿µÄÇ®È«µô³öÀ´ÁË£¡"));
-        /*1*/theRooms.add(new Room("Ò»Â¥´óÌÃ","ÀñÃ²µÄ´óÌÃ¾­Àí",	
-        		100,15,12,5,"´óÌÃ¾­ÀíµÄÕÊËã´íÁË£¡"));
-        /*2*/theRooms.add(new Room("Ğ¡¾Æ°É","äìÈ÷µÄ¾Æ°ÉÁ÷Ã¥",
-        		150,10,5,3,"¾Æ°ÉÁ÷Ã¥ºÈ×íÁË£¡"));
-        /*3*/theRooms.add(new Room("Êé·¿","ÓÅÑÅµÄ¶ÁÊéÈË",
-        		100,7,5,2,"¶ÁÊéÈËµÄÊéµô³öÀ´ÁË£¡"));
-        /*4*/theRooms.add(new Room("±ö¹İ","¿É°®µÄÅ®ÆÍ",
-        		10,6,3,1,"Å®ÆÍ±»ÄãÍÆµ¹ÁË£¡"));
-        /*5*/theRooms.add(new Room("¶şÂ¥Ë¯·¿","¹«Ö÷µÄ¹Ü¼Ò",
-        		300,20,5,15,"¹Ü¼ÒÆË½Ö¡¢¹«Ö÷±»ÄãÍÆµ¹ÁË£¡"));
-        /*6*/theRooms.add(new Room("¸ºÒ»Â¥","Ææ¹ÖµÄÄĞÈË",
-        		200,30,15,25,"ÄĞÈËÉí±ßÕ¾³öÀ´Ò»Ãû»ëÉíÊÇÉËµÄÅ®º¢¡£¡£"));
-        /*7*/theRooms.add(new Room("¸º¶şÂ¥","´©×Å°ÔÆøµÄÉğÊ¿",
-        		100,50,35,35,"ÉğÊ¿µÄÒÂ·şÔàÁË£¡"));
-        /*8*/theRooms.add(new Room("¸ºÈıÂ¥","Éí´©îø¼×µÄÕ½Ê¿",
-        		300,30,25,45,"Õ½Ê¿±»×Ô¼º°íµ¹ÁË£¡"));
-        /*9*/theRooms.add(new Room("¸ºËÄÂ¥","³Ö½£µÄÆïÊ¿",
-        		400,40,35,60,"ÆïÊ¿µÄ½£¶ÏÁË£¡"));
-        /*null*/theRooms.add(new Room("ÉñÃØ¿Õ¼ä","±ù·â",
-        		1000,100,100,200,"±ù·â¼ÌĞø¿ª·¢ÖĞ¡£¡£¡£"));
+		//	æ„é€ åœ°å›¾ç»“æ„
+        /*0*/theRooms.add(new Room("åŸå ¡å¤–","è‹±ä¿Šçš„å°å·å¤´ç›®",
+				200,25,10,8,"å°å·å¤´ç›®çš„é’±å…¨æ‰å‡ºæ¥äº†ï¼"));
+        /*1*/theRooms.add(new Room("ä¸€æ¥¼å¤§å ‚","ç¤¼è²Œçš„å¤§å ‚ç»ç†",
+				100,15,12,5,"å¤§å ‚ç»ç†çš„å¸ç®—é”™äº†ï¼"));
+        /*2*/theRooms.add(new Room("å°é…’å§","æ½‡æ´’çš„é…’å§æµæ°“",
+				150,10,5,3,"é…’å§æµæ°“å–é†‰äº†ï¼"));
+        /*3*/theRooms.add(new Room("ä¹¦æˆ¿","ä¼˜é›…çš„è¯»ä¹¦äºº",
+				100,7,5,2,"è¯»ä¹¦äººçš„ä¹¦æ‰å‡ºæ¥äº†ï¼"));
+        /*4*/theRooms.add(new Room("å®¾é¦†","å¯çˆ±çš„å¥³ä»†",
+				10,6,3,1,"å¥³ä»†è¢«ä½ æ¨å€’äº†ï¼"));
+        /*5*/theRooms.add(new Room("äºŒæ¥¼ç¡æˆ¿","å…¬ä¸»çš„ç®¡å®¶",
+				300,20,5,15,"ç®¡å®¶æ‰‘è¡—ã€å…¬ä¸»è¢«ä½ æ¨å€’äº†ï¼"));
+        /*6*/theRooms.add(new Room("è´Ÿä¸€æ¥¼","å¥‡æ€ªçš„ç”·äºº",
+				200,30,15,25,"ç”·äººèº«è¾¹ç«™å‡ºæ¥ä¸€åæµ‘èº«æ˜¯ä¼¤çš„å¥³å­©ã€‚ã€‚"));
+        /*7*/theRooms.add(new Room("è´ŸäºŒæ¥¼","ç©¿ç€éœ¸æ°”çš„ç»…å£«",
+				100,50,35,35,"ç»…å£«çš„è¡£æœè„äº†ï¼"));
+        /*8*/theRooms.add(new Room("è´Ÿä¸‰æ¥¼","èº«ç©¿é“ ç”²çš„æˆ˜å£«",
+				300,30,25,45,"æˆ˜å£«è¢«è‡ªå·±ç»Šå€’äº†ï¼"));
+        /*9*/theRooms.add(new Room("è´Ÿå››æ¥¼","æŒå‰‘çš„éª‘å£«",
+				400,40,35,60,"éª‘å£«çš„å‰‘æ–­äº†ï¼"));
+        /*null*/theRooms.add(new Room("ç¥ç§˜ç©ºé—´","å†°å°",
+				1000,100,100,200,"å†°å°ç»§ç»­å¼€å‘ä¸­ã€‚ã€‚ã€‚"));
 
-        theRooms.get(0).setExit("east", theRooms.get(1));
-        theRooms.get(0).setExit("south",theRooms.get(3));
-        theRooms.get(0).setExit("west", theRooms.get(2));
-        theRooms.get(1).setExit("west",	theRooms.get(0));
-        theRooms.get(2).setExit("east",	theRooms.get(0));
-        theRooms.get(3).setExit("north",theRooms.get(0));
-        theRooms.get(3).setExit("east", theRooms.get(4));
-        theRooms.get(4).setExit("west",	theRooms.get(3));
-        theRooms.get(1).setExit("up", 	theRooms.get(5));
-        theRooms.get(5).setExit("down", theRooms.get(1));
-        theRooms.get(1).setExit("down", theRooms.get(6));
-        theRooms.get(6).setExit("up", 	theRooms.get(1));
-        theRooms.get(6).setExit("down", theRooms.get(7));
-        theRooms.get(7).setExit("up", 	theRooms.get(6));
-        theRooms.get(7).setExit("down", theRooms.get(8));
-        theRooms.get(8).setExit("up", 	theRooms.get(7));
-        theRooms.get(8).setExit("down", theRooms.get(9));
-        theRooms.get(9).setExit("up", 	theRooms.get(8));
-        
-        currentRoom = theRooms.get(0);  //	´Ó³Ç±¤ÃÅÍâ¿ªÊ¼
-    }
+		theRooms.get(0).setExit("east", theRooms.get(1));
+		theRooms.get(0).setExit("south",theRooms.get(3));
+		theRooms.get(0).setExit("west", theRooms.get(2));
+		theRooms.get(1).setExit("west",	theRooms.get(0));
+		theRooms.get(2).setExit("east",	theRooms.get(0));
+		theRooms.get(3).setExit("north",theRooms.get(0));
+		theRooms.get(3).setExit("east", theRooms.get(4));
+		theRooms.get(4).setExit("west",	theRooms.get(3));
+		theRooms.get(1).setExit("up", 	theRooms.get(5));
+		theRooms.get(5).setExit("down", theRooms.get(1));
+		theRooms.get(1).setExit("down", theRooms.get(6));
+		theRooms.get(6).setExit("up", 	theRooms.get(1));
+		theRooms.get(6).setExit("down", theRooms.get(7));
+		theRooms.get(7).setExit("up", 	theRooms.get(6));
+		theRooms.get(7).setExit("down", theRooms.get(8));
+		theRooms.get(8).setExit("up", 	theRooms.get(7));
+		theRooms.get(8).setExit("down", theRooms.get(9));
+		theRooms.get(9).setExit("up", 	theRooms.get(8));
 
-    private void createItems() {
-    	@SuppressWarnings("unused")
+		currentRoom = theRooms.get(0);  //	ä»åŸå ¡é—¨å¤–å¼€å§‹
+	}
+
+	private void createItems() {
+		@SuppressWarnings("unused")
 		Item wilder;
-    	theItems.add(wilder = new Item("´«ËÍÃÅ"));
-    }
+		theItems.add(wilder = new Item("ä¼ é€é—¨"));
+	}
 
-    private void printWelcome() {
-        System.out.println("»¶Ó­À´µ½³Ç±¤£¡");
-//        System.out.println("ÕâÊÇÒ»¸ö³¬¼¶ÎŞÁÄµÄÓÎÏ·¡£");
-//        System.out.println("²»¹ıÔÚ¾­¹ıÁË±ù·âµÄ¸ÄÔìºó£¬Äã»á¾õµÃÕâ¸öºÜÓĞÒâË¼¡£");
-        Player.setFileName("D://save//player.ice");
-        if(!Player.isFileExist()){
-	        System.out.println("Çë¼üÈëÄãµÄÃû×Ö£º");
+	private void printWelcome() {
+		System.out.println("æ¬¢è¿æ¥åˆ°åŸå ¡ï¼");
+//        System.out.println("è¿™æ˜¯ä¸€ä¸ªè¶…çº§æ— èŠçš„æ¸¸æˆã€‚");
+//        System.out.println("ä¸è¿‡åœ¨ç»è¿‡äº†å†°å°çš„æ”¹é€ åï¼Œä½ ä¼šè§‰å¾—è¿™ä¸ªå¾ˆæœ‰æ„æ€ã€‚");
+		Player.setFileName(savePath_1);
+		if(!Player.isFileExist()){
+			System.out.println("è¯·é”®å…¥ä½ çš„åå­—ï¼š");
 			Scanner name = new Scanner(System.in);
-	        player = new Player(name.nextLine(),200,10,5);
+			player = new Player(name.nextLine(),200,10,5);
 //	        name.close();
-        }
-        else {
-        	System.out.println("¼ì²âµ½´æµµ¡£ÕıÔÚ¶ÁÈ¡...");
-        	player = new Player();
-        	System.out.println("¶ÁÈ¡³É¹¦");
-        }
-        System.out.println("ÄãºÃ"+player);
-        System.out.println("Èç¹ûĞèÒª°ïÖú£¬ÇëÊäÈë '\\help' ¡£\n");
-        System.out.print("ÏÖÔÚ");
-        currentRoom.showPrompt();
-    }
-	/**
-	 * µ½´ï
-	 */
-    public void goRoom(String direction){
-    	if( currentRoom.CheckExit(direction) )
-    		currentRoom = currentRoom.showRoom(direction);
-    	else
-    		System.out.println("Ã»ÓĞÕâ¸ö³ö¿Ú¡£");
+		}
+		else {
+			System.out.println("æ£€æµ‹åˆ°å­˜æ¡£ã€‚æ­£åœ¨è¯»å–...");
+			player = new Player();
+			loadData();
+			System.out.println("è¯»å–æˆåŠŸ");
+		}
+		System.out.println("ä½ å¥½"+player);
+		System.out.println("å¦‚æœéœ€è¦å¸®åŠ©ï¼Œè¯·è¾“å…¥ '\\help' ã€‚\n");
+		System.out.print("ç°åœ¨");
 		currentRoom.showPrompt();
-    }
+	}
 	/**
-	 * Ëæ»ú´«ËÍ
+	 * åˆ°è¾¾
 	 */
-    public void WildRoom(){
-    	int index = (int) (Math.random()*2000);
+	public void goRoom(String direction){
+		if( currentRoom.CheckExit(direction) )
+			currentRoom = currentRoom.showRoom(direction);
+		else
+			System.out.println("æ²¡æœ‰è¿™ä¸ªå‡ºå£ã€‚");
+		currentRoom.showPrompt();
+	}
+	/**
+	 * éšæœºä¼ é€
+	 */
+	public void WildRoom(){
+		int index = (int) (Math.random()*2000);
 		index %= theRooms.size();
 		currentRoom = theRooms.get(index);
 		currentRoom.showPrompt();
-    }
+	}
 	/**
-	 * Õ½¶·º¯Êı
+	 * æˆ˜æ–—å‡½æ•°
 	 */
-    public void Fight() {
-//    	¼õÑª¸³Öµ¸øÔ­À´µÄ
-    	player = currentRoom.fightBoss(player);
+	public void Fight() {
+//    	å‡è¡€èµ‹å€¼ç»™åŸæ¥çš„
+		player = currentRoom.fightBoss(player);
 //    	currentRoom.fightBoss( player.getStrike(), player.getMiss(), player.blood );
-    	currentRoom.showPrompt();
+		currentRoom.showPrompt();
 	}
 	/**
-	 * Ö¸¶¨ÊıÁ¿µÄ²¹Ñª
+	 * æŒ‡å®šæ•°é‡çš„è¡¥è¡€
 	 */
-    public void Treat(int bloodMore) {
-    	player.blood += bloodMore;
-	}
-    /**
-     * ²¹Ñª
-     */
-    public boolean Treat() {
-    	return player.treat();
+	public void Treat(int bloodMore) {
+		player.blood += bloodMore;
 	}
 	/**
-	 * ¼ì²éÊÇ·ñ¿ÉÒÔË¯¾õ
+	 * è¡¥è¡€
 	 */
-    public boolean TreatRoomCheck() {
-    	return (currentRoom.equals("±ö¹İ")||currentRoom.equals("ÎÔÊÒ"));
+	public boolean Treat() {
+		return player.treat();
 	}
 	/**
-	 * ÏÔÊ¾Íæ¼ÒÊı¾İ
-	 * @return Íæ¼ÒÊı¾İ
+	 * æ£€æŸ¥æ˜¯å¦å¯ä»¥ç¡è§‰
 	 */
-    public String PLayerToString() {
-    	return player.stateToString();
+	public boolean TreatRoomCheck() {
+		return (currentRoom.equals("å®¾é¦†")||currentRoom.equals("å§å®¤"));
+	}
+	/**
+	 * æ˜¾ç¤ºç©å®¶æ•°æ®
+	 * @return ç©å®¶æ•°æ®
+	 */
+	public String PLayerToString() {
+		return player.stateToString();
 //    	return player;
 	}
 	/**
-	 * ·µ»ØBOSSÊÇ·ñ±»´ò°Ü¹ı
-	 * @return BOSSÊÇ·ñ±»´ò°Ü¹ı
+	 * è¿”å›BOSSæ˜¯å¦è¢«æ‰“è´¥è¿‡
+	 * @return BOSSæ˜¯å¦è¢«æ‰“è´¥è¿‡
 	 */
-    public boolean BossGetItem() {
+	public boolean BossGetItem() {
 		return currentRoom.BossGetItem();
 	}
-    public void saveData(){
-    	player.saveState();
-    }
-//	    ÓÎÏ·ÔËĞĞ£¬½ÓÊÜÖ¸Áî
-    private void gameRun() {
-    	String line;
+	private void loadData(){
+		File file = new File(savePath_2);
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			String
+		} catch (IOException e) {
+			// e.printStackTrace();
+		}
+	}
+	public void saveData(){
+		player.saveState();
+		File file = new File(savePath_2);
+		try {
+			if(file.exists()){
+				file.delete();
+			}
+			file.createNewFile();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			writer.write(currentRoom.toString());
+		} catch (IOException e) {
+			// e.printStackTrace();
+		}
+	}
+	//	    æ¸¸æˆè¿è¡Œï¼Œæ¥å—æŒ‡ä»¤
+	private void gameRun() {
+		String line;
 		Scanner in = new Scanner(System.in);
 		while ( true ) {
-			
+
 			System.out.print("\\");
 			line = in.nextLine();
 			String[] words = line.split(" ");
-			Funcsrc func = funcs.get(words[0]);
+			FuncSrc func = funcs.get(words[0]);
 			String value2 = "";
-	
+
 			if( words.length > 1 )
 				value2 = words[1];
-			
-//			Èç¹ûÕÒµ½ÁË¸ÃÖ¸Áî
+
+//			å¦‚æœæ‰¾åˆ°äº†è¯¥æŒ‡ä»¤
 			if( func != null ){
 				func.DoFunc(value2);
 				if( func.isGameEnded() ){
-//					ÍË³öÖ¸ÁîÌØÊâ´¦Àí
+//					é€€å‡ºæŒ‡ä»¤ç‰¹æ®Šå¤„ç†
 					saveData();
 					break;
 				}
 			}
 			else
-				System.out.println("¶Ô²»Æğ£¬ÊäÈëÖ¸Áî´íÎó£¡");
+				System.out.println("å¯¹ä¸èµ·ï¼Œè¾“å…¥æŒ‡ä»¤é”™è¯¯ï¼");
 		}
 		in.close();
-    }
+	}
 
 	public static void main(String[] args) {
-		
+
 		Game game = new Game();
 		game.printWelcome();
 		game.gameRun();
-        
-        System.out.println("ÍË³öÓÎÏ·¡£ÔÙ¼û£¡");
-        return ;
+
+		System.out.println("é€€å‡ºæ¸¸æˆã€‚å†è§ï¼");
+		return ;
 	}
 
 }

@@ -2,11 +2,10 @@ package funcs;
 
 import castle.Game;
 
-public class FuncBye extends Funcsrc {
+public class FuncBye extends FuncSrc {
 	
 	public FuncBye(Game game) {
 		super(game);
-		// TODO Auto-generated constructor stub
 	}
 
 	public boolean Bye() {

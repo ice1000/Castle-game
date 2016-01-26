@@ -2,16 +2,15 @@ package funcs;
 
 import castle.Game;
 
-public class FuncGo extends Funcsrc {
+public class FuncGo extends FuncSrc {
 
 	public FuncGo(Game game) {
 		super(game);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void DoFunc(String cmd) {
-		// µ÷ÓÃÒÆ¶¯¡£
+		// è°ƒç”¨ç§»åŠ¨ã€‚
 		game.goRoom(cmd);
 	}
 
