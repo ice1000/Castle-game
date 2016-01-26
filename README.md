@@ -12,8 +12,12 @@
 
 ### 你不是Java coder，但是你用windows
 > ~~去学习如何编译运行~~<br/>
-右上角"download zip"看到了吗，下载下来，然后找到exe<br/>
+右上角"download zip"看到了吗，下载下来，解压，<br/>
+然后找到城堡游戏.exe<br/>
 双击运行就行了。
+
+### 你既不是Java coder，也不用windows
+> 很抱歉！我还没有针对Linux和SOX的支持！
 
 ## 更新日志
 
