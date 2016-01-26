@@ -58,23 +58,23 @@ public class Game {
         //	构造地图结构
         /*0*/theRooms.add(new Room("城堡外","英俊的小偷头目",		
         		200,25,10,8,"小偷头目的钱全掉出来了！"));
-        /*1*/theRooms.add(new Room("一楼大堂","礼貌的大堂经理",		
+        /*1*/theRooms.add(new Room("一楼大堂","礼貌的大堂经理",	
         		100,15,12,5,"大堂经理的帐算错了！"));
         /*2*/theRooms.add(new Room("小酒吧","潇洒的酒吧流氓",
         		150,10,5,3,"酒吧流氓喝醉了！"));
-        /*3*/theRooms.add(new Room("书房","优雅的读书人",			
+        /*3*/theRooms.add(new Room("书房","优雅的读书人",
         		100,7,5,2,"读书人的书掉出来了！"));
-        /*4*/theRooms.add(new Room("宾馆","可爱的女仆",			
+        /*4*/theRooms.add(new Room("宾馆","可爱的女仆",
         		10,6,3,1,"女仆被你推倒了！"));
-        /*5*/theRooms.add(new Room("二楼睡房","公主的管家",		
+        /*5*/theRooms.add(new Room("二楼睡房","公主的管家",
         		300,20,5,15,"管家扑街、公主被你推倒了！"));
-        /*6*/theRooms.add(new Room("负一楼","奇怪的男人",			
+        /*6*/theRooms.add(new Room("负一楼","奇怪的男人",
         		200,30,15,25,"男人身边站出来一名浑身是伤的女孩。。"));
-        /*7*/theRooms.add(new Room("负二楼","穿着霸气的绅士",			
+        /*7*/theRooms.add(new Room("负二楼","穿着霸气的绅士",
         		100,50,35,35,"绅士的衣服脏了！"));
-        /*8*/theRooms.add(new Room("负三楼","身穿铠甲的战士",			
+        /*8*/theRooms.add(new Room("负三楼","身穿铠甲的战士",
         		300,30,25,45,"战士被自己绊倒了！"));
-        /*8*/theRooms.add(new Room("负四楼","持剑的骑士",			
+        /*9*/theRooms.add(new Room("负四楼","持剑的骑士",
         		400,40,35,60,"骑士的剑断了！"));
         /*null*/theRooms.add(new Room("神秘空间","冰封",
         		1000,100,100,200,"冰封继续开发中。。。"));
