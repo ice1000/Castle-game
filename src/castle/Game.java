@@ -26,9 +26,9 @@ public class Game {
         	"help",
         	"go",
         	"wild",
-        	"bye",
+        	"exit",
         	"state",
-        	"pack",
+    //    	"pack",
         	"fight",
         	"sleep",
         	"save"
@@ -39,13 +39,14 @@ public class Game {
         funcs.put(funcsString[2], new FuncWild(this));
         funcs.put(funcsString[3], new FuncBye(this));
         funcs.put(funcsString[4], new FuncState(this));
-        funcs.put(funcsString[5], new FuncPack(this));
-        funcs.put(funcsString[6], new FuncFight(this));
-        funcs.put(funcsString[7], new FuncSleep(this));
-        funcs.put(funcsString[8], new FuncSave(this));
+//      funcs.put(funcsString[5], new FuncPack(this));
+//      funcs.put(funcsString[6], new FuncFight(this));
+//      funcs.put(funcsString[7], new FuncSleep(this));
+//      funcs.put(funcsString[8], new FuncSave(this));
+      funcs.put(funcsString[5], new FuncFight(this));
+      funcs.put(funcsString[6], new FuncSleep(this));
+      funcs.put(funcsString[7], new FuncSave(this));
         
-//        ¼ÇµÃÐÞ¸Ähelp
-//        funcs.put("help", new Funcsrc(this));
     }
     
     public String[] getFuncs(){

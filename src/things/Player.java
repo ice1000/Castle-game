@@ -100,7 +100,6 @@ public class Player extends Cell {
     		return false;
 	}
 	
-	@SuppressWarnings("resource")
 	public void loadState(){
 		BufferedReader reader;
 		try {
