@@ -1,5 +1,5 @@
 # 城堡游戏
-![icon](https://github.com/ice1000/Castle-game/blob/master/drawable/castle.ico)
+![map](https://github.com/ice1000/Castle-game/blob/master/drawable/%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E4%B9%8B%E5%9C%B0%E5%9B%BE.png)
 
 ## 内容介绍
 
