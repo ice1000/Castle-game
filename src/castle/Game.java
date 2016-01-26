@@ -15,14 +15,16 @@ import things.*;
 
 public class Game {
 
-	private HashMap<String, FuncSrc> funcs = new HashMap<String, FuncSrc>();
+	private HashMap<String, FuncSrc> funcs = new HashMap<>();
 	private String[] funcsString ;
-	public  ArrayList<Room> theRooms = new ArrayList<Room>();
-	public  ArrayList<Item> theItems = new ArrayList<Item>();
+	public  ArrayList<Room> theRooms = new ArrayList<>();
+	public  ArrayList<Item> theItems = new ArrayList<>();
 	private Room currentRoom;
 	private Player player;
-	public final String savePath_1 = "D://save//player.ice";
-	public final String savePath_2 = "D://save//envi.ice";
+//	public final String savePath_1 = "D:"+File.separator+"save"+File.separator+"player.ice";
+//	public final String savePath_2 = "D:"+File.separator+"save"+File.separator+"envi.ice";
+	public final String savePath_1 = "D:"+File.separator+"player.ice";
+	public final String savePath_2 = "D:"+File.separator+"envi.ice";
 
 	//    构造方法
 	public Game(){
@@ -203,7 +205,7 @@ public class Game {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String roomName = reader.readLine();
 			for (Room room : theRooms) {
-				if(roomName.equals(room.toString())){
+				if(room.equals(roomName)){
 					currentRoom = room;
 					break;
 				}
@@ -222,6 +224,7 @@ public class Game {
 			file.createNewFile();
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(currentRoom.toString());
+			System.out.println("保存成功。");
 		} catch (IOException e) {
 			// e.printStackTrace();
 		}

@@ -24,8 +24,8 @@ public class Boss extends Player {
 
 	public Player fight(Player player) {
 
-		int bloodsave = this.blood;
-		int bloodsave2 = player.blood;
+		int bloodSave = this.blood;
+		int bloodSave2 = player.blood;
 		int beBeat = (this.strike - player.miss);
 		int Beat = (player.strike - this.miss);
 
@@ -45,16 +45,16 @@ public class Boss extends Player {
 //					判断
 				if( player.blood <= 0 ){
 
-					bloodsave2 -= 5;
-					player.blood = bloodsave2;
+					bloodSave2 -= 5;
+					player.blood = bloodSave2;
 
-					this.blood = bloodsave;
+					this.blood = bloodSave;
 					System.out.println("以你现有的体力值无法打倒"+this.name+"！\n落荒而逃！损失5点体力值！");
 					break;
 				}
 				if( this.blood <= 0 ){
 //						先把血补回去
-					this.blood = bloodsave;
+					this.blood = bloodSave;
 					System.out.println(dieText+"\n胜利而归！你还剩"+player.blood+"点体力值！");
 					System.out.println("本次战斗获得了"+player.win(GetExperience())+"点经验值！");
 					survive = false;

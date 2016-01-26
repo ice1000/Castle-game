@@ -142,7 +142,6 @@ public class Player extends Cell {
 			);
 
 			writer.close();
-			System.out.println("读取成功。");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
