@@ -84,7 +84,7 @@ public class Game {
 		System.out.println("你好"+player);
 		System.out.println("如果需要帮助，请输入 '\\help' 。\n");
 		System.out.print("现在");
-		currentRoom.showPrompt();
+		System.out.println(map.getCurrentRoomPrompt());
 	}
 
 	/**
@@ -145,8 +145,8 @@ public class Game {
 	 * 返回BOSS是否被打败过
 	 * @return BOSS是否被打败过
 	 */
-	public boolean BossGetItem() {
-		return currentRoom.BossGetItem();
+	public boolean isBossGetItem() {
+		return map.BossGetItem();
 	}
 
 	private void loadData(){

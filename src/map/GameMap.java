@@ -120,7 +120,13 @@ public class GameMap {
 		}
 	}
 
-
+	/**
+	 * 返回BOSS是否被打败过
+	 * @return BOSS是否被打败过
+	 */
+	public boolean BossGetItem() {
+		return currentRoom.BossGetItem();
+	}
 
 	public boolean treatRoomCheck(){
 		return currentRoom.toString().matches("宾馆|卧室");

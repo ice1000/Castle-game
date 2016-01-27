@@ -16,7 +16,7 @@ public class FuncSleep extends FuncSrc {
 		// TODO Auto-generated method stub
 //		int bloodMore = Integer.parseInt(cmd);
 		if( game.TreatRoomCheck() ){
-			if( !game.BossGetItem() ){
+			if( !game.isBossGetItem() ){
 				System.out.print("女仆顺从地送你进入梦乡。睡觉中");
 				for(int i = 0; i < 8; i ++ ) {
 					SleepTime(50);
