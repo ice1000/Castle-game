@@ -37,7 +37,7 @@ public class Game {
 				"wild",
 				"exit",
 				"state",
-				//    	"pack",
+				//"pack",
 				"fight",
 				"sleep",
 				"save"
@@ -85,6 +85,8 @@ public class Game {
 				300,30,25,45,"战士被自己绊倒了！"));
         /*9*/theRooms.add(new Room("负四楼","持剑的骑士",
 				400,40,35,60,"骑士的剑断了！"));
+//        /*10*/theRooms.add(new Room("三楼","持剑的骑士",
+//				400,40,35,60,"骑士的剑断了！"));
         /*null*/theRooms.add(new Room("神秘空间","冰封",
 				1000,100,100,200,"冰封继续开发中。。。"));
 
