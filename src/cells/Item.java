@@ -1,4 +1,4 @@
-package things;
+package cells;
 
 public class Item {
 	private String name = "";

@@ -1,25 +1,22 @@
 package castle;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 import funcs.*;
-import things.*;
+import cells.*;
+import map.GameMap;
+import map.Room;
 
 public class Game {
 
 	private HashMap<String, FuncSrc> funcs = new HashMap<>();
 	private String[] funcsString ;
+	private GameMap map;
 	public  ArrayList<Room> theRooms = new ArrayList<>();
 	public  ArrayList<Item> theItems = new ArrayList<>();
-	private Room currentRoom;
 	private Player player;
 //	public final String savePath_1 = "D:"+File.separator+"save"+File.separator+"player.ice";
 //	public final String savePath_2 = "D:"+File.separator+"save"+File.separator+"envi.ice";
@@ -28,7 +25,7 @@ public class Game {
 
 	//    构造方法
 	public Game(){
-		createRooms();
+		map = new GameMap(savePath_2);
 		createItems();
 
 		funcsString = new String[]{
@@ -62,57 +59,6 @@ public class Game {
 		return funcsString;
 	}
 
-	private void createRooms(){
-
-		//	构造地图结构
-        /*0*/theRooms.add(new Room("城堡外","英俊的小偷头目",
-				200,25,10,8,"小偷头目的钱全掉出来了！"));
-        /*1*/theRooms.add(new Room("一楼大堂","礼貌的大堂经理",
-				100,15,12,5,"大堂经理的帐算错了！"));
-        /*2*/theRooms.add(new Room("小酒吧","潇洒的酒吧流氓",
-				150,10,5,3,"酒吧流氓喝醉了！"));
-        /*3*/theRooms.add(new Room("书房","优雅的读书人",
-				100,7,5,2,"读书人的书掉出来了！"));
-        /*4*/theRooms.add(new Room("宾馆","可爱的女仆",
-				10,6,3,1,"女仆被你推倒了！"));
-        /*5*/theRooms.add(new Room("二楼睡房","公主的管家",
-				300,20,5,15,"管家扑街、公主被你推倒了！"));
-        /*6*/theRooms.add(new Room("负一楼","奇怪的男人",
-				200,30,15,25,"男人身边站出来一名浑身是伤的女孩。。"));
-        /*7*/theRooms.add(new Room("负二楼","穿着霸气的绅士",
-				100,50,35,35,"绅士的衣服脏了！"));
-        /*8*/theRooms.add(new Room("负三楼","身穿铠甲的战士",
-				300,30,25,45,"战士被自己绊倒了！"));
-        /*9*/theRooms.add(new Room("负四楼","持剑的骑士",
-				400,40,35,60,"骑士的剑断了！"));
-        /*10*/theRooms.add(new Room("三楼阳台"));
-        /*null*/theRooms.add(new Room("神秘空间","冰封",
-				1000,100,100,200,"冰封继续开发中。。。"));
-
-		theRooms.get(0).setExit("east", theRooms.get(1));
-		theRooms.get(0).setExit("south",theRooms.get(3));
-		theRooms.get(0).setExit("west", theRooms.get(2));
-		theRooms.get(1).setExit("west",	theRooms.get(0));
-		theRooms.get(2).setExit("east",	theRooms.get(0));
-		theRooms.get(3).setExit("north",theRooms.get(0));
-		theRooms.get(3).setExit("east", theRooms.get(4));
-		theRooms.get(4).setExit("west",	theRooms.get(3));
-		theRooms.get(1).setExit("up", 	theRooms.get(5));
-		theRooms.get(5).setExit("down", theRooms.get(1));
-		theRooms.get(1).setExit("down", theRooms.get(6));
-		theRooms.get(6).setExit("up", 	theRooms.get(1));
-		theRooms.get(6).setExit("down", theRooms.get(7));
-		theRooms.get(7).setExit("up", 	theRooms.get(6));
-		theRooms.get(7).setExit("down", theRooms.get(8));
-		theRooms.get(8).setExit("up", 	theRooms.get(7));
-		theRooms.get(8).setExit("down", theRooms.get(9));
-		theRooms.get(9).setExit("up", 	theRooms.get(8));
-		theRooms.get(10).setExit("down", theRooms.get(5));
-		theRooms.get(5).setExit("up", 	theRooms.get(10));
-
-		currentRoom = theRooms.get(0);  //	从城堡门外开始
-	}
-
 	private void createItems() {
 		Item wilder;
 		theItems.add(wilder = new Item("传送门"));
@@ -140,33 +86,34 @@ public class Game {
 		System.out.print("现在");
 		currentRoom.showPrompt();
 	}
+
 	/**
 	 * 到达
 	 */
 	public void goRoom(String direction){
-		if( currentRoom.CheckExit(direction) )
-			currentRoom = currentRoom.showRoom(direction);
-		else
+		if(map.goRoom(direction))
 			System.out.println("没有这个出口。");
-		currentRoom.showPrompt();
+		System.out.println(map.getCurrentRoomPrompt());
 	}
 	/**
 	 * 随机传送
 	 */
 	public void WildRoom(){
-		int index = (int) (Math.random()*2000);
-		index %= theRooms.size();
-		currentRoom = theRooms.get(index);
-		currentRoom.showPrompt();
+		System.out.println(map.wildRoom());
 	}
 	/**
 	 * 战斗函数
 	 */
 	public void Fight() {
+		map.fightBoss(this);
+		System.out.println(map.getCurrentRoomPrompt());
+	}
+	public void setPlayer(Player player){
 //    	减血赋值给原来的
-		player = currentRoom.fightBoss(player);
-//    	currentRoom.fightBoss( player.getStrike(), player.getMiss(), player.blood );
-		currentRoom.showPrompt();
+		this.player = player;
+	}
+	public Player getPlayer() {
+		return player;
 	}
 	/**
 	 * 指定数量的补血
@@ -184,7 +131,7 @@ public class Game {
 	 * 检查是否可以睡觉
 	 */
 	public boolean TreatRoomCheck() {
-		return currentRoom.toString().matches("宾馆|卧室");
+		return map.treatRoomCheck();
 	}
 	/**
 	 * 显示玩家数据
@@ -201,36 +148,14 @@ public class Game {
 	public boolean BossGetItem() {
 		return currentRoom.BossGetItem();
 	}
+
 	private void loadData(){
-		File file = new File(savePath_2);
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(file));
-			String roomName = reader.readLine();
-			for (Room room : theRooms) {
-				if(room.equals(roomName)){
-					currentRoom = room;
-					break;
-				}
-			}
-		} catch (IOException e) {
-			// e.printStackTrace();
-		}
+		map.loadRoom();
 	}
+
 	public void saveData(){
 		player.saveState();
-		File file = new File(savePath_2);
-		try {
-			if(file.exists()){
-				file.delete();
-			}
-			file.createNewFile();
-			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-			writer.write(currentRoom.toString());
-			writer.close();
-			System.out.println("保存成功。");
-		} catch (IOException e) {
-			// e.printStackTrace();
-		}
+		map.saveRoom();
 	}
 	//	    游戏运行，接受指令
 	private void gameRun() {
