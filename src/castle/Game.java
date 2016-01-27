@@ -85,8 +85,7 @@ public class Game {
 				300,30,25,45,"战士被自己绊倒了！"));
         /*9*/theRooms.add(new Room("负四楼","持剑的骑士",
 				400,40,35,60,"骑士的剑断了！"));
-//        /*10*/theRooms.add(new Room("三楼","持剑的骑士",
-//				400,40,35,60,"骑士的剑断了！"));
+        /*10*/theRooms.add(new Room("三楼阳台"));
         /*null*/theRooms.add(new Room("神秘空间","冰封",
 				1000,100,100,200,"冰封继续开发中。。。"));
 
@@ -108,6 +107,8 @@ public class Game {
 		theRooms.get(8).setExit("up", 	theRooms.get(7));
 		theRooms.get(8).setExit("down", theRooms.get(9));
 		theRooms.get(9).setExit("up", 	theRooms.get(8));
+		theRooms.get(10).setExit("down", theRooms.get(5));
+		theRooms.get(5).setExit("up", 	theRooms.get(10));
 
 		currentRoom = theRooms.get(0);  //	从城堡门外开始
 	}
