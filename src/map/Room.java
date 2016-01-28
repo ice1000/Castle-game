@@ -12,11 +12,11 @@ public class Room {
 	private HashMap<String, Integer> exits = new HashMap<>();
 
 	//构造方法
-	public Room(String description) {
+	Room(String description) {
 		this.description = description;
 	}
 
-	public Room(String description, String BossName, int blood, int strike, int miss, int experience, String dieText) {
+	Room(String description, String BossName, int blood, int strike, int miss, int experience, String dieText) {
 		this(description);
 		Boss = new Boss(BossName,blood,strike,miss,experience,dieText);
 		ArrayList<Cell> cells = new ArrayList<>();
@@ -68,11 +68,21 @@ public class Room {
 		return Boss.fight(player);
 	}
 	//    检查Boss是否已经被挑战过
-	boolean BossGetItem() {
-		return Boss.IfGet();
+	boolean isBossGetItem() {
+		try {
+			return Boss.IfGet();
+		} catch (NullPointerException e){
+			return false;
+		}
 	}
 
-	boolean CheckExit(String exit) {
+	void setBossGetItem(boolean isGet){
+		if(Boss != null){
+			Boss.setGetItem(isGet);
+		}
+	}
+
+	boolean checkExit(String exit) {
 		return exits.containsKey(exit);
 	}
 }

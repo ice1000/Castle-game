@@ -8,8 +8,8 @@ public class Boss extends Player {
 	//	和玩家一样，有血、攻防
 	private String dieText = "";
 
-	boolean survive = true;
-	boolean getItem = true;
+	private boolean survive = true;
+	private boolean getItem = true;
 
 	public Boss(String name, int blood, int strike, int miss, int experience, String dieText) {
 		this(name,blood,strike,miss,experience);
@@ -80,6 +80,10 @@ public class Boss extends Player {
 
 	public boolean IfGet() {
 		return getItem;
+	}
+
+	public void setGetItem(boolean getItem) {
+		this.getItem = getItem;
 	}
 
 	public int GetExperience() {

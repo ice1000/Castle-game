@@ -1,10 +1,10 @@
 package map;
 
 import castle.Game;
-import database.Database;
 import util.S;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 /**
  * 地图类
@@ -67,7 +67,7 @@ public class GameMap {
 	}
 
 	public boolean goRoom(String direction){
-		if( currentRoom.CheckExit(direction) ) {
+		if( currentRoom.checkExit(direction) ) {
 			currentRoom = theRooms.get(currentRoom.showRoomId(direction));
 			return true;
 		}
@@ -84,6 +84,18 @@ public class GameMap {
 		return false;
 	}
 
+	public void setRoomsState(char[] state){
+		for (int i = 0; i < theRooms.size(); i++) {
+			char c;
+			try{
+				c = state[i];
+			} catch (NullPointerException e){
+				c = 0;
+			}
+			theRooms.get(i).setBossGetItem(c == 1);
+		}
+	}
+
 	public void loadRoom(String room_){
 		for (Room room : theRooms) {
 			if(room.equals(room_)){
@@ -91,6 +103,13 @@ public class GameMap {
 				break;
 			}
 		}
+	}
+
+	public char[] getRoomsState(){
+		char[] roomsState = new char[theRooms.size()];
+		for (int i = 0; i < theRooms.size(); i++)
+			roomsState[i] = (char) (theRooms.get(i).isBossGetItem() ? 1 : 0);
+		return roomsState;
 	}
 
 	public String wildRoom(){
@@ -113,7 +132,7 @@ public class GameMap {
 	 * @return BOSS是否被打败过
 	 */
 	public boolean BossGetItem() {
-		return currentRoom.BossGetItem();
+		return currentRoom.isBossGetItem();
 	}
 
 	public boolean treatRoomCheck(){

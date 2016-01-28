@@ -1,6 +1,5 @@
 package castle;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,9 +9,6 @@ import database.Database;
 import funcs.*;
 import cells.*;
 import map.GameMap;
-import map.Room;
-
-import javax.imageio.IIOException;
 
 public class Game {
 
@@ -78,7 +74,7 @@ public class Game {
 		else {
 			player = new Player(null,-1,-1,-1);
 			database.loadState(player);
-			map.loadRoom(database.getRoom("宾馆"));
+			map.loadRoom(database.loadMap(map,"宾馆"));
 			System.out.println("检测到存档。");
 		}
 		System.out.println("你好"+player);
@@ -152,7 +148,7 @@ public class Game {
 	public void saveData(){
 		try {
 			database.saveState(player);
-			database.saveRoom(map.getRoomData());
+			database.saveMap(map);
 			System.out.println("保存成功。");
 		} catch (IOException e){
 			System.out.println("保存失败，请检查是否有管理员权限！");
