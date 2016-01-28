@@ -1,9 +1,9 @@
 package map;
 
 import castle.Game;
+import database.Database;
 import util.S;
 
-import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -14,10 +14,8 @@ public class GameMap {
 
 	private ArrayList<Room> theRooms;
 	private Room currentRoom;
-	private String savePath_2;
 
-	public GameMap(String savePath_2) {
-		this.savePath_2 = savePath_2;
+	public GameMap() {
 		theRooms = new ArrayList<>();
 		//	构造地图结构
         /*0*/theRooms.add(new Room("城堡外","英俊的小偷头目",
@@ -77,21 +75,23 @@ public class GameMap {
 			return false;
 	}
 
-	public void loadRoom(){
-		File file = new File(savePath_2);
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(file));
-			String roomName = reader.readLine();
-			for (Room room : theRooms) {
-				if(room.equals(roomName)){
-					currentRoom = room;
-					break;
-				}
+	public boolean isRoomExists(String roomName){
+		for (Room room : theRooms) {
+			if(room.equals(roomName)){
+				return true;
 			}
-		} catch (IOException e) {
-			// e.printStackTrace();
 		}
+		return false;
 	}
+
+//	public void loadRoom(String room){
+//		for (Room room : theRooms) {
+//			if(room.equals(database.getRoom("宾馆"))){
+//				currentRoom = room;
+//				break;
+//			}
+//		}
+//	}
 
 	public String wildRoom(){
 		int index = (int) (Math.random()*2000);
@@ -104,20 +104,8 @@ public class GameMap {
 		game.setPlayer(currentRoom.fightBoss(game.getPlayer()));
 	}
 
-	public void saveRoom(){
-		File file = new File(savePath_2);
-		try {
-			if(file.exists()){
-				file.delete();
-			}
-			file.createNewFile();
-			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-			writer.write(currentRoom.toString());
-			writer.close();
-			System.out.println("保存成功。");
-		} catch (IOException e) {
-			// e.printStackTrace();
-		}
+	public String getRoomData(){
+		return currentRoom.toString();
 	}
 
 	/**

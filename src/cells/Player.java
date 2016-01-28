@@ -1,5 +1,8 @@
 package cells;
 
+import castle.Game;
+import database.Database;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,8 +13,8 @@ import java.io.IOException;
 public class Player extends Cell {
 
 	public int blood = 0;
-	protected int strike = 0;
-	protected int miss = 0;
+	int strike = 0;
+	int defence = 0;
 	private int level = 0;
 	protected int experience = 0;
 	protected int[] limit = {
@@ -33,32 +36,44 @@ public class Player extends Cell {
 			800,
 			900,
 			1000,
+			1120,
+			1240,
+			1380,
+			1520,
+			1680,
+			1840,
+			2000,
 			99999999,
 	};
-	private static File file;
 
 	//	在玩家中，经验表示拥有的经验，在怪物中表示打败后得到的经验。
-	public Player(String name, int blood, int strike, int miss) {
+	public Player(String name, int blood, int strike, int defence) {
 		super(name);
 		this.blood = blood;
 		this.strike = strike;
-		this.miss = miss;
+		this.defence = defence;
 	}
 
-	public Player(){
-		loadState();
+//	public Player(){
+//		database = new Database();
+//		loadState();
+//	}
+
+	public void setValues(String name, int blood, int strike, int defence, int level, int experience) {
+		this.name = name;
+		this.blood = blood;
+		this.strike = strike;
+		this.defence = defence;
+		this.level = level;
+		this.experience = experience;
 	}
 
-	public int getStrike() {
+	int getStrike() {
 		return strike;
 	}
 
-	public int getMiss() {
-		return miss;
-	}
-
-	public static void setFileName(String fileName) {
-		file = new File(fileName);
+	int getDefence() {
+		return defence;
 	}
 
 	public String stateToString() {
@@ -67,7 +82,7 @@ public class Player extends Cell {
 				"/" + limit[level] +
 				"\n姓名：" + name +
 				"\n攻击：" + strike +
-				"\n防御：" + miss +
+				"\n防御：" + defence +
 				"\n体力值：" + blood;
 	}
 
@@ -76,13 +91,13 @@ public class Player extends Cell {
 		return name;
 	}
 
-	public int win(int experience) {
+	int win(int experience) {
 		this.experience += experience;
 		if( this.experience >= limit[level] ){
 			this.experience -= limit[level];
 			level ++;
 			strike += level*2;
-			miss += level*2;
+			defence += level*2;
 			blood += level*20;
 			System.out.println("恭喜您升级啦~\\(≧▽≦)/~啦啦啦\n各种属性加成哦~");
 		}
@@ -98,53 +113,25 @@ public class Player extends Cell {
 			return false;
 	}
 
-	public void loadState(){
-		BufferedReader reader;
-		try {
-			if(!file.exists())
-				return;
-
-			reader = new BufferedReader(new FileReader(file));
-			this.name = reader.readLine();
-			this.blood = Integer.parseInt(reader.readLine());
-			this.strike = Integer.parseInt(reader.readLine());
-			this.miss = Integer.parseInt(reader.readLine());
-			this.level = Integer.parseInt(reader.readLine());
-			this.experience = Integer.parseInt(reader.readLine());;
-
-			reader.close();
-		} catch (Exception e) {
-			// e.printStackTrace();
-			return ;
-		}
+	public String getStateData(){
+		return
+				this.name + "\r\n" +
+				this.blood + "\r\n" +
+				this.strike + "\r\n" +
+				this.defence + "\r\n" +
+				this.level + "\r\n" +
+				this.experience + "\r\n";
 	}
 
-	public void saveState(){
-//		System.out.println("正在保存数据。。");
-		BufferedWriter writer;
-		try {
-			if(file.exists()){
-				file.delete();
-			}
-			file.createNewFile();
-			writer = new BufferedWriter(new FileWriter(file));
+//	public void saveState(){
+//		database.saveState(
+//				this.name + "\r\n" +
+//				this.blood + "\r\n" +
+//				this.strike + "\r\n" +
+//				this.defence + "\r\n" +
+//				this.level + "\r\n" +
+//				this.experience + "\r\n"
+//		);
+//	}
 
-			writer.write(name + "\r\n");
-			writer.write(
-					this.blood + "\r\n" +
-							this.strike + "\r\n" +
-							this.miss + "\r\n" +
-							this.level + "\r\n" +
-							this.experience + "\r\n"
-			);
-
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static boolean isFileExist(){
-		return file.exists();
-	}
 }

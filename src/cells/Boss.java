@@ -26,8 +26,8 @@ public class Boss extends Player {
 
 		int bloodSave = this.blood;
 		int bloodSave2 = player.blood;
-		int beBeat = (this.strike - player.miss);
-		int Beat = (player.strike - this.miss);
+		int beBeat = (this.strike - player.getDefence());
+		int Beat = (player.getStrike() - this.defence);
 
 		if( beBeat <= 0 ) {
 			beBeat = 0;

@@ -1,31 +1,35 @@
 package castle;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import database.Database;
 import funcs.*;
 import cells.*;
 import map.GameMap;
 import map.Room;
+
+import javax.imageio.IIOException;
 
 public class Game {
 
 	private HashMap<String, FuncSrc> funcs = new HashMap<>();
 	private String[] funcsString ;
 	private GameMap map;
-	public  ArrayList<Item> theItems = new ArrayList<>();
+	private ArrayList<Item> theItems = new ArrayList<>();
 	private Player player;
+	private Database database;
 //	public final String savePath_1 = "D:"+File.separator+"save"+File.separator+"player.ice";
 //	public final String savePath_2 = "D:"+File.separator+"save"+File.separator+"envi.ice";
-	public final String savePath_1 = "."+File.separator+"player.ice";
-	public final String savePath_2 = "."+File.separator+"envi.ice";
 
 	//    构造方法
 	public Game(){
-		map = new GameMap(savePath_2);
+		map = new GameMap();
 		createItems();
+		database = new Database();
 
 		funcsString = new String[]{
 				"help",
@@ -65,20 +69,19 @@ public class Game {
 
 	private void printWelcome() {
 		System.out.println("欢迎来到城堡！");
-        System.out.println("这是一个超复古的游戏。");
+        System.out.println("这是一个超复古的CUI游戏。");
         System.out.println("最新版本和源代码请见https://github.com/ice1000/Castle-game");
 //        System.out.println("不过在经过了冰封的改造后，你会觉得这个很有意思。");
-		Player.setFileName(savePath_1);
-		if(!Player.isFileExist()){
+		if(!database.loadState(player)){
 			System.out.println("请键入你的名字：");
 			Scanner name = new Scanner(System.in);
 			player = new Player(name.nextLine(),200,10,5);
+			database.saveState(player.getStateData());
 //	        name.close();
 		}
 		else {
 			System.out.println("检测到存档。正在读取...");
-			player = new Player();
-			loadData();
+
 			System.out.println("读取成功");
 		}
 		System.out.println("你好"+player);
@@ -149,13 +152,13 @@ public class Game {
 		return map.BossGetItem();
 	}
 
-	private void loadData(){
-		map.loadRoom();
-	}
-
 	public void saveData(){
-		player.saveState();
-		map.saveRoom();
+		try {
+			database.saveState(player.getStateData());
+			database.saveRoom(map.getRoomData());
+		} catch (IOException e){
+			System.out.println("保存失败，请检查是否有管理员权限！");
+		}
 	}
 	//	    游戏运行，接受指令
 	private void gameRun() {
