@@ -15,13 +15,12 @@ public class Game {
 	private HashMap<String, FuncSrc> funcs = new HashMap<>();
 	private String[] funcsString ;
 	private GameMap map;
-	public  ArrayList<Room> theRooms = new ArrayList<>();
 	public  ArrayList<Item> theItems = new ArrayList<>();
 	private Player player;
 //	public final String savePath_1 = "D:"+File.separator+"save"+File.separator+"player.ice";
 //	public final String savePath_2 = "D:"+File.separator+"save"+File.separator+"envi.ice";
-	public final String savePath_1 = "D:"+File.separator+"player.ice";
-	public final String savePath_2 = "D:"+File.separator+"envi.ice";
+	public final String savePath_1 = "."+File.separator+"player.ice";
+	public final String savePath_2 = "."+File.separator+"envi.ice";
 
 	//    构造方法
 	public Game(){
@@ -66,7 +65,8 @@ public class Game {
 
 	private void printWelcome() {
 		System.out.println("欢迎来到城堡！");
-//        System.out.println("这是一个超级无聊的游戏。");
+        System.out.println("这是一个超复古的游戏。");
+        System.out.println("最新版本和源代码请见https://github.com/ice1000/Castle-game");
 //        System.out.println("不过在经过了冰封的改造后，你会觉得这个很有意思。");
 		Player.setFileName(savePath_1);
 		if(!Player.isFileExist()){

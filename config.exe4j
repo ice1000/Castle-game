@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <exe4j version="4.5" transformSequenceNumber="1">
-  <directoryPresets config="C:/Users/asus1/Desktop/城堡游戏" />
+  <directoryPresets config="C:/Users/asus1/Desktop/城堡游戏/drawable" />
   <application name="城堡游戏" distributionSourceDir="C:/Users/asus1/Desktop/城堡游戏">
     <languages>
       <principalLanguage id="en" customLocalizationFile="" />
     </languages>
   </application>
-  <executable name="城堡游戏" type="2" iconSet="true" iconFile="C:/Users/asus1/Desktop/城堡游戏/drawable/castle.ico" executableDir="." redirectStderr="false" stderrFile="error.log" stderrMode="overwrite" redirectStdout="false" stdoutFile="output.log" stdoutMode="overwrite" failOnStderrOutput="true" executableMode="2" changeWorkingDirectory="true" workingDirectory="." singleInstance="true" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" checkConsoleParameter="true" globalSingleInstance="false" amd64="false">
+  <executable name="城堡游戏" type="2" iconSet="true" iconFile="C:/Users/asus1/Desktop/城堡游戏/drawable/ic_launcher.ico" executableDir="." redirectStderr="false" stderrFile="error.log" stderrMode="overwrite" redirectStdout="false" stdoutFile="output.log" stdoutMode="overwrite" failOnStderrOutput="true" executableMode="2" changeWorkingDirectory="true" workingDirectory="." singleInstance="true" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" checkConsoleParameter="true" globalSingleInstance="false" amd64="false">
     <messageSet />
     <versionInfo include="false" fileVersion="" fileDescription="" legalCopyright="" internalName="" productName="" companyName="" productVersion="" />
   </executable>
