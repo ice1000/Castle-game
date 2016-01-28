@@ -61,7 +61,7 @@ public class Room {
 		return sb.toString();
 	}
 	//   使用此类的返回值，赋给原本的Room。
-	public Room showRoom(String direction) {
+	public int showRoomId(String direction) {
 		return exits.get(direction);
 	}
 	//   战斗函数

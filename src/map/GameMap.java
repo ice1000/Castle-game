@@ -70,7 +70,7 @@ public class GameMap {
 
 	public boolean goRoom(String direction){
 		if( currentRoom.CheckExit(direction) ) {
-			currentRoom = currentRoom.showRoom(direction);
+			currentRoom = theRooms.get(currentRoom.showRoomId(direction));
 			return true;
 		}
 		else
