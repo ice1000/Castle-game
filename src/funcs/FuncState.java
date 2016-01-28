@@ -12,7 +12,7 @@ public class FuncState extends FuncSrc {
 	@Override
 	public void DoFunc(String cmd) {
 		// TODO Auto-generated method stub
-		System.out.println(game.PLayerToString());
+		System.out.println(game.playerToString());
 	}
 
 }

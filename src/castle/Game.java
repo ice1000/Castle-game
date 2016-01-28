@@ -76,13 +76,11 @@ public class Game {
 			System.out.println("请键入你的名字：");
 			Scanner name = new Scanner(System.in);
 			player = new Player(name.nextLine(),200,10,5);
-			database.saveState(player.getStateData());
+			saveData();
 //	        name.close();
 		}
 		else {
-			System.out.println("检测到存档。正在读取...");
-
-			System.out.println("读取成功");
+			System.out.println("检测到存档。");
 		}
 		System.out.println("你好"+player);
 		System.out.println("如果需要帮助，请输入 '\\help' 。\n");
@@ -94,7 +92,7 @@ public class Game {
 	 * 到达
 	 */
 	public void goRoom(String direction){
-		if(map.goRoom(direction))
+		if(!map.goRoom(direction))
 			System.out.println("没有这个出口。");
 		System.out.println(map.getCurrentRoomPrompt());
 	}
@@ -140,7 +138,7 @@ public class Game {
 	 * 显示玩家数据
 	 * @return 玩家数据
 	 */
-	public String PLayerToString() {
+	public String playerToString() {
 		return player.stateToString();
 //    	return player;
 	}
@@ -156,6 +154,7 @@ public class Game {
 		try {
 			database.saveState(player.getStateData());
 			database.saveRoom(map.getRoomData());
+			System.out.println("保存成功。");
 		} catch (IOException e){
 			System.out.println("保存失败，请检查是否有管理员权限！");
 		}

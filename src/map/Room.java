@@ -36,11 +36,11 @@ public class Room {
 	}
 
 	//    设置一个出口。
-	public void setExit(String str,int targetRoomId){
+	void setExit(String str, int targetRoomId){
 		exits.put(str, targetRoomId);
 	}
 	//   显示房间的详情。
-	public String getPrompt() {
+	String getPrompt() {
 		StringBuffer sb = new StringBuffer();
 		String ifaBoss = "这里安全。";
 		sb.append("你在").append(this.description).append("\n");
@@ -48,7 +48,6 @@ public class Room {
 		for ( String str : exits.keySet() ){
 			sb.append(str).append(' ');
 		}
-		System.out.println(sb);
 		if(Boss != null) {
 			if( Boss.IfGet() )
 				ifaBoss = "冰封".equals(Boss.toString()) ?
@@ -61,19 +60,19 @@ public class Room {
 		return sb.toString();
 	}
 	//   使用此类的返回值，赋给原本的Room。
-	public int showRoomId(String direction) {
+	int showRoomId(String direction) {
 		return exits.get(direction);
 	}
 	//   战斗函数
-	public Player fightBoss(Player player) {
+	Player fightBoss(Player player) {
 		return Boss.fight(player);
 	}
 	//    检查Boss是否已经被挑战过
-	public boolean BossGetItem() {
+	boolean BossGetItem() {
 		return Boss.IfGet();
 	}
 
-	public boolean CheckExit(String exit) {
+	boolean CheckExit(String exit) {
 		return exits.containsKey(exit);
 	}
 }
