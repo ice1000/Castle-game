@@ -45,16 +45,9 @@ public class Database {
 	}
 
 	public void loadMap(GameMap map, String defaultName){
-		File file = new File(savePath);
-		String roomName;
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(file));
-			roomName = reader.readLine();
-			map.setRoomsState(roomsState);
-		} catch (IOException e) {
-			// e.printStackTrace();
+		map.setRoomsState(roomsState);
+		if(roomName == null)
 			roomName = defaultName;
-		}
 		map.loadRoom(roomName);
 	}
 

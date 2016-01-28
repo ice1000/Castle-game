@@ -85,6 +85,9 @@ public class GameMap {
 	}
 
 	public void setRoomsState(char[] state){
+//		for (int i1 = 0; i1 < state.length; i1++) {
+//			System.out.println("state[" + i1 + "] = " + state[i1]);
+//		}
 		for (int i = 0; i < theRooms.size(); i++) {
 			char c;
 			try{
@@ -92,7 +95,7 @@ public class GameMap {
 			} catch (Exception e){
 				c = 1;
 			}
-			theRooms.get(i).setBossGetItem(c == 1);
+			theRooms.get(i).setBossGetItem(c == '1');
 		}
 	}
 

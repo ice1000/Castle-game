@@ -14,6 +14,7 @@ public class Room {
 	//构造方法
 	Room(String description) {
 		this.description = description;
+		Boss = null;
 	}
 
 	Room(String description, String BossName, int blood, int strike, int miss, int experience, String dieText) {
