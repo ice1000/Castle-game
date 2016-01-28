@@ -147,8 +147,7 @@ public class Game {
 
 	public void saveData(){
 		try {
-			database.saveMap(map);
-			database.saveState(player);
+			database.saveMapAndState(map,player);
 			System.out.println("保存成功。");
 		} catch (IOException e){
 			System.out.println("保存失败，请检查是否有管理员权限！");

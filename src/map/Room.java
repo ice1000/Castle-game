@@ -72,7 +72,7 @@ public class Room {
 		try {
 			return Boss.IfGet();
 		} catch (NullPointerException e){
-			return false;
+			return true;
 		}
 	}
 
