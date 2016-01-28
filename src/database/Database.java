@@ -14,8 +14,8 @@ import java.util.Arrays;
  */
 public class Database {
 	private static final String savePath = "."+ File.separator+"save.ice";
-	private String playerName;
-	private char[] roomsState;
+	private String playerName = "";
+	private char[] roomsState ;
 	private String roomName;
 	private int blood = 0;
 	private int strike = 0;
@@ -44,7 +44,7 @@ public class Database {
 		}
 	}
 
-	public String loadMap(GameMap map, String defaultName){
+	public void loadMap(GameMap map, String defaultName){
 		File file = new File(savePath);
 		String roomName;
 		try {
@@ -55,7 +55,7 @@ public class Database {
 			// e.printStackTrace();
 			roomName = defaultName;
 		}
-		return roomName;
+		map.loadRoom(roomName);
 	}
 
 	public void saveMap(GameMap map) throws IOException {
@@ -71,10 +71,31 @@ public class Database {
 		writer.close();
 	}
 
+	public void saveMapAndState(GameMap map, Player player) throws IOException{
+		File file = new File(savePath);
+		if(file.exists()){
+			file.delete();
+		}
+		file.createNewFile();
+		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+		this.roomName = map.getRoomData();
+		this.roomsState = map.getRoomsState();
+		this.playerName = player.toString();
+		this.blood      = player.getBlood();
+		this.strike     = player.getStrike();
+		this.defence    = player.getDefence();
+		this.level      = player.getLevel();
+		this.experience = player.getExperience();
+
+		writer.write(this.toString());
+		writer.close();
+	}
+
 	@Override
 	public String toString() {
 		return
 				this.roomName   +  "\r\n" +
+				String.valueOf(this.roomsState) +  "\r\n" +
 				this.playerName +  "\r\n" +
 				this.blood      +  "\r\n" +
 				this.strike     +  "\r\n" +

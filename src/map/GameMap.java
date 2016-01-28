@@ -89,8 +89,8 @@ public class GameMap {
 			char c;
 			try{
 				c = state[i];
-			} catch (NullPointerException e){
-				c = 0;
+			} catch (Exception e){
+				c = 1;
 			}
 			theRooms.get(i).setBossGetItem(c == 1);
 		}
@@ -108,7 +108,7 @@ public class GameMap {
 	public char[] getRoomsState(){
 		char[] roomsState = new char[theRooms.size()];
 		for (int i = 0; i < theRooms.size(); i++)
-			roomsState[i] = (char) (theRooms.get(i).isBossGetItem() ? 1 : 0);
+			roomsState[i] = theRooms.get(i).isBossGetItem() ? '1' : '0';
 		return roomsState;
 	}
 
