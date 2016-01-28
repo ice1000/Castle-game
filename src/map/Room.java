@@ -48,6 +48,7 @@ public class Room {
 		for ( String str : exits.keySet() ){
 			sb.append(str).append(' ');
 		}
+		sb.append('\n');
 		if(Boss != null) {
 			if( Boss.IfGet() )
 				ifaBoss = "冰封".equals(Boss.toString()) ?
