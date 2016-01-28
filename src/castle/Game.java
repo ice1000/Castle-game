@@ -30,7 +30,6 @@ public class Game {
 		map = new GameMap();
 		createItems();
 		database = new Database();
-
 		funcsString = new String[]{
 				"help",
 				"go",
@@ -48,13 +47,10 @@ public class Game {
 		funcs.put(funcsString[2], new FuncWild(this));
 		funcs.put(funcsString[3], new FuncBye(this));
 		funcs.put(funcsString[4], new FuncState(this));
-//      funcs.put(funcsString[5], new FuncPack(this));
-//      funcs.put(funcsString[6], new FuncFight(this));
-//      funcs.put(funcsString[7], new FuncSleep(this));
-//      funcs.put(funcsString[8], new FuncSave(this));
 		funcs.put(funcsString[5], new FuncFight(this));
 		funcs.put(funcsString[6], new FuncSleep(this));
 		funcs.put(funcsString[7], new FuncSave(this));
+//      funcs.put(funcsString[8], new FuncPack(this));
 
 	}
 
@@ -72,7 +68,7 @@ public class Game {
         System.out.println("这是一个超复古的CUI游戏。");
         System.out.println("最新版本和源代码请见https://github.com/ice1000/Castle-game");
 //        System.out.println("不过在经过了冰封的改造后，你会觉得这个很有意思。");
-		if(!database.loadState(player)){
+		if(!Database.isFileExists()){
 			System.out.println("请键入你的名字：");
 			Scanner name = new Scanner(System.in);
 			player = new Player(name.nextLine(),200,10,5);
@@ -80,6 +76,9 @@ public class Game {
 //	        name.close();
 		}
 		else {
+			player = new Player(null,-1,-1,-1);
+			database.loadState(player);
+			map.loadRoom(database.getRoom("宾馆"));
 			System.out.println("检测到存档。");
 		}
 		System.out.println("你好"+player);
@@ -152,7 +151,7 @@ public class Game {
 
 	public void saveData(){
 		try {
-			database.saveState(player.getStateData());
+			database.saveState(player);
 			database.saveRoom(map.getRoomData());
 			System.out.println("保存成功。");
 		} catch (IOException e){

@@ -12,6 +12,7 @@ import java.io.*;
 public class Database {
 	private static final String savePath = "."+ File.separator+"save.ice";
 	private String playerName;
+	private String roomName;
 	private int blood = 0;
 	private int strike = 0;
 	private int defence = 0;
@@ -24,6 +25,7 @@ public class Database {
 		try {
 			reader = new BufferedReader(new FileReader(file));
 
+			roomName = reader.readLine();
 			playerName = reader.readLine();
 			blood      =  Integer.parseInt(reader.readLine());
 			strike     =  Integer.parseInt(reader.readLine());
@@ -43,7 +45,6 @@ public class Database {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			roomName = reader.readLine();
-
 		} catch (IOException e) {
 			// e.printStackTrace();
 			roomName = defaultName;
@@ -58,45 +59,36 @@ public class Database {
 		}
 		file.createNewFile();
 		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-		writer.write(currentRoomName);
+		this.roomName = currentRoomName;
+		writer.write(this.toString());
 		writer.close();
-
 	}
 
-	public boolean loadState(Player player){
-		BufferedReader reader;
-		File file1 = new File(savePath);
-		try {
-			if(!file1.exists())
-				return false;
-
-			reader = new BufferedReader(new FileReader(file1));
-
-			playerName = reader.readLine();
-			blood      =  Integer.parseInt(reader.readLine());
-			strike     =  Integer.parseInt(reader.readLine());
-			defence    =  Integer.parseInt(reader.readLine());
-			level      =  Integer.parseInt(reader.readLine());
-			experience =  Integer.parseInt(reader.readLine());
-			
-			player.setValues(
-					playerName,
-					blood,
-					strike,
-					defence,
-					level,
-					experience
-			);
-
-			reader.close();
-			return true;
-		} catch (Exception e) {
-			// e.printStackTrace();
-			return false;
-		}
+	@Override
+	public String toString() {
+		return
+				this.roomName   +  "\r\n" +
+				this.playerName +  "\r\n" +
+				this.blood      +  "\r\n" +
+				this.strike     +  "\r\n" +
+				this.defence    +  "\r\n" +
+				this.level      +  "\r\n" +
+				this.experience +  "\r\n"
+				;
 	}
 
-	public void saveState(String data) throws IOException {
+	public void loadState(Player player){
+		player.setValues(
+				playerName,
+				blood,
+				strike,
+				defence,
+				level,
+				experience
+		);
+	}
+
+	public void saveState(Player player) throws IOException {
 //		System.out.println("正在保存数据。。");
 		File file = new File(savePath);
 		BufferedWriter writer;
@@ -105,8 +97,14 @@ public class Database {
 		}
 		file.createNewFile();
 		writer = new BufferedWriter(new FileWriter(file));
+		this.playerName = player.toString();
+		this.blood      = player.getBlood();
+		this.strike     = player.getStrike();
+		this.defence    = player.getDefence();
+		this.level      = player.getLevel();
+		this.experience = player.getExperience();
 
-		writer.write(data);
+		writer.write(this.toString());
 
 		writer.close();
 	}

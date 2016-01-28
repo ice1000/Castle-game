@@ -84,14 +84,14 @@ public class GameMap {
 		return false;
 	}
 
-//	public void loadRoom(String room){
-//		for (Room room : theRooms) {
-//			if(room.equals(database.getRoom("宾馆"))){
-//				currentRoom = room;
-//				break;
-//			}
-//		}
-//	}
+	public void loadRoom(String room_){
+		for (Room room : theRooms) {
+			if(room.equals(room_)){
+				currentRoom = room;
+				break;
+			}
+		}
+	}
 
 	public String wildRoom(){
 		int index = (int) (Math.random()*2000);

@@ -68,14 +68,6 @@ public class Player extends Cell {
 		this.experience = experience;
 	}
 
-	int getStrike() {
-		return strike;
-	}
-
-	int getDefence() {
-		return defence;
-	}
-
 	public String stateToString() {
 		return "等级：" + (level+1) +
 				"\n经验值：" + experience +
@@ -113,17 +105,17 @@ public class Player extends Cell {
 			return false;
 	}
 
-	public String getStateData(){
-		return
-				this.name + "\r\n" +
-				this.blood + "\r\n" +
-				this.strike + "\r\n" +
-				this.defence + "\r\n" +
-				this.level + "\r\n" +
-				this.experience + "\r\n";
+	public Player getStateData(){
+		return this;
 	}
 
-//	public void saveState(){
+	public int getBlood() {return blood;}
+	public int getLevel() {return level;}
+	public int getExperience() {return experience;}
+	public int getStrike() {return strike;}
+	public int getDefence() {return defence;}
+
+	//	public void saveState(){
 //		database.saveState(
 //				this.name + "\r\n" +
 //				this.blood + "\r\n" +
