@@ -123,7 +123,7 @@ public class GameMap {
 	}
 
 	public void fightBoss(Game game){
-		game.setPlayer(currentRoom.fightBoss(game.getPlayer()));
+		game.setPlayer(currentRoom.fightBoss(game.getPlayer(), game));
 	}
 
 	public String getRoomData(){

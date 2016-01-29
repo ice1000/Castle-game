@@ -1,6 +1,7 @@
 package cells;
 
 import funcs.FuncSleep;
+import util.Echoer;
 
 //import java.util.Scanner;
 
@@ -22,9 +23,9 @@ public class Boss extends Player {
 		dieText = name + "跪着向你哀求，不过你残忍地！";
 	}
 
-	public Player fight(Player player) {
+	public Player fight(Player player, Echoer echoer) {
 
-		StringBuffer stringBuffer = new StringBuffer();
+		StringBuilder stringBuffer = new StringBuilder();
 		int bloodSave = this.blood;
 		int bloodSave2 = player.blood;
 		int beBeat = (this.strike - player.getDefence());
@@ -59,8 +60,14 @@ public class Boss extends Player {
 				if( this.blood <= 0 ){
 //						先把血补回去
 					this.blood = bloodSave;
-					stringBuffer.append(dieText+"\n胜利而归！你还剩"+player.blood+"点体力值！\n");
-					stringBuffer.append("本次战斗获得了"+player.win(GetExperience())+"点经验值！\n");
+					stringBuffer
+							.append(dieText)
+							.append("\n胜利而归！你还剩")
+							.append(player.blood)
+							.append("点体力值！\n")
+							.append("本次战斗获得了")
+							.append(player.win(GetExperience()))
+							.append("点经验值！\n");
 					survive = false;
 					getItem = false;
 					FuncSleep sleep = new FuncSleep();
@@ -72,7 +79,7 @@ public class Boss extends Player {
 				}
 			}
 		}
-		// TODO : 把字符串打印出来
+		echoer.echo(stringBuffer.toString());
 		survive = true;
 		return player;
 	}

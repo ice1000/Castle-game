@@ -1,4 +1,5 @@
 # 城堡游戏
+![icon](https://github.com/ice1000/Castle-game/blob/master/drawable/ic_launcher.png)
 
 # 内容介绍
 
@@ -43,7 +44,7 @@ x64架构亲测可行，x86没人帮我测试让我很是惆怅。。
 - [X] 战斗系统(不完善)
 - [X] BOSS系统(不完善)
 - [X] 等级系统(硬编码，不完善)
-- [ ] GUI ~~(做梦)~~
+- [ ] ~~GUI~~封装的CUI
 - [ ] 物品、背包系统
 - [ ] NPC系统
 

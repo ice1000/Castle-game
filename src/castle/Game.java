@@ -14,10 +14,12 @@ import database.Database;
 import funcs.*;
 import cells.*;
 import map.GameMap;
+import util.Echoer;
 
 import javax.swing.*;
 
-public class Game {
+public class Game
+implements Echoer{
 
 	private HashMap<String, FuncSrc> funcs = new HashMap<>();
 	private String[] funcsString ;
@@ -152,8 +154,10 @@ public class Game {
 		theItems.add(wilder = new Item("传送门"));
 	}
 
-	private void echo(String words){
+	@Override
+	public void echo(String words){
 		System.out.print(words);
+		textField.setText("");
 		textArea.append(words);
 	}
 

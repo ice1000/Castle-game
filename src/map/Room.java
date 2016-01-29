@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import cells.*;
+import util.Echoer;
 
 public class Room {
 
@@ -66,8 +67,8 @@ public class Room {
 		return exits.get(direction);
 	}
 	//   战斗函数
-	Player fightBoss(Player player) {
-		return Boss.fight(player);
+	Player fightBoss(Player player, Echoer echoer) {
+		return Boss.fight(player, echoer);
 	}
 	//    检查Boss是否已经被挑战过
 	boolean isBossGetItem() {
