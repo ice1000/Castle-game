@@ -30,10 +30,14 @@ implements Echoer{
 	private JFrame frame;
 	private JTextField textField;
 	private JTextArea textArea;
-//	private StringBuffer echo;
+	//	private StringBuffer echo;
 
 	//    构造方法
 	public Game(){
+		onCreate();
+	}
+
+	private void onCreate(){
 		map = new GameMap();
 		createItems();
 		database = new Database();
@@ -83,8 +87,7 @@ implements Echoer{
 		frame.setVisible(true);
 	}
 
-	//	    游戏运行，接受指令
-	private void gameRun() {
+	private void onResume() {
 		String line;
 		boolean loop = true;
 		Scanner in = new Scanner(System.in);
@@ -96,31 +99,7 @@ implements Echoer{
 		in.close();
 	}
 
-	private boolean HandleMessage(String line){
-		String[] words = line.split(" ");
-		FuncSrc func = funcs.get(words[0]);
-		String value2 = "";
-
-		if( words.length > 1 )
-			value2 = words[1];
-
-//			如果找到了该指令
-		if( func != null ){
-			func.DoFunc(value2);
-			if( func.isGameEnded() ){
-//					退出指令特殊处理
-				saveData();
-				echoln("退出游戏，再见！");
-				return false;
-			}
-		}
-		else
-			echoln("对不起，输入指令错误！");
-		return true;
-
-	}
-
-	private void printWelcome() {
+	private void onStart() {
 
 		echoln("欢迎来到城堡！");
 		echoln("这是一个超复古的CUI游戏。");
@@ -145,6 +124,35 @@ implements Echoer{
 		echoln(map.getCurrentRoomPrompt());
 	}
 
+	private boolean HandleMessage(String line){
+		String[] words = line.split(" ");
+		FuncSrc func = funcs.get(words[0]);
+		String value2 = "";
+
+		if( words.length > 1 )
+			value2 = words[1];
+
+//			如果找到了该指令
+		if( func != null ){
+			func.DoFunc(value2);
+			if( func.isGameEnded() ){
+//					退出指令特殊处理
+				saveData();
+				echoln("退出游戏，再见！");
+//				System.exit(0);
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException ignored){}
+				frame.dispose();
+				return false;
+			}
+		}
+		else
+			echoln("对不起，输入指令错误！");
+		return true;
+
+	}
+
 	public String[] getFuncs(){
 		return funcsString;
 	}
@@ -159,6 +167,13 @@ implements Echoer{
 		System.out.print(words);
 		textField.setText("");
 		textArea.append(words);
+		int i = textArea.getText().length();
+		int MAX_LENGTH = 10000;
+		if(i > MAX_LENGTH){
+			textArea.setText(textArea.getText().substring(
+					i - MAX_LENGTH, i
+			));
+		}
 	}
 
 	private void echoln(String words){
@@ -236,10 +251,9 @@ implements Echoer{
 	}
 
 	public static void main(String[] args) {
-
 		Game game = new Game();
-		game.printWelcome();
-		game.gameRun();
+		game.onStart();
+		game.onResume();
 	}
 
 }
