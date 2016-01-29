@@ -39,19 +39,22 @@ public class GameMap {
         /*9*/theRooms.add(new Room("负四楼","持剑的骑士",
 				400,40,35,60,"骑士的剑断了！"));
         /*10*/theRooms.add(new Room("三楼阳台"));
+        /*11*/theRooms.add(new Room("城堡顶部瞭望塔"));
         /*null*/theRooms.add(new Room("神秘空间","冰封",
 				1000,100,100,200,"冰封继续开发中。。。"));
 
-		setExitWithoutDirection(0,1, S.EAST, S.WEST);
-		setExitWithoutDirection(0,3, S.SOUTH, S.WEST);
-		setExitWithoutDirection(0,2, S.WEST, S.EAST);
-		setExitWithoutDirection(3,4, S.EAST, S.WEST);
-		setExitWithoutDirection(1,5, S.UP, S.DOWN);
-		setExitWithoutDirection(1,6, S.DOWN, S.UP);
-		setExitWithoutDirection(6,7, S.DOWN, S.UP);
-		setExitWithoutDirection(7,8, S.DOWN, S.UP);
-		setExitWithoutDirection(8,9, S.DOWN, S.UP);
-		setExitWithoutDirection(10,5, S.DOWN, S.UP);
+		setExitWithoutDirection(0, 1, S.EAST, S.WEST );
+		setExitWithoutDirection(0, 3, S.SOUTH,S.WEST );
+		setExitWithoutDirection(0, 2, S.WEST, S.EAST );
+		setExitWithoutDirection(3, 4, S.EAST, S.WEST );
+		setExitWithoutDirection(1, 5, S.UP,   S.DOWN );
+		setExitWithoutDirection(1, 6, S.DOWN, S.UP );
+		setExitWithoutDirection(6, 7, S.DOWN, S.UP );
+		setExitWithoutDirection(7, 8, S.DOWN, S.UP );
+		setExitWithoutDirection(8, 9, S.DOWN, S.UP );
+		setExitWithoutDirection(10,5, S.DOWN, S.UP );
+		setExitWithoutDirection(11,10,S.DOWN, S.UP );
+		setExitWithoutDirection(1, 4, S.NORTH,S.SOUTH );
 
 		// 从女仆那里开始
 		currentRoom = theRooms.get(4);
