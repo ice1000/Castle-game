@@ -6,4 +6,5 @@ package util;
  */
 public interface Echoer {
 	void echo(String words);
+	void echoln(String words);
 }

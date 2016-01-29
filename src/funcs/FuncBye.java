@@ -8,7 +8,7 @@ public class FuncBye extends FuncSrc {
 		super(game);
 	}
 
-	public boolean Bye() {
+	private boolean Bye() {
 		isGameEnded = true;
 		return isGameEnded;
 	}

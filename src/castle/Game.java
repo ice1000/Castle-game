@@ -87,17 +87,17 @@ implements Echoer{
 		frame.setVisible(true);
 	}
 
-	private void onResume() {
-		String line;
-		boolean loop = true;
-		Scanner in = new Scanner(System.in);
-		while ( loop ) {
-			echoln("");
-			line = in.nextLine();
-			loop = HandleMessage(line);
-		}
-		in.close();
-	}
+//	private void onResume() {
+//		String line;
+//		boolean loop = true;
+//		Scanner in = new Scanner(System.in);
+//		while ( loop ) {
+//			echoln("");
+//			line = in.nextLine();
+//			loop = HandleMessage(line);
+//		}
+//		in.close();
+//	}
 
 	private void onStart() {
 
@@ -164,7 +164,7 @@ implements Echoer{
 
 	@Override
 	public void echo(String words){
-		System.out.print(words);
+//		System.out.print(words);
 		textField.setText("");
 		textArea.append(words);
 		int i = textArea.getText().length();
@@ -175,8 +175,8 @@ implements Echoer{
 			));
 		}
 	}
-
-	private void echoln(String words){
+	@Override
+	public void echoln(String words){
 		echo(words + "\n");
 	}
 	/**
@@ -253,7 +253,7 @@ implements Echoer{
 	public static void main(String[] args) {
 		Game game = new Game();
 		game.onStart();
-		game.onResume();
+//		game.onResume();
 	}
 
 }
