@@ -3,6 +3,7 @@ package castle;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,7 +27,8 @@ public class Game {
 	private Database database;
 	private JFrame frame;
 	private JTextField textField;
-	private String echo;
+	private JTextArea textArea;
+//	private StringBuffer echo;
 
 	//    构造方法
 	public Game(){
@@ -44,7 +46,6 @@ public class Game {
 				"sleep",
 				"save"
 		};
-
 		funcs.put(funcsString[0], new FuncHelp(this));
 		funcs.put(funcsString[1], new FuncGo(this));
 		funcs.put(funcsString[2], new FuncWild(this));
@@ -55,14 +56,19 @@ public class Game {
 		funcs.put(funcsString[7], new FuncSave(this));
 //      funcs.put(funcsString[8], new FuncPack(this));
 
+//		echo = new StringBuffer();
 		textField = new JTextField("指令");
-		final JButton button = new JButton();
-		button.addActionListener(new ActionListener() {
+		textField.registerKeyboardAction(
+				new ActionListener() {
 					@Override
-					public void actionPerformed(ActionEvent arg0) {
+					public void actionPerformed(ActionEvent e) {
 						HandleMessage(textField.getText());
 					}
-		});
+				},
+				KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, true),
+				JComponent.WHEN_FOCUSED
+		);
+		textArea = new JTextArea();
 		frame = new JFrame("城堡游戏   by 千里冰封");
 		frame.setIconImage(Toolkit.getDefaultToolkit().createImage(
 				"." + File.separator + "drawable" + File.separator + "ic_launcher.png"
@@ -70,6 +76,7 @@ public class Game {
 		frame.setSize(500, 500);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.add(textField, BorderLayout.SOUTH);
+		frame.add(new JScrollPane(textArea), BorderLayout.CENTER);
 		frame.setResizable(false);
 		frame.setVisible(true);
 	}
@@ -139,6 +146,7 @@ public class Game {
 	public String[] getFuncs(){
 		return funcsString;
 	}
+
 	private void createItems() {
 		Item wilder;
 		theItems.add(wilder = new Item("传送门"));
@@ -146,6 +154,7 @@ public class Game {
 
 	private void echo(String words){
 		System.out.print(words);
+		textArea.append(words);
 	}
 
 	private void echoln(String words){
