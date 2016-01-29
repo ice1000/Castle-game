@@ -15,6 +15,7 @@ import funcs.*;
 import cells.*;
 import map.GameMap;
 import util.Echoer;
+import util.NameGenerator;
 
 import javax.swing.*;
 
@@ -30,6 +31,7 @@ implements Echoer{
 	private JFrame frame;
 	private JTextField textField;
 	private JTextArea textArea;
+	private boolean isRenaming = false;
 	//	private StringBuffer echo;
 
 	//    构造方法
@@ -47,10 +49,10 @@ implements Echoer{
 				"wild",
 				"exit",
 				"state",
-				//"pack",
 				"fight",
 				"sleep",
-				"save"
+				"save",
+				"rename"
 		};
 		funcs.put(funcsString[0], new FuncHelp(this));
 		funcs.put(funcsString[1], new FuncGo(this));
@@ -60,7 +62,7 @@ implements Echoer{
 		funcs.put(funcsString[5], new FuncFight(this));
 		funcs.put(funcsString[6], new FuncSleep(this));
 		funcs.put(funcsString[7], new FuncSave(this));
-//      funcs.put(funcsString[8], new FuncPack(this));
+		funcs.put(funcsString[8], new FuncRename(this));
 
 //		echo = new StringBuffer();
 		textField = new JTextField("指令");
@@ -68,7 +70,15 @@ implements Echoer{
 				new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						HandleMessage(textField.getText());
+						if(!isRenaming){
+							HandleMessage(textField.getText());
+						}
+						else {
+							player.rename(textField.getText());
+							echoln("重命名成功。");
+							textField.setText("");
+							isRenaming = false;
+						}
 					}
 				},
 				KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, true),
@@ -106,9 +116,9 @@ implements Echoer{
 		echoln("最新版本和源代码请见https://github.com/ice1000/Castle-game");
 //        echoln("不过在经过了冰封的改造后，你会觉得这个很有意思。");
 		if(!Database.isFileExists()){
-			echoln("请键入你的名字：");
-			Scanner name = new Scanner(System.in);
-			player = new Player(name.nextLine(),200,10,5);
+			echoln("您可以稍后使用\"rename\"命令来更改自己的名字。");
+//			Scanner name = new Scanner(System.in);
+			player = new Player(NameGenerator.generate(),200,10,5);
 			saveData();
 //	        name.close();
 		}
@@ -122,6 +132,10 @@ implements Echoer{
 		echoln("如果需要帮助，请输入 'help' 。\n");
 		echo("现在");
 		echoln(map.getCurrentRoomPrompt());
+	}
+
+	public void rename(){
+		isRenaming = true;
 	}
 
 	private boolean HandleMessage(String line){

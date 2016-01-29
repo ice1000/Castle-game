@@ -10,7 +10,7 @@ public class FuncState extends FuncSrc {
 
 	@Override
 	public void DoFunc(String cmd) {
-		game.echo(game.playerToString());
+		game.echoln(game.playerToString());
 	}
 
 }
