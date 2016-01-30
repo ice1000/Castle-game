@@ -20,11 +20,37 @@ public class Room {
 	//构造方法
 	Room(String description) {
 		this.description = description;
+		exits = new HashMap<>();
 		boss = null;
 	}
 
-	Room(String description, String BossName, int blood, int strike, int miss, int experience,@Nullable String dieText) {
+	//构造方法
+	Room(String description, String welcomeWord) {
+		this.description = description;
+		this.welcomeWord = welcomeWord;
+		exits = new HashMap<>();
+		boss = null;
+	}
+
+	Room(String description,
+	     String BossName, int blood, int strike, int miss, int experience,@Nullable String dieText) {
 		this(description);
+		welcomeWord = "欢迎来到这里。";
+		if(dieText != null){
+			boss = new Boss(BossName,blood,strike,miss,experience,dieText);
+		}
+		else {
+			boss = new Boss(BossName,blood,strike,miss,experience);
+		}
+		NPCs = new ArrayList<>();
+		exits = new HashMap<>();
+//		NPCs.add(boss);
+	}
+
+	Room(String description, String welcomeWord,
+	     String BossName, int blood, int strike, int miss, int experience,@Nullable String dieText) {
+		this(description);
+		this.welcomeWord = welcomeWord;
 		if(dieText != null){
 			boss = new Boss(BossName,blood,strike,miss,experience,dieText);
 		}
@@ -55,9 +81,10 @@ public class Room {
 	//   显示房间的详情。
 
 	String getPrompt() {
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		String ifaBoss = "这里安全。";
-		sb.append("你在").append(this.description).append("\n");
+		sb.append(welcomeWord).append('\n');
+		sb.append("你在").append(this.description).append('\n');
 		sb.append("出口有: ");
 		for ( String str : exits.keySet() ){
 			sb.append(str).append(' ');
@@ -72,7 +99,8 @@ public class Room {
 				ifaBoss = "这里的Boss是"+ boss +",已经被你打败过啦O(∩_∩)O哈哈~";
 		}
 		sb.append(ifaBoss);
-		sb.append("这里还有：\n");
+		if(NPCs.size() > 0)
+			sb.append("这里还有：\n");
 		for (NPC npc : NPCs) {
 			sb.append(npc.getName());
 		}
@@ -86,6 +114,7 @@ public class Room {
 	Player fightBoss(Player player, Echoer echoer) {
 		return boss.fight(player, echoer);
 	}
+
 	//    检查Boss是否已经被挑战过
 	boolean isBossGetItem() {
 		try {

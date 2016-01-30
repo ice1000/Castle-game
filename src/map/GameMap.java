@@ -19,7 +19,7 @@ public class GameMap {
 		//	构造地图结构
         /*0*/theRooms.add(new Room("城堡外","英俊的小偷头目",
 				200,25,10,15,"小偷头目的钱全掉出来了！"));
-        /*1*/theRooms.add(new Room("一楼大堂","礼貌的大堂经理",
+        /*1*/theRooms.add(new Room("一楼大堂","欢迎来到城堡！","礼貌的大堂经理",
 				100,15,12,8,"大堂经理的帐算错了！"));
         /*2*/theRooms.add(new Room("小酒吧","潇洒的酒吧流氓",
 				150,10,5,5,"酒吧流氓喝醉了！"));
@@ -42,13 +42,13 @@ public class GameMap {
 				150, 20, 2, 20, "守卫倒下了！"));
         /*12*/theRooms.add(new Room("羊肠小道", "街边小混混",
 				100,30,1,20 ,null));
-        /*13*/theRooms.add(new Room("日出村大门", "和善的门卫",
+        /*13*/theRooms.add(new Room("日出村大门","欢迎来到城堡西边的日出村！", "和善的门卫",
 				150,20,20,30 ,"门卫露出了和善的笑容"));
         /*null*/theRooms.add(new Room("神秘空间","冰封",
 				1000,100,100,200,"冰封继续开发中。。。"));
 
 		setExitWithoutDirection(0, 1, Direction.EAST, Direction.WEST );
-		setExitWithoutDirection(0, 3, Direction.SOUTH, Direction.NORTH);
+		setExitWithoutDirection(0, 3, Direction.SOUTH,Direction.NORTH);
 		setExitWithoutDirection(0, 2, Direction.WEST, Direction.EAST );
 		setExitWithoutDirection(3, 4, Direction.EAST, Direction.WEST );
 		setExitWithoutDirection(1, 5, Direction.UP,   Direction.DOWN );
@@ -57,10 +57,10 @@ public class GameMap {
 		setExitWithoutDirection(7, 8, Direction.DOWN, Direction.UP   );
 		setExitWithoutDirection(8, 9, Direction.DOWN, Direction.UP   );
 		setExitWithoutDirection(10,5, Direction.DOWN, Direction.UP   );
-		setExitWithoutDirection(11,10, Direction.DOWN, Direction.UP   );
-		setExitWithoutDirection(1, 4, Direction.NORTH, Direction.SOUTH);
-		setExitWithoutDirection(2, 12, Direction.WEST, Direction.EAST );
-		setExitWithoutDirection(12,13, Direction.WEST, Direction.EAST );
+		setExitWithoutDirection(11,10,Direction.DOWN, Direction.UP   );
+		setExitWithoutDirection(1, 4, Direction.NORTH,Direction.SOUTH);
+		setExitWithoutDirection(2, 12,Direction.WEST, Direction.EAST );
+		setExitWithoutDirection(12,13,Direction.WEST, Direction.EAST );
 
 		// 从女仆那里开始
 		currentRoom = theRooms.get(4);

@@ -17,7 +17,11 @@ public class FuncSleep extends FuncSrc {
 			if( !game.isBossGetItem() ){
 				game.echo("女仆顺从地送你进入梦乡。睡觉中");
 				for(int i = 0; i < 8; i ++ ) {
-					SleepTime(50);
+					try {
+						Thread.sleep(50);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
 				game.echo("\n已经睡觉，体力");
 				if( game.Treat() )
@@ -30,15 +34,6 @@ public class FuncSleep extends FuncSrc {
 		}
 		else
 			game.echoln("只有宾馆或卧室能睡觉。");
-	}
-
-	public void SleepTime(int time) {
-		try{
-			Thread.currentThread();
-			Thread.sleep(time);
-		}
-		catch(Exception e){}
-		game.echo("。");
 	}
 
 }

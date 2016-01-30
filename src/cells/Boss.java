@@ -71,9 +71,6 @@ public class Boss extends Player {
 					getItem = false;
 					FuncSleep sleep = new FuncSleep();
 					stringBuffer.append("战斗结束");
-					for( int i = 300; i >= 0; i -= 100 ){
-						sleep.SleepTime(i);
-					}
 					stringBuffer.append("\n");
 				}
 			}
