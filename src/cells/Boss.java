@@ -1,6 +1,7 @@
-package things;
+package cells;
 
 import funcs.FuncSleep;
+import util.Echoer;
 
 //import java.util.Scanner;
 
@@ -8,8 +9,8 @@ public class Boss extends Player {
 	//	和玩家一样，有血、攻防
 	private String dieText = "";
 
-	boolean survive = true;
-	boolean getItem = true;
+	private boolean survive = true;
+	private boolean getItem = true;
 
 	public Boss(String name, int blood, int strike, int miss, int experience, String dieText) {
 		this(name,blood,strike,miss,experience);
@@ -22,12 +23,13 @@ public class Boss extends Player {
 		dieText = name + "跪着向你哀求，不过你残忍地！";
 	}
 
-	public Player fight(Player player) {
+	public Player fight(Player player, Echoer echoer) {
 
+		StringBuilder stringBuffer = new StringBuilder();
 		int bloodSave = this.blood;
 		int bloodSave2 = player.blood;
-		int beBeat = (this.strike - player.miss);
-		int Beat = (player.strike - this.miss);
+		int beBeat = (this.strike - player.getDefence());
+		int Beat = (player.getStrike() - this.defence);
 
 		if( beBeat <= 0 ) {
 			beBeat = 0;
@@ -35,7 +37,10 @@ public class Boss extends Player {
 //			打不过
 		if( Beat <= 0 ){
 			player.blood -= 10;
-			System.out.println("你的攻击力小于"+this.name+"的防御力！\n落荒而逃！损失10点体力值！");
+			stringBuffer
+					.append("你的攻击力小于")
+					.append(this.name)
+					.append("的防御力！\n落荒而逃！损失10点体力值！\n");
 		}
 		else{
 			while(survive){
@@ -49,26 +54,32 @@ public class Boss extends Player {
 					player.blood = bloodSave2;
 
 					this.blood = bloodSave;
-					System.out.println("以你现有的体力值无法打倒"+this.name+"！\n落荒而逃！损失5点体力值！");
+					stringBuffer.append("以你现有的体力值无法打倒").append(this.name).append("！\n落荒而逃！损失5点体力值！\n");
 					break;
 				}
 				if( this.blood <= 0 ){
 //						先把血补回去
 					this.blood = bloodSave;
-					System.out.println(dieText+"\n胜利而归！你还剩"+player.blood+"点体力值！");
-					System.out.println("本次战斗获得了"+player.win(GetExperience())+"点经验值！");
+					stringBuffer
+							.append(dieText)
+							.append("\n胜利而归！你还剩")
+							.append(player.blood)
+							.append("点体力值！\n")
+							.append("本次战斗获得了")
+							.append(player.win(GetExperience()))
+							.append("点经验值！\n");
 					survive = false;
 					getItem = false;
 					FuncSleep sleep = new FuncSleep();
-					System.out.print("战斗结束");
-					for( int i = 800; i >= 0; i -= 100 ){
+					stringBuffer.append("战斗结束");
+					for( int i = 300; i >= 0; i -= 100 ){
 						sleep.SleepTime(i);
 					}
-					System.out.println();
+					stringBuffer.append("\n");
 				}
 			}
 		}
-
+		echoer.echo(stringBuffer.toString());
 		survive = true;
 		return player;
 	}
@@ -82,7 +93,11 @@ public class Boss extends Player {
 		return getItem;
 	}
 
-	public int GetExperience() {
+	public void setGetItem(boolean getItem) {
+		this.getItem = getItem;
+	}
+
+	private int GetExperience() {
 		if( getItem ){
 			System.out.println("Boss挑战成功，获得挑战奖励和额外5点经验奖励！");
 			return (this.experience+5);

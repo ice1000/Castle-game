@@ -1,60 +1,169 @@
 package castle;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import database.Database;
 import funcs.*;
-import things.*;
+import cells.*;
+import map.GameMap;
+import util.Echoer;
+import util.NameGenerator;
 
-public class Game {
+import javax.swing.*;
+
+public class Game
+implements Echoer{
 
 	private HashMap<String, FuncSrc> funcs = new HashMap<>();
 	private String[] funcsString ;
-	public  ArrayList<Room> theRooms = new ArrayList<>();
-	public  ArrayList<Item> theItems = new ArrayList<>();
-	private Room currentRoom;
+	private GameMap map;
+	private ArrayList<Item> theItems = new ArrayList<>();
 	private Player player;
-//	public final String savePath_1 = "D:"+File.separator+"save"+File.separator+"player.ice";
-//	public final String savePath_2 = "D:"+File.separator+"save"+File.separator+"envi.ice";
-	public final String savePath_1 = "D:"+File.separator+"player.ice";
-	public final String savePath_2 = "D:"+File.separator+"envi.ice";
+	private Database database;
+	private JFrame frame;
+	private JTextField textField;
+	private JTextArea textArea;
+	private boolean isRenaming = false;
+	//	private StringBuffer echo;
 
 	//    构造方法
 	public Game(){
-		createRooms();
-		createItems();
+		onCreate();
+	}
 
+	private void onCreate(){
+		map = new GameMap();
+		createItems();
+		database = new Database();
 		funcsString = new String[]{
 				"help",
 				"go",
 				"wild",
 				"exit",
 				"state",
-				//    	"pack",
 				"fight",
 				"sleep",
-				"save"
+				"save",
+				"rename"
 		};
-
 		funcs.put(funcsString[0], new FuncHelp(this));
 		funcs.put(funcsString[1], new FuncGo(this));
 		funcs.put(funcsString[2], new FuncWild(this));
 		funcs.put(funcsString[3], new FuncBye(this));
 		funcs.put(funcsString[4], new FuncState(this));
-//      funcs.put(funcsString[5], new FuncPack(this));
-//      funcs.put(funcsString[6], new FuncFight(this));
-//      funcs.put(funcsString[7], new FuncSleep(this));
-//      funcs.put(funcsString[8], new FuncSave(this));
 		funcs.put(funcsString[5], new FuncFight(this));
 		funcs.put(funcsString[6], new FuncSleep(this));
 		funcs.put(funcsString[7], new FuncSave(this));
+		funcs.put(funcsString[8], new FuncRename(this));
+
+//		echo = new StringBuffer();
+		textField = new JTextField("指令");
+		textField.registerKeyboardAction(
+				new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if(!isRenaming){
+							HandleMessage(textField.getText());
+						}
+						else {
+							player.rename(textField.getText());
+							echoln("重命名成功。");
+							textField.setText("");
+							isRenaming = false;
+						}
+					}
+				},
+				KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, true),
+				JComponent.WHEN_FOCUSED
+		);
+		textArea = new JTextArea();
+		frame = new JFrame("城堡游戏   by 千里冰封");
+		frame.setIconImage(Toolkit.getDefaultToolkit().createImage(
+				"." + File.separator + "drawable" + File.separator + "ic_launcher.png"
+		));
+		frame.setSize(500, 500);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frame.add(textField, BorderLayout.SOUTH);
+		frame.add(new JScrollPane(textArea), BorderLayout.CENTER);
+		frame.setResizable(false);
+		frame.setVisible(true);
+	}
+
+//	private void onResume() {
+//		String line;
+//		boolean loop = true;
+//		Scanner in = new Scanner(System.in);
+//		while ( loop ) {
+//			echoln("");
+//			line = in.nextLine();
+//			loop = HandleMessage(line);
+//		}
+//		in.close();
+//	}
+
+	private void onStart() {
+
+		echoln("欢迎来到城堡！");
+		echoln("这是一个超复古的CUI游戏。");
+		echoln("最新版本和源代码请见https://github.com/ice1000/Castle-game");
+//        echoln("不过在经过了冰封的改造后，你会觉得这个很有意思。");
+		if(!Database.isFileExists()){
+			echoln("您可以稍后使用\"rename\"命令来更改自己的名字。");
+//			Scanner name = new Scanner(System.in);
+			player = new Player(NameGenerator.generate(),200,10,5);
+			saveData();
+//	        name.close();
+		}
+		else {
+			player = new Player(null,-1,-1,-1);
+			database.loadState(player);
+			database.loadMap(map,"宾馆");
+			echoln("检测到存档。");
+		}
+		echoln("你好"+player);
+		echoln("如果需要帮助，请输入 'help' 。\n");
+		echo("现在");
+		echoln(map.getCurrentRoomPrompt());
+	}
+
+	public void rename(){
+		isRenaming = true;
+	}
+
+	private boolean HandleMessage(String line){
+		String[] words = line.split(" ");
+		FuncSrc func = funcs.get(words[0]);
+		String value2 = "";
+
+		if( words.length > 1 )
+			value2 = words[1];
+
+//			如果找到了该指令
+		if( func != null ){
+			func.DoFunc(value2);
+			if( func.isGameEnded() ){
+//					退出指令特殊处理
+				saveData();
+				echoln("退出游戏，再见！");
+//				System.exit(0);
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException ignored){}
+				frame.dispose();
+				return false;
+			}
+		}
+		else
+			echoln("对不起，输入指令错误！");
+		return true;
 
 	}
 
@@ -62,108 +171,55 @@ public class Game {
 		return funcsString;
 	}
 
-	private void createRooms(){
-
-		//	构造地图结构
-        /*0*/theRooms.add(new Room("城堡外","英俊的小偷头目",
-				200,25,10,8,"小偷头目的钱全掉出来了！"));
-        /*1*/theRooms.add(new Room("一楼大堂","礼貌的大堂经理",
-				100,15,12,5,"大堂经理的帐算错了！"));
-        /*2*/theRooms.add(new Room("小酒吧","潇洒的酒吧流氓",
-				150,10,5,3,"酒吧流氓喝醉了！"));
-        /*3*/theRooms.add(new Room("书房","优雅的读书人",
-				100,7,5,2,"读书人的书掉出来了！"));
-        /*4*/theRooms.add(new Room("宾馆","可爱的女仆",
-				10,6,3,1,"女仆被你推倒了！"));
-        /*5*/theRooms.add(new Room("二楼睡房","公主的管家",
-				300,20,5,15,"管家扑街、公主被你推倒了！"));
-        /*6*/theRooms.add(new Room("负一楼","奇怪的男人",
-				200,30,15,25,"男人身边站出来一名浑身是伤的女孩。。"));
-        /*7*/theRooms.add(new Room("负二楼","穿着霸气的绅士",
-				100,50,35,35,"绅士的衣服脏了！"));
-        /*8*/theRooms.add(new Room("负三楼","身穿铠甲的战士",
-				300,30,25,45,"战士被自己绊倒了！"));
-        /*9*/theRooms.add(new Room("负四楼","持剑的骑士",
-				400,40,35,60,"骑士的剑断了！"));
-        /*null*/theRooms.add(new Room("神秘空间","冰封",
-				1000,100,100,200,"冰封继续开发中。。。"));
-
-		theRooms.get(0).setExit("east", theRooms.get(1));
-		theRooms.get(0).setExit("south",theRooms.get(3));
-		theRooms.get(0).setExit("west", theRooms.get(2));
-		theRooms.get(1).setExit("west",	theRooms.get(0));
-		theRooms.get(2).setExit("east",	theRooms.get(0));
-		theRooms.get(3).setExit("north",theRooms.get(0));
-		theRooms.get(3).setExit("east", theRooms.get(4));
-		theRooms.get(4).setExit("west",	theRooms.get(3));
-		theRooms.get(1).setExit("up", 	theRooms.get(5));
-		theRooms.get(5).setExit("down", theRooms.get(1));
-		theRooms.get(1).setExit("down", theRooms.get(6));
-		theRooms.get(6).setExit("up", 	theRooms.get(1));
-		theRooms.get(6).setExit("down", theRooms.get(7));
-		theRooms.get(7).setExit("up", 	theRooms.get(6));
-		theRooms.get(7).setExit("down", theRooms.get(8));
-		theRooms.get(8).setExit("up", 	theRooms.get(7));
-		theRooms.get(8).setExit("down", theRooms.get(9));
-		theRooms.get(9).setExit("up", 	theRooms.get(8));
-
-		currentRoom = theRooms.get(0);  //	从城堡门外开始
-	}
-
 	private void createItems() {
 		Item wilder;
 		theItems.add(wilder = new Item("传送门"));
 	}
 
-	private void printWelcome() {
-		System.out.println("欢迎来到城堡！");
-//        System.out.println("这是一个超级无聊的游戏。");
-//        System.out.println("不过在经过了冰封的改造后，你会觉得这个很有意思。");
-		Player.setFileName(savePath_1);
-		if(!Player.isFileExist()){
-			System.out.println("请键入你的名字：");
-			Scanner name = new Scanner(System.in);
-			player = new Player(name.nextLine(),200,10,5);
-//	        name.close();
+	@Override
+	public void echo(String words){
+//		System.out.print(words);
+		textField.setText("");
+		textArea.append(words);
+		int i = textArea.getText().length();
+		int MAX_LENGTH = 10000;
+		if(i > MAX_LENGTH){
+			textArea.setText(textArea.getText().substring(
+					i - MAX_LENGTH, i
+			));
 		}
-		else {
-			System.out.println("检测到存档。正在读取...");
-			player = new Player();
-			loadData();
-			System.out.println("读取成功");
-		}
-		System.out.println("你好"+player);
-		System.out.println("如果需要帮助，请输入 '\\help' 。\n");
-		System.out.print("现在");
-		currentRoom.showPrompt();
+	}
+	@Override
+	public void echoln(String words){
+		echo(words + "\n");
 	}
 	/**
 	 * 到达
 	 */
 	public void goRoom(String direction){
-		if( currentRoom.CheckExit(direction) )
-			currentRoom = currentRoom.showRoom(direction);
-		else
-			System.out.println("没有这个出口。");
-		currentRoom.showPrompt();
+		if(!map.goRoom(direction))
+			echoln("没有这个出口。");
+		echoln(map.getCurrentRoomPrompt());
 	}
 	/**
 	 * 随机传送
 	 */
 	public void WildRoom(){
-		int index = (int) (Math.random()*2000);
-		index %= theRooms.size();
-		currentRoom = theRooms.get(index);
-		currentRoom.showPrompt();
+		echoln(map.wildRoom());
 	}
 	/**
 	 * 战斗函数
 	 */
 	public void Fight() {
+		map.fightBoss(this);
+		echoln(map.getCurrentRoomPrompt());
+	}
+	public void setPlayer(Player player){
 //    	减血赋值给原来的
-		player = currentRoom.fightBoss(player);
-//    	currentRoom.fightBoss( player.getStrike(), player.getMiss(), player.blood );
-		currentRoom.showPrompt();
+		this.player = player;
+	}
+	public Player getPlayer() {
+		return player;
 	}
 	/**
 	 * 指定数量的补血
@@ -181,91 +237,37 @@ public class Game {
 	 * 检查是否可以睡觉
 	 */
 	public boolean TreatRoomCheck() {
-		return currentRoom.toString().matches("宾馆|卧室");
+		return map.treatRoomCheck();
 	}
 	/**
 	 * 显示玩家数据
 	 * @return 玩家数据
 	 */
-	public String PLayerToString() {
+	public String playerToString() {
 		return player.stateToString();
 //    	return player;
 	}
+
 	/**
 	 * 返回BOSS是否被打败过
 	 * @return BOSS是否被打败过
 	 */
-	public boolean BossGetItem() {
-		return currentRoom.BossGetItem();
-	}
-	private void loadData(){
-		File file = new File(savePath_2);
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(file));
-			String roomName = reader.readLine();
-			for (Room room : theRooms) {
-				if(room.equals(roomName)){
-					currentRoom = room;
-					break;
-				}
-			}
-		} catch (IOException e) {
-			// e.printStackTrace();
-		}
+	public boolean isBossGetItem() {
+		return map.BossGetItem();
 	}
 	public void saveData(){
-		player.saveState();
-		File file = new File(savePath_2);
 		try {
-			if(file.exists()){
-				file.delete();
-			}
-			file.createNewFile();
-			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-			writer.write(currentRoom.toString());
-			writer.close();
-			System.out.println("保存成功。");
-		} catch (IOException e) {
-			// e.printStackTrace();
+			database.saveMapAndState(map,player);
+			echoln("保存成功。");
+		} catch (IOException e){
+			echoln("保存失败，请检查是否有管理员权限！");
 		}
-	}
-	//	    游戏运行，接受指令
-	private void gameRun() {
-		String line;
-		Scanner in = new Scanner(System.in);
-		while ( true ) {
-
-			System.out.print("\\");
-			line = in.nextLine();
-			String[] words = line.split(" ");
-			FuncSrc func = funcs.get(words[0]);
-			String value2 = "";
-
-			if( words.length > 1 )
-				value2 = words[1];
-
-//			如果找到了该指令
-			if( func != null ){
-				func.DoFunc(value2);
-				if( func.isGameEnded() ){
-//					退出指令特殊处理
-					saveData();
-					break;
-				}
-			}
-			else
-				System.out.println("对不起，输入指令错误！");
-		}
-		in.close();
 	}
 
 	public static void main(String[] args) {
-
 		Game game = new Game();
-		game.printWelcome();
-		game.gameRun();
-
-		System.out.println("退出游戏。再见！");
+		game.onStart();
+//		game.onResume();
 	}
 
 }

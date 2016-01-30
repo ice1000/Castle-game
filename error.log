@@ -1,7 +1,7 @@
 java.util.NoSuchElementException: No line found
 	at java.util.Scanner.nextLine(Unknown Source)
-	at castle.Game.gameRun(Game.java:193)
-	at castle.Game.main(Game.java:220)
+	at castle.Game.onStart(Game.java:111)
+	at castle.Game.main(Game.java:254)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)

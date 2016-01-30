@@ -10,7 +10,7 @@ public class FuncPack extends FuncSrc {
 
 	@Override
 	public void DoFunc(String cmd) {
-		
+		game.echoln("背包中物品如下：");
 	}
 
 }

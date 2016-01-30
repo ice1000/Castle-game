@@ -10,11 +10,11 @@ public class FuncHelp extends FuncSrc {
 
 	@Override
 	public void DoFunc(String cmd) {
-		System.out.println("迷路了吗？你可以做的命令有：");
+		game.echoln("迷路了吗？你可以做的命令有：");
 		String[] strings = game.getFuncs();
 		for(String s : strings){
-			System.out.println("\\" + s);
+			game.echoln(s);
 		}
-		System.out.println("如：\\go east");
+		game.echoln("如：go east");
 	}
 }

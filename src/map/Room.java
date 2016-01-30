@@ -1,80 +1,91 @@
-package castle;
+package map;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import things.*;
+import cells.*;
+import util.Echoer;
 
 public class Room {
 
 	private Boss Boss = null;
 	private String description;
-	private HashMap<String, Room> exits = new HashMap<>();
+	private HashMap<String, Integer> exits = new HashMap<>();
 
 	//构造方法
-	public Room(String description) {
+	Room(String description) {
 		this.description = description;
+		Boss = null;
 	}
 
-	public Room(String description, String BossName, int blood, int strike, int miss, int experience, String dieText) {
+	Room(String description, String BossName, int blood, int strike, int miss, int experience, String dieText) {
 		this(description);
 		Boss = new Boss(BossName,blood,strike,miss,experience,dieText);
 		ArrayList<Cell> cells = new ArrayList<>();
 		cells.add(Boss);
 	}
 
-	//    返回房间名
+	//返回房间名
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return description;
 	}
-	//    检查房间名
+
+	//检查房间名
 	@Override
 	public boolean equals(Object anotherOne) {
 		return description.equals(anotherOne);
 	}
 
 	//    设置一个出口。
-	public void setExit(String str,Room room){
-		exits.put(str, room);
+	void setExit(String str, int targetRoomId){
+		exits.put(str, targetRoomId);
 	}
 	//   显示房间的详情。
-	public void showPrompt() {
+	String getPrompt() {
 		StringBuffer sb = new StringBuffer();
 		String ifaBoss = "这里安全。";
-		System.out.println("你在" + this.description);
-		System.out.print("出口有: ");
+		sb.append("你在").append(this.description).append("\n");
+		sb.append("出口有: ");
 		for ( String str : exits.keySet() ){
 			sb.append(str).append(' ');
 		}
-		System.out.println(sb);
+		sb.append('\n');
 		if(Boss != null) {
-			if( Boss.IfGet() ){
+			if( Boss.IfGet() )
 				ifaBoss = "冰封".equals(Boss.toString()) ?
 						"你来到了神秘空间。这里只能通过\\wild传送离开。冰封正坐在这写码呢。"
 						: "这里的Boss是"+Boss+",正准备接受你的挑战呢！";
-			}
-			else{
+			else
 				ifaBoss = "这里的Boss是"+Boss+",已经被你打败过啦O(∩_∩)O哈哈~";
-			}
 		}
-		System.out.println(ifaBoss);
+		sb.append(ifaBoss);
+		return sb.toString();
 	}
 	//   使用此类的返回值，赋给原本的Room。
-	public Room showRoom(String direction) {
+	int showRoomId(String direction) {
 		return exits.get(direction);
 	}
 	//   战斗函数
-	public Player fightBoss(Player player) {
-		return Boss.fight(player);
+	Player fightBoss(Player player, Echoer echoer) {
+		return Boss.fight(player, echoer);
 	}
 	//    检查Boss是否已经被挑战过
-	public boolean BossGetItem() {
-		return Boss.IfGet();
+	boolean isBossGetItem() {
+		try {
+			return Boss.IfGet();
+		} catch (NullPointerException e){
+			return true;
+		}
 	}
 
-	public boolean CheckExit(String exit) {
+	void setBossGetItem(boolean isGet){
+		if(Boss != null){
+			Boss.setGetItem(isGet);
+		}
+	}
+
+	boolean checkExit(String exit) {
 		return exits.containsKey(exit);
 	}
 }
