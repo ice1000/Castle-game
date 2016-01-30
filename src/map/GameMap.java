@@ -2,6 +2,7 @@ package map;
 
 import castle.Game;
 import util.Direction;
+import util.DirectionPair;
 
 import java.util.ArrayList;
 
@@ -13,6 +14,11 @@ public class GameMap {
 
 	private ArrayList<Room> theRooms;
 	private Room currentRoom;
+	private final DirectionPair[] pairs ={
+		new DirectionPair(Direction.UP,   Direction.DOWN ),
+		new DirectionPair(Direction.NORTH,Direction.SOUTH),
+		new DirectionPair(Direction.EAST, Direction.WEST ),
+	};
 
 	public GameMap() {
 		theRooms = new ArrayList<>();
@@ -44,31 +50,40 @@ public class GameMap {
 				100,30,1,20 ,null));
         /*13*/theRooms.add(new Room("日出村大门","欢迎来到城堡西边的日出村！", "和善的门卫",
 				150,20,20,30 ,"门卫露出了和善的笑容"));
-        /*null*/theRooms.add(new Room("神秘空间","冰封",
-				1000,100,100,200,"冰封继续开发中。。。"));
+        /*14*/theRooms.add(new Room("神秘空间祭坛","冰封",
+				1000,150,100,200,"冰封认真地写着客户端。。。"));
+        /*15*/theRooms.add(new Room("神秘空间西","无",
+				1000,150,100,200,"无认真地写这服务器端。。。"));
+        /*16*/theRooms.add(new Room("神秘空间东","奶茶",
+				1000,150,100,200,"冰封继续开发中。。。"));
+        /*17*/theRooms.add(new Room("神秘空间北","果冻",
+				1000,150,100,200,"果冻正在打酱油。。。"));
 
-		setExitWithoutDirection(0, 1, Direction.EAST, Direction.WEST );
-		setExitWithoutDirection(0, 3, Direction.SOUTH,Direction.NORTH);
-		setExitWithoutDirection(0, 2, Direction.WEST, Direction.EAST );
-		setExitWithoutDirection(3, 4, Direction.EAST, Direction.WEST );
-		setExitWithoutDirection(1, 5, Direction.UP,   Direction.DOWN );
-		setExitWithoutDirection(1, 6, Direction.DOWN, Direction.UP   );
-		setExitWithoutDirection(6, 7, Direction.DOWN, Direction.UP   );
-		setExitWithoutDirection(7, 8, Direction.DOWN, Direction.UP   );
-		setExitWithoutDirection(8, 9, Direction.DOWN, Direction.UP   );
-		setExitWithoutDirection(10,5, Direction.DOWN, Direction.UP   );
-		setExitWithoutDirection(11,10,Direction.DOWN, Direction.UP   );
-		setExitWithoutDirection(1, 4, Direction.NORTH,Direction.SOUTH);
-		setExitWithoutDirection(2, 12,Direction.WEST, Direction.EAST );
-		setExitWithoutDirection(12,13,Direction.WEST, Direction.EAST );
+		setExitWithoutDirection(1, 5, pairs[0]);
+		setExitWithoutDirection(5, 10,pairs[0]);
+		setExitWithoutDirection(10,11,pairs[0]);
+		setExitWithoutDirection(6, 1, pairs[0]);
+		setExitWithoutDirection(7, 6, pairs[0]);
+		setExitWithoutDirection(8, 7, pairs[0]);
+		setExitWithoutDirection(9, 8, pairs[0]);
+		setExitWithoutDirection(3, 0, pairs[1]);
+		setExitWithoutDirection(4, 1, pairs[1]);
+		setExitWithoutDirection(14,17,pairs[1]);
+		setExitWithoutDirection(0, 1, pairs[2]);
+		setExitWithoutDirection(2, 0, pairs[2]);
+		setExitWithoutDirection(3, 4, pairs[2]);
+		setExitWithoutDirection(12,2, pairs[2]);
+		setExitWithoutDirection(13,12,pairs[2]);
+		setExitWithoutDirection(15,14,pairs[2]);
+		setExitWithoutDirection(14,16,pairs[2]);
 
 		// 从女仆那里开始
 		currentRoom = theRooms.get(4);
 	}
 
-	private void setExitWithoutDirection(int index_a, int index_b, Direction a2b, Direction b2a){
-		theRooms.get(index_a).setExit(String.valueOf(a2b), index_b);
-		theRooms.get(index_b).setExit(String.valueOf(b2a), index_a);
+	private void setExitWithoutDirection(int index_a, int index_b,DirectionPair pair){
+		theRooms.get(index_a).setExit(String.valueOf(pair.getDirection1()), index_b);
+		theRooms.get(index_b).setExit(String.valueOf(pair.getDirection2()), index_a);
 	}
 
 	public void setCurrentRoom(Room room){
