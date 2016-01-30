@@ -17,6 +17,6 @@ public class FuncTalk extends FuncSrc{
 
 	@Override
 	public void DoFunc(String cmd) {
-		npc = game.
+//		npc = game.
 	}
 }

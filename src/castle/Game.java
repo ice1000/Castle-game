@@ -114,6 +114,7 @@ implements Echoer{
 		echoln("欢迎来到城堡！");
 		echoln("这是一个超复古的CUI游戏。");
 		echoln("最新版本和源代码请见https://github.com/ice1000/Castle-game");
+		echoln("敬请期待OL版本https://github.com/ProgramLeague/Castle-Online");
 //        echoln("不过在经过了冰封的改造后，你会觉得这个很有意思。");
 		if(!Database.isFileExists()){
 			echoln("您可以稍后使用\"rename\"命令来更改自己的名字。");

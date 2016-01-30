@@ -1,10 +1,9 @@
 package map;
 
 import castle.Game;
-import util.S;
+import util.Direction;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 /**
  * 地图类
@@ -48,26 +47,26 @@ public class GameMap {
         /*null*/theRooms.add(new Room("神秘空间","冰封",
 				1000,100,100,200,"冰封继续开发中。。。"));
 
-		setExitWithoutDirection(0, 1, S.EAST, S.WEST );
-		setExitWithoutDirection(0, 3, S.SOUTH,S.NORTH);
-		setExitWithoutDirection(0, 2, S.WEST, S.EAST );
-		setExitWithoutDirection(3, 4, S.EAST, S.WEST );
-		setExitWithoutDirection(1, 5, S.UP,   S.DOWN );
-		setExitWithoutDirection(1, 6, S.DOWN, S.UP   );
-		setExitWithoutDirection(6, 7, S.DOWN, S.UP   );
-		setExitWithoutDirection(7, 8, S.DOWN, S.UP   );
-		setExitWithoutDirection(8, 9, S.DOWN, S.UP   );
-		setExitWithoutDirection(10,5, S.DOWN, S.UP   );
-		setExitWithoutDirection(11,10,S.DOWN, S.UP   );
-		setExitWithoutDirection(1, 4, S.NORTH,S.SOUTH);
-		setExitWithoutDirection(2, 12,S.WEST, S.EAST );
-		setExitWithoutDirection(12,13,S.WEST, S.EAST );
+		setExitWithoutDirection(0, 1, Direction.EAST, Direction.WEST );
+		setExitWithoutDirection(0, 3, Direction.SOUTH, Direction.NORTH);
+		setExitWithoutDirection(0, 2, Direction.WEST, Direction.EAST );
+		setExitWithoutDirection(3, 4, Direction.EAST, Direction.WEST );
+		setExitWithoutDirection(1, 5, Direction.UP,   Direction.DOWN );
+		setExitWithoutDirection(1, 6, Direction.DOWN, Direction.UP   );
+		setExitWithoutDirection(6, 7, Direction.DOWN, Direction.UP   );
+		setExitWithoutDirection(7, 8, Direction.DOWN, Direction.UP   );
+		setExitWithoutDirection(8, 9, Direction.DOWN, Direction.UP   );
+		setExitWithoutDirection(10,5, Direction.DOWN, Direction.UP   );
+		setExitWithoutDirection(11,10, Direction.DOWN, Direction.UP   );
+		setExitWithoutDirection(1, 4, Direction.NORTH, Direction.SOUTH);
+		setExitWithoutDirection(2, 12, Direction.WEST, Direction.EAST );
+		setExitWithoutDirection(12,13, Direction.WEST, Direction.EAST );
 
 		// 从女仆那里开始
 		currentRoom = theRooms.get(4);
 	}
 
-	private void setExitWithoutDirection(int index_a, int index_b, S a2b, S b2a){
+	private void setExitWithoutDirection(int index_a, int index_b, Direction a2b, Direction b2a){
 		theRooms.get(index_a).setExit(String.valueOf(a2b), index_b);
 		theRooms.get(index_b).setExit(String.valueOf(b2a), index_a);
 	}
