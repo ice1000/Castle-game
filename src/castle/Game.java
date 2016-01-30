@@ -194,7 +194,7 @@ implements Echoer{
 		echo(words + "\n");
 	}
 	/**
-	 * 到达
+	 * 去一个房间
 	 */
 	public void goRoom(String direction){
 		if(!map.goRoom(direction))

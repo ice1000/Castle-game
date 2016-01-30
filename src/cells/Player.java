@@ -80,7 +80,7 @@ public class Player extends Cell {
 
 	@Override
 	public String toString() {
-		return name;
+		return super.getName();
 	}
 
 	int win(int experience) {

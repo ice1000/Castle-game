@@ -8,7 +8,6 @@ import util.Echoer;
 public class Boss extends Player {
 	//	和玩家一样，有血、攻防
 	private String dieText = "";
-
 	private boolean survive = true;
 	private boolean getItem = true;
 
@@ -66,7 +65,7 @@ public class Boss extends Player {
 							.append(player.blood)
 							.append("点体力值！\n")
 							.append("本次战斗获得了")
-							.append(player.win(GetExperience()))
+							.append(player.win(getExperience()))
 							.append("点经验值！\n");
 					survive = false;
 					getItem = false;
@@ -86,10 +85,10 @@ public class Boss extends Player {
 
 	@Override
 	public String toString() {
-		return this.name;
+		return super.getName();
 	}
 
-	public boolean IfGet() {
+	public boolean ifGet() {
 		return getItem;
 	}
 
@@ -97,14 +96,16 @@ public class Boss extends Player {
 		this.getItem = getItem;
 	}
 
-	private int GetExperience() {
+	public int getExperience(Echoer echoer) {
 		if( getItem ){
-			System.out.println("Boss挑战成功，获得挑战奖励和额外5点经验奖励！");
+			echoer.echoln("Boss挑战成功，获得挑战奖励和额外5点经验奖励！");
 			return (this.experience+5);
 		}
-		else{
+		else
 			return this.experience;
-		}
 	}
 
+	public NPC toNPC(String chat){
+		return new NPC(name, chat);
+	}
 }

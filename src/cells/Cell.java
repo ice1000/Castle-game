@@ -2,14 +2,18 @@ package cells;
 
 public class Cell {
 	
-	protected String name = "";
+	String name = "";
 
-	public Cell(String name) {
+	Cell(String name) {
 //		super();
 		this.name = name;
-	}	
+	}
 	
 	public Cell(){
 		name = "unKown";
+	}
+
+	public String getName() {
+		return name;
 	}
 }
