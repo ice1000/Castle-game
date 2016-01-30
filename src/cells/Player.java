@@ -16,8 +16,8 @@ public class Player extends Cell {
 	int strike = 0;
 	int defence = 0;
 	private int level = 0;
-	protected int experience = 0;
-	protected int[] limit = {
+	int experience = 0;
+	private final int[] limit = {
 			5,
 			10,
 			30,
@@ -43,6 +43,14 @@ public class Player extends Cell {
 			1680,
 			1840,
 			2000,
+			2200,
+			2400,
+			2600,
+			2800,
+			3200,
+			3600,
+			4000,
+			99999999,
 			99999999,
 	};
 
