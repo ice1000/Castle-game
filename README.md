@@ -27,7 +27,7 @@
 看到那个jar包了吗，castle.jar，这个是我已经打包好了的。<br/>
 所以你们只需要打开终端<br/>
 在终端先进入城堡游戏文件夹，然后输入<br/>
-> $ java ./castle.jar
+> $ java -jar ./castle.jar
 
 按理说应该是可以运行的。
 
