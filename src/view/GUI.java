@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
+import static javafx.scene.input.KeyCode.X;
+
 /**
  * 视图
  * Created by asus1 on 2016/1/31.
@@ -24,6 +26,7 @@ public class GUI extends Game
 
 	private static int FRAME_X = 500;
 	private static int FRAME_Y = 500;
+	private static int INPUT_Y = 500;
 
 	public GUI() {
 		frame = new JFrame("城堡游戏   by 千里冰封");
@@ -36,6 +39,7 @@ public class GUI extends Game
 				JComponent.WHEN_FOCUSED
 		);
 		textArea = new JTextArea();
+		textArea.setBounds(0, 0, FRAME_X, FRAME_Y - INPUT_Y);
 		frame.setIconImage(Toolkit.getDefaultToolkit().createImage(
 				"." + File.separator + "drawable" + File.separator + "ic_launcher.png"
 		));
@@ -43,8 +47,8 @@ public class GUI extends Game
 		// 绝对布局
 		frame.setLayout(null);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.add(textField, BorderLayout.SOUTH);
-		frame.add(new JScrollPane(textArea), BorderLayout.CENTER);
+		frame.add(textField);
+		frame.add(new JScrollPane(textArea));
 		frame.setResizable(false);
 		frame.setLocation(FRAME_X / 8,FRAME_Y / 8);
 		frame.setVisible(true);
