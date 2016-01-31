@@ -1,36 +1,26 @@
 package castle;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 import database.Database;
 import funcs.*;
 import cells.*;
 import map.GameMap;
 import util.Echoer;
+import util.MessageHandler;
 import util.NameGenerator;
 
-import javax.swing.*;
-
-public class Game
-implements Echoer{
+public abstract class Game
+implements  MessageHandler ,Echoer{
 
 	private HashMap<String, FuncSrc> funcs = new HashMap<>();
-	private String[] funcsString ;
+	private String[] funcsString;
 	private GameMap map;
 	private ArrayList<Item> theItems = new ArrayList<>();
 	private Player player;
 	private Database database;
-	private JFrame frame;
-	private JTextField textField;
-	private JTextArea textArea;
 
 	//    构造方法
 	public Game(){
@@ -61,46 +51,10 @@ implements Echoer{
 		funcs.put(funcsString[6], new FuncSleep(this));
 		funcs.put(funcsString[7], new FuncSave(this));
 		funcs.put(funcsString[8], new FuncRename(this));
-
-//		echo = new StringBuffer();
-		textField = new JTextField("在这里输入指令");
-		textField.registerKeyboardAction(
-				new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						HandleMessage(textField.getText());
-						textField.setText("");
-					}
-				},
-				KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, true),
-				JComponent.WHEN_FOCUSED
-		);
-		textArea = new JTextArea();
-		frame = new JFrame("城堡游戏   by 千里冰封");
-		frame.setIconImage(Toolkit.getDefaultToolkit().createImage(
-				"." + File.separator + "drawable" + File.separator + "ic_launcher.png"
-		));
-		frame.setSize(500, 500);
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.add(textField, BorderLayout.SOUTH);
-		frame.add(new JScrollPane(textArea), BorderLayout.CENTER);
-		frame.setResizable(false);
-		frame.setVisible(true);
+		
 	}
 
-//	private void onResume() {
-//		String line;
-//		boolean loop = true;
-//		Scanner in = new Scanner(System.in);
-//		while ( loop ) {
-//			echoln("");
-//			line = in.nextLine();
-//			loop = HandleMessage(line);
-//		}
-//		in.close();
-//	}
-
-	private void onStart() {
+	public void onStart() {
 		echoln("欢迎来到城堡！");
 		echoln("这是一个超复古的CUI游戏。");
 		echoln("最新版本和源代码请见https://github.com/ice1000/Castle-game");
@@ -111,19 +65,22 @@ implements Echoer{
 			player = new Player(NameGenerator.generate(),200,10,5);
 			saveData();
 		}
+
 		else {
 			player = new Player(null,-1,-1,-1);
 			database.loadState(player);
 			database.loadMap(map,"宾馆");
 			echoln("检测到存档。");
 		}
+
 		echoln("你好"+player);
 		echoln("如果需要帮助，请输入 'help' 。\n");
 		echo("现在");
 		echoln(map.getCurrentRoomPrompt());
 	}
 
-	private boolean HandleMessage(String line){
+	@Override
+	public boolean HandleMessage(String line){
 		String[] words = line.split(" ");
 		FuncSrc func = funcs.get(words[0]);
 		String value2 = "";
@@ -142,7 +99,7 @@ implements Echoer{
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException ignored){}
-				frame.dispose();
+				closeScreen();
 				return false;
 			}
 		}
@@ -154,27 +111,9 @@ implements Echoer{
 	public String[] getFuncs(){
 		return funcsString;
 	}
-
 	private void createItems() {
 		Item wilder;
 		theItems.add(wilder = new Item("传送门"));
-	}
-
-	@Override
-	public void echo(String words){
-//		System.out.print(words);
-		textArea.append(words);
-		int i = textArea.getText().length();
-		int MAX_LENGTH = 10000;
-		if(i > MAX_LENGTH){
-			textArea.setText(textArea.getText().substring(
-					i - MAX_LENGTH, i
-			));
-		}
-	}
-	@Override
-	public void echoln(String words){
-		echo(words + "\n");
 	}
 	/**
 	 * 去一个房间
@@ -245,12 +184,6 @@ implements Echoer{
 		} catch (IOException e){
 			echoln("保存失败，请检查是否有管理员权限！");
 		}
-	}
-
-	public static void main(String[] args) {
-		Game game = new Game();
-		game.onStart();
-//		game.onResume();
 	}
 
 }

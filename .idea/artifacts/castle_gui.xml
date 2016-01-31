@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="castle-gui">
+    <output-path>$PROJECT_DIR$/out/artifacts/castle_gui</output-path>
+    <root id="archive" name="castle-gui.jar">
+      <element id="module-output" name="城堡游戏" />
+    </root>
+  </artifact>
+</component>

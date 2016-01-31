@@ -14,7 +14,7 @@ public class GameMap {
 
 	private ArrayList<Room> theRooms;
 	private Room currentRoom;
-	private final DirectionPair[] pairs ={
+	private static final DirectionPair[] pairs ={
 		new DirectionPair(Direction.UP,   Direction.DOWN ),
 		new DirectionPair(Direction.NORTH,Direction.SOUTH),
 		new DirectionPair(Direction.EAST, Direction.WEST ),
