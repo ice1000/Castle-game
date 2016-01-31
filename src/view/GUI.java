@@ -40,6 +40,8 @@ public class GUI extends Game
 				"." + File.separator + "drawable" + File.separator + "ic_launcher.png"
 		));
 		frame.setSize(FRAME_X, FRAME_Y);
+		// 绝对布局
+		frame.setLayout(null);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.add(textField, BorderLayout.SOUTH);
 		frame.add(new JScrollPane(textArea), BorderLayout.CENTER);
