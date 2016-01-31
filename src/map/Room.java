@@ -26,31 +26,18 @@ public class Room {
 
 	//构造方法
 	Room(String description, String welcomeWord) {
-		this.description = description;
+		this(description);
 		this.welcomeWord = welcomeWord;
-		exits = new HashMap<>();
-		boss = null;
 	}
 
 	Room(String description,
 	     String BossName, int blood, int strike, int miss, int experience,@Nullable String dieText) {
-		this(description);
-		welcomeWord = "欢迎来到这里。";
-		if(dieText != null){
-			boss = new Boss(BossName,blood,strike,miss,experience,dieText);
-		}
-		else {
-			boss = new Boss(BossName,blood,strike,miss,experience);
-		}
-		NPCs = new ArrayList<>();
-		exits = new HashMap<>();
-//		NPCs.add(boss);
+		this(description,"欢迎来到这里。", BossName, blood, strike, miss, experience, dieText);
 	}
 
 	Room(String description, String welcomeWord,
 	     String BossName, int blood, int strike, int miss, int experience,@Nullable String dieText) {
-		this(description);
-		this.welcomeWord = welcomeWord;
+		this(description, welcomeWord);
 		if(dieText != null){
 			boss = new Boss(BossName,blood,strike,miss,experience,dieText);
 		}

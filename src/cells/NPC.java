@@ -1,7 +1,5 @@
 package cells;
 
-import util.Echoer;
-
 import java.util.ArrayList;
 
 public class NPC extends Cell {

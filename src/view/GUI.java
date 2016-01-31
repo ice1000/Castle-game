@@ -25,13 +25,9 @@ public class GUI extends Game
 	public GUI() {
 		frame = new JFrame("城堡游戏   by 千里冰封");
 		textField = new JTextField("在这里输入指令");
-		textField.registerKeyboardAction(
-				new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						HandleMessage(textField.getText());
-						textField.setText("");
-					}
+		textField.registerKeyboardAction(e -> {
+					HandleMessage(textField.getText());
+					textField.setText("");
 				},
 				KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, true),
 				JComponent.WHEN_FOCUSED
@@ -73,7 +69,7 @@ public class GUI extends Game
 
 	@Override
 	public void closeScreen() {
-
+		frame.dispose();
 	}
 
 }
