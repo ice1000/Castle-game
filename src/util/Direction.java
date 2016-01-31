@@ -4,7 +4,7 @@ package util;
  * 字符串枚举
  * Created by asus1 on 2016/1/27.
  */
-public enum  S {
+public enum Direction {
 
 	UP("up"),
 	DOWN("down"),
@@ -15,7 +15,7 @@ public enum  S {
 	;
 
 	String s;
-	S(String s){
+	Direction(String s){
 		this.s = s;
 	}
 

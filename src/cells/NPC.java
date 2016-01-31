@@ -1,28 +1,29 @@
 package cells;
 
+import util.Echoer;
+
 import java.util.ArrayList;
 
 public class NPC extends Cell {
 
 	private String chat = "";
-	private ArrayList<Item> items = new ArrayList<Item>();
+	private ArrayList<Item> items = new ArrayList<>();
 
 	public NPC(String name,String chat) {
 		super(name);
 		this.chat = chat;
 	}
 
-
-	public void Itemget(String name,int num){
-		items.add(new Item(name));
+	public void itemGet(String name,int num){
+		items.add(new Item(name, num));
 	}
 
-//	public void Itemgive(int index,int num){
+//	public void itemGive(int index,int num){
 //		items.get(index).getNumOf(num);
 //	}
 
-	public void Talk(){
-		System.out.println(chat);
+	public void talk(Echoer echoer){
+		echoer.echoln(chat);
 	}
 
 }

@@ -15,7 +15,7 @@ public class NameGenerator {
 			"3A",
 			"无",
 			"SpiderKing",
-			"S.D.",
+			"Direction.D.",
 			"Timothy",
 	};
 
