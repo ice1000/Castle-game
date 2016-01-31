@@ -65,8 +65,8 @@ public class Room {
 	void setExit(String str, int targetRoomId){
 		exits.put(str, targetRoomId);
 	}
-	//   显示房间的详情。
 
+	//   显示房间的详情。
 	public String getPrompt() {
 		StringBuilder sb = new StringBuilder();
 		String ifaBoss = "这里安全。";
@@ -86,7 +86,7 @@ public class Room {
 				ifaBoss = "这里的Boss是"+ boss +",已经被你打败过啦O(∩_∩)O哈哈~";
 		}
 		sb.append(ifaBoss);
-		if(NPCs.size() > 0)
+		if(NPCs != null && NPCs.size() > 0)
 			sb.append("这里还有：\n");
 		for (NPC npc : NPCs) {
 			sb.append(npc.getName());

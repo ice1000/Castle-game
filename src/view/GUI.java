@@ -22,6 +22,9 @@ public class GUI extends Game
 	private JTextArea textArea;
 	private JFrame frame;
 
+	private static int FRAME_X = 500;
+	private static int FRAME_Y = 500;
+
 	public GUI() {
 		frame = new JFrame("城堡游戏   by 千里冰封");
 		textField = new JTextField("在这里输入指令");
@@ -36,11 +39,12 @@ public class GUI extends Game
 		frame.setIconImage(Toolkit.getDefaultToolkit().createImage(
 				"." + File.separator + "drawable" + File.separator + "ic_launcher.png"
 		));
-		frame.setSize(600, 600);
+		frame.setSize(FRAME_X, FRAME_Y);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.add(textField, BorderLayout.SOUTH);
 		frame.add(new JScrollPane(textArea), BorderLayout.CENTER);
 		frame.setResizable(false);
+		frame.setLocation(FRAME_X / 8,FRAME_Y / 8);
 		frame.setVisible(true);
 	}
 

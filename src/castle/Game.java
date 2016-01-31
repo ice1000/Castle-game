@@ -99,7 +99,7 @@ implements  MessageHandler ,Echoer{
 				echoln("退出游戏，再见！");
 //				System.exit(0);
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(500);
 				} catch (InterruptedException ignored){}
 				closeScreen();
 				return false;
