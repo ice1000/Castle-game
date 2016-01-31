@@ -9,14 +9,18 @@ import cells.NPC;
  */
 public class FuncTalk extends FuncSrc{
 
-	private NPC npc;
-
 	public FuncTalk(Game game) {
 		super(game);
 	}
 
 	@Override
 	public void DoFunc(String cmd) {
-		npc = game.
+		NPC npc = game.getMap().getCurrentRoom().isNPCExists(cmd);
+		if(npc != null){
+			game.echoln(npc.getChat());
+		}
+		else{
+			game.echoln("你指定的名字不存在。注：Boss要在被打败之后才能对话。");
+		}
 	}
 }

@@ -109,16 +109,10 @@ public class GameMap {
 	}
 
 	public void setRoomsState(char[] state){
-//		for (int i1 = 0; i1 < state.length; i1++) {
-//			System.out.println("state[" + i1 + "] = " + state[i1]);
-//		}
 		for (int i = 0; i < theRooms.size(); i++) {
 			char c;
-			try{
-				c = state[i];
-			} catch (Exception e){
-				c = 1;
-			}
+			try{c = state[i];}
+			catch (Exception e){c = 1;}
 			theRooms.get(i).setBossGetItem(c == '1');
 		}
 	}
@@ -150,23 +144,7 @@ public class GameMap {
 		game.setPlayer(currentRoom.fightBoss(game.getPlayer(), game));
 	}
 
-	public String getRoomData(){
-		return currentRoom.toString();
-	}
-
-	/**
-	 * 返回BOSS是否被打败过
-	 * @return BOSS是否被打败过
-	 */
-	public boolean BossGetItem() {
-		return currentRoom.isBossGetItem();
-	}
-
-	public boolean treatRoomCheck(){
-		return currentRoom.toString().matches("宾馆|卧室");
-	}
-
-	public String getCurrentRoomPrompt(){
-		return currentRoom.getPrompt();
+	public Room getCurrentRoom() {
+		return currentRoom;
 	}
 }

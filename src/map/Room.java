@@ -80,7 +80,7 @@ public class Room {
 	}
 	//   显示房间的详情。
 
-	String getPrompt() {
+	public String getPrompt() {
 		StringBuilder sb = new StringBuilder();
 		String ifaBoss = "这里安全。";
 		sb.append(welcomeWord).append('\n');
@@ -116,7 +116,7 @@ public class Room {
 	}
 
 	//    检查Boss是否已经被挑战过
-	boolean isBossGetItem() {
+	public boolean isBossGetItem() {
 		try {
 			return boss.ifGet();
 		} catch (NullPointerException e){
@@ -128,6 +128,14 @@ public class Room {
 		if(boss != null){
 			boss.setGetItem(isGet);
 		}
+	}
+
+	public NPC isNPCExists(String name) {
+		for (NPC npc : NPCs) {
+			if(name.equals(npc.getName()))
+				return npc;
+		}
+		return null;
 	}
 
 	boolean checkExit(String exit) {

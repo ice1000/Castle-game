@@ -13,8 +13,8 @@ public class FuncSleep extends FuncSrc {
 	@Override
 	public void DoFunc(String cmd) {
 //		int bloodMore = Integer.parseInt(cmd);
-		if( game.TreatRoomCheck() ){
-			if( !game.isBossGetItem() ){
+		if( game.getMap().getCurrentRoom().toString().matches("宾馆|卧室") ){
+			if( !game.getMap().getCurrentRoom().isBossGetItem() ){
 				game.echo("女仆顺从地送你进入梦乡。睡觉中");
 				for(int i = 0; i < 8; i ++ ) {
 					try {
@@ -24,7 +24,7 @@ public class FuncSleep extends FuncSrc {
 					}
 				}
 				game.echo("\n已经睡觉，体力");
-				if( game.Treat() )
+				if( game.getPlayer().treat() )
 					game.echoln("恢复至120.");
 				else
 					game.echoln("超过120不用恢复的~");

@@ -40,7 +40,8 @@ implements  MessageHandler ,Echoer{
 				"fight",
 				"sleep",
 				"save",
-				"rename"
+				"rename",
+				"talk"
 		};
 		funcs.put(funcsString[0], new FuncHelp(this));
 		funcs.put(funcsString[1], new FuncGo(this));
@@ -51,7 +52,8 @@ implements  MessageHandler ,Echoer{
 		funcs.put(funcsString[6], new FuncSleep(this));
 		funcs.put(funcsString[7], new FuncSave(this));
 		funcs.put(funcsString[8], new FuncRename(this));
-		
+		funcs.put(funcsString[9], new FuncTalk(this));
+
 	}
 
 	public void onStart() {
@@ -76,7 +78,7 @@ implements  MessageHandler ,Echoer{
 		echoln("你好"+player);
 		echoln("如果需要帮助，请输入 'help' 。\n");
 		echo("现在");
-		echoln(map.getCurrentRoomPrompt());
+		echoln(map.getCurrentRoom().getPrompt());
 	}
 
 	@Override
@@ -111,9 +113,12 @@ implements  MessageHandler ,Echoer{
 	public String[] getFuncs(){
 		return funcsString;
 	}
+
 	private void createItems() {
-		Item wilder;
-		theItems.add(wilder = new Item("传送门"));
+		theItems.add(new Item("传送宝石"));
+	}
+	public ArrayList<Item> getTheItems() {
+		return theItems;
 	}
 	/**
 	 * 去一个房间
@@ -121,7 +126,7 @@ implements  MessageHandler ,Echoer{
 	public void goRoom(String direction){
 		if(!map.goRoom(direction))
 			echoln("没有这个出口。");
-		echoln(map.getCurrentRoomPrompt());
+		echoln(map.getCurrentRoom().getPrompt());
 	}
 	/**
 	 * 随机传送
@@ -134,7 +139,7 @@ implements  MessageHandler ,Echoer{
 	 */
 	public void Fight() {
 		map.fightBoss(this);
-		echoln(map.getCurrentRoomPrompt());
+		echoln(map.getCurrentRoom().getPrompt());
 	}
 	public void setPlayer(Player player){
 //    	减血赋值给原来的
@@ -143,40 +148,11 @@ implements  MessageHandler ,Echoer{
 	public Player getPlayer() {
 		return player;
 	}
-	/**
-	 * 指定数量的补血
-	 */
-	public void Treat(int bloodMore) {
-		player.blood += bloodMore;
-	}
-	/**
-	 * 补血
-	 */
-	public boolean Treat() {
-		return player.treat();
-	}
-	/**
-	 * 检查是否可以睡觉
-	 */
-	public boolean TreatRoomCheck() {
-		return map.treatRoomCheck();
-	}
-	/**
-	 * 显示玩家数据
-	 * @return 玩家数据
-	 */
-	public String playerToString() {
-		return player.stateToString();
-//    	return player;
+
+	public GameMap getMap() {
+		return map;
 	}
 
-	/**
-	 * 返回BOSS是否被打败过
-	 * @return BOSS是否被打败过
-	 */
-	public boolean isBossGetItem() {
-		return map.BossGetItem();
-	}
 	public void saveData(){
 		try {
 			database.saveMapAndState(map,player);

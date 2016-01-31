@@ -11,8 +11,7 @@ public abstract class FuncSrc {
 		this.game = game;
 	}
 	
-	protected FuncSrc(){
-	}
+	protected FuncSrc(){}
 	
 	public boolean isGameEnded() {
 		return isGameEnded;

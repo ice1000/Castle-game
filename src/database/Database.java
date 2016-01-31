@@ -58,7 +58,7 @@ public class Database {
 		}
 		file.createNewFile();
 		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-		this.roomName = map.getRoomData();
+		this.roomName = map.getCurrentRoom().toString();
 		this.roomsState = map.getRoomsState();
 		writer.write(this.toString());
 		writer.close();
@@ -71,7 +71,7 @@ public class Database {
 		}
 		file.createNewFile();
 		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-		this.roomName = map.getRoomData();
+		this.roomName = map.getCurrentRoom().toString();
 		this.roomsState = map.getRoomsState();
 		this.playerName = player.toString();
 		this.blood      = player.getBlood();
