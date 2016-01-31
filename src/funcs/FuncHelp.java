@@ -15,6 +15,9 @@ public class FuncHelp extends FuncSrc {
 		for(String s : strings){
 			game.echoln(s);
 		}
+		game.echoln("有些需要参数的命令请按如下格式输入：");
+		game.echoln("命令 [参数]");
 		game.echoln("如：go east");
+		game.echoln("如：rename 冰封");
 	}
 }

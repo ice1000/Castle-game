@@ -31,8 +31,6 @@ implements Echoer{
 	private JFrame frame;
 	private JTextField textField;
 	private JTextArea textArea;
-	private boolean isRenaming = false;
-	//	private StringBuffer echo;
 
 	//    构造方法
 	public Game(){
@@ -65,20 +63,13 @@ implements Echoer{
 		funcs.put(funcsString[8], new FuncRename(this));
 
 //		echo = new StringBuffer();
-		textField = new JTextField("指令");
+		textField = new JTextField("在这里输入指令");
 		textField.registerKeyboardAction(
 				new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						if(!isRenaming){
-							HandleMessage(textField.getText());
-						}
-						else {
-							player.rename(textField.getText());
-							echoln("重命名成功。");
-							textField.setText("");
-							isRenaming = false;
-						}
+						HandleMessage(textField.getText());
+						textField.setText("");
 					}
 				},
 				KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, true),
@@ -110,18 +101,15 @@ implements Echoer{
 //	}
 
 	private void onStart() {
-
 		echoln("欢迎来到城堡！");
 		echoln("这是一个超复古的CUI游戏。");
 		echoln("最新版本和源代码请见https://github.com/ice1000/Castle-game");
 		echoln("敬请期待OL版本https://github.com/ProgramLeague/Castle-Online");
 //        echoln("不过在经过了冰封的改造后，你会觉得这个很有意思。");
 		if(!Database.isFileExists()){
-			echoln("您可以稍后使用\"rename\"命令来更改自己的名字。");
-//			Scanner name = new Scanner(System.in);
+			echoln("您可以稍后使用\"rename [新名字]\"命令来更改自己的名字。");
 			player = new Player(NameGenerator.generate(),200,10,5);
 			saveData();
-//	        name.close();
 		}
 		else {
 			player = new Player(null,-1,-1,-1);
@@ -133,10 +121,6 @@ implements Echoer{
 		echoln("如果需要帮助，请输入 'help' 。\n");
 		echo("现在");
 		echoln(map.getCurrentRoomPrompt());
-	}
-
-	public void rename(){
-		isRenaming = true;
 	}
 
 	private boolean HandleMessage(String line){
@@ -165,7 +149,6 @@ implements Echoer{
 		else
 			echoln("对不起，输入指令错误！");
 		return true;
-
 	}
 
 	public String[] getFuncs(){
@@ -180,7 +163,6 @@ implements Echoer{
 	@Override
 	public void echo(String words){
 //		System.out.print(words);
-		textField.setText("");
 		textArea.append(words);
 		int i = textArea.getText().length();
 		int MAX_LENGTH = 10000;
