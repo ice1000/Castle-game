@@ -70,36 +70,36 @@ public class GameMap {
         /*23*/theRooms.add(new Room("井底密室", "空气中弥漫着阴冷潮湿的气息。", "戴头灯的探险家",
 				400, 80, 30, 80, "探险家的头灯没电了！"));
 
-		setExitWithoutDirection(1, 5, pairs[0]);
-		setExitWithoutDirection(5, 10,pairs[0]);
-		setExitWithoutDirection(10,11,pairs[0]);
-		setExitWithoutDirection(6, 1, pairs[0]);
-		setExitWithoutDirection(7, 6, pairs[0]);
-		setExitWithoutDirection(8, 7, pairs[0]);
-		setExitWithoutDirection(9, 8, pairs[0]);
-		setExitWithoutDirection(20,21,pairs[0]);
-		setExitWithoutDirection(3, 0, pairs[1]);
-		setExitWithoutDirection(20,19,pairs[1]);
-		setExitWithoutDirection(4, 1, pairs[1]);
-		setExitWithoutDirection(21,22,pairs[0]);
-		setExitWithoutDirection(22,23,pairs[0]);
-		setExitWithoutDirection(14,17,pairs[1]);
-		setExitWithoutDirection(0, 1, pairs[2]);
-		setExitWithoutDirection(2, 0, pairs[2]);
-		setExitWithoutDirection(3, 4, pairs[2]);
-		setExitWithoutDirection(12,2, pairs[2]);
-		setExitWithoutDirection(13,12,pairs[2]);
-		setExitWithoutDirection(15,14,pairs[2]);
-		setExitWithoutDirection(14,16,pairs[2]);
-		setExitWithoutDirection(17,14,pairs[2]);
-		setExitWithoutDirection(18,13,pairs[2]);
-		setExitWithoutDirection(19,18,pairs[2]);
+		setExit(1, 5, pairs[0]);
+		setExit(5, 10,pairs[0]);
+		setExit(10,11,pairs[0]);
+		setExit(6, 1, pairs[0]);
+		setExit(7, 6, pairs[0]);
+		setExit(8, 7, pairs[0]);
+		setExit(9, 8, pairs[0]);
+		setExit(20,21,pairs[0]);
+		setExit(3, 0, pairs[1]);
+		setExit(20,19,pairs[1]);
+		setExit(4, 1, pairs[1]);
+		setExit(21,22,pairs[0]);
+		setExit(22,23,pairs[0]);
+		setExit(14,17,pairs[1]);
+		setExit(0, 1, pairs[2]);
+		setExit(2, 0, pairs[2]);
+		setExit(3, 4, pairs[2]);
+		setExit(12,2, pairs[2]);
+		setExit(13,12,pairs[2]);
+		setExit(15,14,pairs[2]);
+		setExit(14,16,pairs[2]);
+		setExit(17,14,pairs[2]);
+		setExit(18,13,pairs[2]);
+		setExit(19,18,pairs[2]);
 
 		// 从女仆那里开始
 		currentRoom = theRooms.get(4);
 	}
 
-	private void setExitWithoutDirection(int index_a, int index_b,DirectionPair pair){
+	private void setExit(int index_a, int index_b, DirectionPair pair){
 		theRooms.get(index_a).setExit(String.valueOf(pair.getDirection1()), index_b);
 		theRooms.get(index_b).setExit(String.valueOf(pair.getDirection2()), index_a);
 	}
