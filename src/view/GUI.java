@@ -6,9 +6,7 @@ import util.MessageHandler;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.io.File;
 
 import static javafx.scene.input.KeyCode.F;
@@ -24,6 +22,7 @@ public class GUI extends Game
 	private JTextField textField;
 	private JTextArea textArea;
 	private JFrame frame;
+	private JScrollPane scrollPane;
 
 	private static int FRAME_X = 500;
 	private static int FRAME_Y = 500;
@@ -40,6 +39,22 @@ public class GUI extends Game
 				JComponent.WHEN_FOCUSED
 		);
 		textArea = new JTextArea();
+		textArea.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+		});
+		textArea.setBackground(new Color(12, 29, 39));
+		textArea.setForeground(new Color(151, 212, 30));
 		frame.setIconImage(Toolkit.getDefaultToolkit().createImage(
 				"." + File.separator + "drawable" + File.separator + "ic_launcher.png"
 		));
@@ -48,7 +63,8 @@ public class GUI extends Game
 		// frame.setLayout(null);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.add(textField, BorderLayout.SOUTH);
-		frame.add(new JScrollPane(textArea), BorderLayout.CENTER);
+		scrollPane = new JScrollPane(textArea);
+		frame.add(scrollPane, BorderLayout.CENTER);
 		frame.setResizable(false);
 		frame.setLocation(FRAME_X / 8,FRAME_Y / 8);
 		frame.setVisible(true);

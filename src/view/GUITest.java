@@ -12,6 +12,5 @@ public class GUITest {
 	private JTextArea textArea1;
 
 	private void createUIComponents() {
-		// TODO: place custom component creation code here
 	}
 }
