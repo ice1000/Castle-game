@@ -24,7 +24,8 @@ public class FuncMap extends FuncSrc{
 		JPanel panel = new JPanel() {
 			@Override
 			protected void paintComponent(Graphics g) {
-				ImageIcon icon = new ImageIcon("drawable" + File.separator + "");
+//				ImageIcon icon = new ImageIcon("." + File.separator + "drawable" + File.separator + "map.png");
+				ImageIcon icon = new ImageIcon("C:\\Users\\asus1\\Desktop\\城堡游戏\\drawable\\map.png");
 				Image img = icon.getImage();
 				g.drawImage(img, 0, 0, icon.getIconWidth(),
 						icon.getIconHeight(), icon.getImageObserver());
@@ -32,7 +33,7 @@ public class FuncMap extends FuncSrc{
 			}
 		};
 		frame.add(panel);
-		frame.pack();
+	//	frame.pack();
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
 
