@@ -23,6 +23,7 @@ public class GUI extends Game
 	private JTextArea textArea;
 	private JFrame frame;
 	private JScrollPane scrollPane;
+	private JScrollBar scrollBar;
 
 	private static int FRAME_X = 500;
 	private static int FRAME_Y = 500;
@@ -42,7 +43,6 @@ public class GUI extends Game
 		textArea.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {}
@@ -64,6 +64,7 @@ public class GUI extends Game
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.add(textField, BorderLayout.SOUTH);
 		scrollPane = new JScrollPane(textArea);
+		scrollBar = scrollPane.getVerticalScrollBar();
 		frame.add(scrollPane, BorderLayout.CENTER);
 		frame.setResizable(false);
 		frame.setLocation(FRAME_X / 8,FRAME_Y / 8);
@@ -86,6 +87,11 @@ public class GUI extends Game
 					i - MAX_LENGTH, i
 			));
 		}
+//		scrollBar.setValue(scrollBar.getMaximum() - 20);
+		int height=10;
+		Point p = new Point();
+		p.setLocation(0,this.textArea.getLineCount()*height);
+		this.scrollPane.getViewport().setViewPosition(p);
 	}
 
 	@Override

@@ -49,7 +49,7 @@ implements  MessageHandler ,Echoer{
 		funcs.put(funcsString[ 0], new FuncHelp(this));
 		funcs.put(funcsString[ 1], new FuncGo(this));
 		funcs.put(funcsString[ 2], new FuncWild(this));
-		funcs.put(funcsString[ 3], new FuncBye(this));
+		funcs.put(funcsString[ 3], new FuncExit(this));
 		funcs.put(funcsString[ 4], new FuncState(this));
 		funcs.put(funcsString[ 5], new FuncFight(this));
 		funcs.put(funcsString[ 6], new FuncSleep(this));
@@ -103,9 +103,6 @@ implements  MessageHandler ,Echoer{
 				saveData();
 				echoln("退出游戏，再见！");
 //				System.exit(0);
-				try {
-					Thread.sleep(500);
-				} catch (InterruptedException ignored){}
 				closeScreen();
 				return false;
 			}

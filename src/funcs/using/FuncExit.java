@@ -3,13 +3,14 @@ package funcs.using;
 import castle.Game;
 import funcs.FuncSrc;
 
-public class FuncBye extends FuncSrc {
+public class FuncExit extends FuncSrc {
 	
-	public FuncBye(Game game) {
+	public FuncExit(Game game) {
 		super(game);
 	}
 
 	private boolean Bye() {
+		isGameEnded = true;
 		return true;
 	}
 

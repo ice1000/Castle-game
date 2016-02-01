@@ -5,7 +5,7 @@ import castle.Game;
 public abstract class FuncSrc {
 	
 	protected Game game;
-	boolean isGameEnded = false;
+	protected boolean isGameEnded = false;
 	
 	public FuncSrc(Game game) {
 		this.game = game;
