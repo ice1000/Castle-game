@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
+import static javafx.scene.input.KeyCode.F;
 import static javafx.scene.input.KeyCode.X;
 
 /**
@@ -39,16 +40,15 @@ public class GUI extends Game
 				JComponent.WHEN_FOCUSED
 		);
 		textArea = new JTextArea();
-		textArea.setBounds(0, 0, FRAME_X, FRAME_Y - INPUT_Y);
 		frame.setIconImage(Toolkit.getDefaultToolkit().createImage(
 				"." + File.separator + "drawable" + File.separator + "ic_launcher.png"
 		));
 		frame.setSize(FRAME_X, FRAME_Y);
 		// 绝对布局
-		frame.setLayout(null);
+		// frame.setLayout(null);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.add(textField);
-		frame.add(new JScrollPane(textArea));
+		frame.add(textField, BorderLayout.SOUTH);
+		frame.add(new JScrollPane(textArea), BorderLayout.CENTER);
 		frame.setResizable(false);
 		frame.setLocation(FRAME_X / 8,FRAME_Y / 8);
 		frame.setVisible(true);

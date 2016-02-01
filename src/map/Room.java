@@ -86,10 +86,11 @@ public class Room {
 				ifaBoss = "这里的Boss是"+ boss +",已经被你打败过啦O(∩_∩)O哈哈~";
 		}
 		sb.append(ifaBoss);
-		if(NPCs != null && NPCs.size() > 0)
+		if(NPCs != null && NPCs.size() > 0) {
 			sb.append("这里还有：\n");
-		for (NPC npc : NPCs) {
-			sb.append(npc.getName());
+			for (NPC npc : NPCs) {
+				sb.append(npc.getName());
+			}
 		}
 		return sb.toString();
 	}
