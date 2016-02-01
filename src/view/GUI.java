@@ -88,6 +88,7 @@ public class GUI extends Game
 			));
 		}
 //		scrollBar.setValue(scrollBar.getMaximum() - 20);
+		// 滚动到最底下
 		int height=10;
 		Point p = new Point();
 		p.setLocation(0,this.textArea.getLineCount()*height);
