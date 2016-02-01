@@ -1,7 +1,8 @@
-package funcs;
+package funcs.using;
 
 import castle.Game;
 import cells.Item;
+import funcs.FuncSrc;
 
 public class FuncPack extends FuncSrc {
 

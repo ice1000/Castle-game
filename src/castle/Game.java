@@ -7,6 +7,7 @@ import java.util.HashMap;
 import database.Database;
 import funcs.*;
 import cells.*;
+import funcs.using.*;
 import map.GameMap;
 import util.Echoer;
 import util.MessageHandler;

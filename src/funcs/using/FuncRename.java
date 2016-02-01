@@ -1,12 +1,13 @@
-package funcs;
+package funcs.using;
 
 import castle.Game;
+import funcs.FuncSrc;
 
 /**
  * 重命名
  * Created by asus1 on 2016/1/29.
  */
-public class FuncRename extends FuncSrc{
+public class FuncRename extends FuncSrc {
 
 	public FuncRename(Game game) {
 		super(game);

@@ -1,6 +1,6 @@
 package cells;
 
-import funcs.FuncSleep;
+import funcs.using.FuncSleep;
 import util.Echoer;
 
 //import java.util.Scanner;

@@ -1,6 +1,7 @@
-package funcs;
+package funcs.using;
 
 import castle.Game;
+import funcs.FuncSrc;
 
 public class FuncGo extends FuncSrc {
 
