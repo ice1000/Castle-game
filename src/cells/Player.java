@@ -2,6 +2,7 @@ package cells;
 
 import castle.Game;
 import database.Database;
+import util.Echoer;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -91,7 +92,7 @@ public class Player extends Cell {
 		return super.getName();
 	}
 
-	int win(int experience) {
+	int win(int experience, Echoer echoer) {
 		this.experience += experience;
 		if( this.experience >= limit[level] ){
 			this.experience -= limit[level];
@@ -99,7 +100,7 @@ public class Player extends Cell {
 			strike += level*2;
 			defence += level*2;
 			blood += level*20;
-			System.out.println("恭喜您升级啦~\\(≧▽≦)/~啦啦啦\n各种属性加成哦~");
+			echoer.echoln("恭喜您升级啦~\\(≧▽≦)/~啦啦啦\n各种属性加成哦~");
 		}
 		return experience;
 	}

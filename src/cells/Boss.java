@@ -65,7 +65,7 @@ public class Boss extends Player {
 							.append(player.blood)
 							.append("点体力值！\n")
 							.append("本次战斗获得了")
-							.append(player.win(getExperience()))
+							.append(player.win(getExperience(), echoer))
 							.append("点经验值！\n");
 					survive = false;
 					getItem = false;

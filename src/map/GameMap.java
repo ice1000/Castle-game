@@ -27,11 +27,11 @@ public class GameMap {
 				200,25,10,15,"小偷头目的钱全掉出来了！"));
         /*1*/theRooms.add(new Room("一楼大堂","欢迎来到城堡！","礼貌的大堂经理",
 				100,15,12,8,"大堂经理的帐算错了！"));
-        /*2*/theRooms.add(new Room("小酒吧","潇洒的酒吧流氓",
+        /*2*/theRooms.add(new Room("小酒吧","一大股酒香飘来。","潇洒的酒吧流氓",
 				150,10,5,5,"酒吧流氓喝醉了！"));
-        /*3*/theRooms.add(new Room("书房","优雅的读书人",
+        /*3*/theRooms.add(new Room("书房","读书的气氛很浓厚。" , "优雅的读书人",
 				100,7,5,3,"读书人的书掉出来了！"));
-        /*4*/theRooms.add(new Room("宾馆","可爱的女仆",
+        /*4*/theRooms.add(new Room("旅馆", "周围干净整洁。", "可爱的女仆",
 				10,6,3,2,"女仆被你推倒了！"));
         /*5*/theRooms.add(new Room("二楼睡房","公主的管家",
 				300,20,5,25,"管家扑街、公主被你推倒了！"));
@@ -58,6 +58,17 @@ public class GameMap {
 				1000,150,100,200,"奶茶去复习考试了。。。"));
         /*17*/theRooms.add(new Room("神秘空间北","果冻",
 				1000,150,100,200,"果冻正在打酱油。。。"));
+        /*18*/theRooms.add(new Room("日出村民居"));
+        /*19*/theRooms.add(new Room("日出村教堂","你瞬间被这里神圣的气息闪瞎了。" , "聆听忏悔的牧师",
+				200, 30, 20, 40, "牧师聆听着忏悔。"));
+        /*20*/theRooms.add(new Room("神秘的井", "打水的熊孩子",
+				50, 10, 1, 5, "熊孩子掉头就跑。"));
+        /*21*/theRooms.add(new Room("井底", "这里很潮湿，阴森恐怖。", "青蛙怪",
+				300, 80, 50, 70, "青蛙怪被烤熟了！"));
+        /*22*/theRooms.add(new Room("井底北", "更加潮湿了。", "戴皇冠的青蛙怪王",
+				500, 100, 40, 100, "青蛙怪王的皇冠掉了下来！"));
+        /*23*/theRooms.add(new Room("井底密室", "空气中弥漫着阴冷潮湿的气息。", "戴头灯的探险家",
+				400, 80, 30, 80, "探险家的头灯没电了！"));
 
 		setExitWithoutDirection(1, 5, pairs[0]);
 		setExitWithoutDirection(5, 10,pairs[0]);
@@ -66,8 +77,12 @@ public class GameMap {
 		setExitWithoutDirection(7, 6, pairs[0]);
 		setExitWithoutDirection(8, 7, pairs[0]);
 		setExitWithoutDirection(9, 8, pairs[0]);
+		setExitWithoutDirection(20,21,pairs[0]);
 		setExitWithoutDirection(3, 0, pairs[1]);
+		setExitWithoutDirection(20,19,pairs[1]);
 		setExitWithoutDirection(4, 1, pairs[1]);
+		setExitWithoutDirection(21,22,pairs[0]);
+		setExitWithoutDirection(22,23,pairs[0]);
 		setExitWithoutDirection(14,17,pairs[1]);
 		setExitWithoutDirection(0, 1, pairs[2]);
 		setExitWithoutDirection(2, 0, pairs[2]);
@@ -76,6 +91,9 @@ public class GameMap {
 		setExitWithoutDirection(13,12,pairs[2]);
 		setExitWithoutDirection(15,14,pairs[2]);
 		setExitWithoutDirection(14,16,pairs[2]);
+		setExitWithoutDirection(17,14,pairs[2]);
+		setExitWithoutDirection(18,13,pairs[2]);
+		setExitWithoutDirection(19,18,pairs[2]);
 
 		// 从女仆那里开始
 		currentRoom = theRooms.get(4);
