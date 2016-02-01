@@ -33,18 +33,11 @@ implements  MessageHandler ,Echoer{
 		createItems();
 		database = new Database();
 		funcsString = new String[]{
-				"help",
-				"go",
-				"wild",
-				"exit",
-				"state",
-				"fight",
-				"sleep",
-				"save",
-				"rename",
-				"talk",
-				"pack",
-				"home"
+				"help", "go", "wild",
+				"exit", "state", "fight",
+				"sleep", "save", "rename",
+				"talk", "pack", "home",
+				"map"
 		};
 		funcs.put(funcsString[ 0], new FuncHelp(this));
 		funcs.put(funcsString[ 1], new FuncGo(this));
@@ -58,11 +51,12 @@ implements  MessageHandler ,Echoer{
 		funcs.put(funcsString[ 9], new FuncTalk(this));
 		funcs.put(funcsString[10], new FuncPack(this));
 		funcs.put(funcsString[11], new FuncHome(this));
+		funcs.put(funcsString[12], new FuncMap(this));
 
 	}
 
 	protected void onStart() {
-		echoln("欢迎来到城堡！");
+		echoln("欢迎来到Castle Game！");
 		echoln("这是一个超复古的CUI游戏。");
 		echoln("最新版本和源代码请见https://github.com/ice1000/Castle-game");
 		echoln("敬请期待OL版本https://github.com/ProgramLeague/Castle-Online");
@@ -118,7 +112,9 @@ implements  MessageHandler ,Echoer{
 
 	private void createItems() {
 		theItems.add(new Item("传送宝石"));
+		theItems.add(new Item("和女仆的契约"));
 	}
+
 	public ArrayList<Item> getTheItems() {
 		return theItems;
 	}
