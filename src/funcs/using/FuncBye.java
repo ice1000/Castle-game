@@ -10,8 +10,7 @@ public class FuncBye extends FuncSrc {
 	}
 
 	private boolean Bye() {
-		isGameEnded = true;
-		return isGameEnded;
+		return true;
 	}
 
 	@Override

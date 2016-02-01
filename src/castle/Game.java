@@ -42,22 +42,26 @@ implements  MessageHandler ,Echoer{
 				"sleep",
 				"save",
 				"rename",
-				"talk"
+				"talk",
+				"pack",
+				"home"
 		};
-		funcs.put(funcsString[0], new FuncHelp(this));
-		funcs.put(funcsString[1], new FuncGo(this));
-		funcs.put(funcsString[2], new FuncWild(this));
-		funcs.put(funcsString[3], new FuncBye(this));
-		funcs.put(funcsString[4], new FuncState(this));
-		funcs.put(funcsString[5], new FuncFight(this));
-		funcs.put(funcsString[6], new FuncSleep(this));
-		funcs.put(funcsString[7], new FuncSave(this));
-		funcs.put(funcsString[8], new FuncRename(this));
-		funcs.put(funcsString[9], new FuncTalk(this));
+		funcs.put(funcsString[ 0], new FuncHelp(this));
+		funcs.put(funcsString[ 1], new FuncGo(this));
+		funcs.put(funcsString[ 2], new FuncWild(this));
+		funcs.put(funcsString[ 3], new FuncBye(this));
+		funcs.put(funcsString[ 4], new FuncState(this));
+		funcs.put(funcsString[ 5], new FuncFight(this));
+		funcs.put(funcsString[ 6], new FuncSleep(this));
+		funcs.put(funcsString[ 7], new FuncSave(this));
+		funcs.put(funcsString[ 8], new FuncRename(this));
+		funcs.put(funcsString[ 9], new FuncTalk(this));
+		funcs.put(funcsString[10], new FuncPack(this));
+		funcs.put(funcsString[11], new FuncHome(this));
 
 	}
 
-	public void onStart() {
+	protected void onStart() {
 		echoln("欢迎来到城堡！");
 		echoln("这是一个超复古的CUI游戏。");
 		echoln("最新版本和源代码请见https://github.com/ice1000/Castle-game");

@@ -108,6 +108,10 @@ public class GameMap {
 		return false;
 	}
 
+	public Room getHome(){
+		return theRooms.get(4);
+	}
+
 	public void setRoomsState(char[] state){
 		for (int i = 0; i < theRooms.size(); i++) {
 			char c;
