@@ -13,7 +13,7 @@
 所以现在就是双版本共存哦！既有CUI也有GUI哦！！<br/>
 存档就是根目录下的“save.ice”文件的说<br/>
 地图：<br/>
-![map](https://github.com/ice1000/Castle-game/blob/master/drawable/map.png)
+![map](https://github.com/ice1000/Castle-game/blob/master/src/drawable/map.png)
 
 # 运行方法
 ### 首先你得安装了JRE7以上的环境。
