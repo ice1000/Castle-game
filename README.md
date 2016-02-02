@@ -1,5 +1,5 @@
 # 城堡游戏
-![icon](https://github.com/ice1000/Castle-game/blob/master/drawable/ic_launcher.png)
+![icon](https://github.com/ice1000/Castle-game/blob/master/src/drawable/ic_launcher.png)
 
 # 内容介绍
 
@@ -63,6 +63,11 @@ Windows平台不提供CUI的可执行文件，如果你执意运行的话，cmd�
 
 ## 本次更新
 
+### 2016年2月2日
+1. 更新了map指令图片显示不出来的bug
+
+## 早期更新
+
 ### 2016年2月1日
 1. 根据[j8的朋友的反馈](http://tieba.baidu.com/p/4332888079?pid=83364878659#83364878659)修复了一个空指针异常 感谢这位朋友！
 1. 更改背景颜色。
@@ -70,8 +75,6 @@ Windows平台不提供CUI的可执行文件，如果你执意运行的话，cmd�
 1. 扩张地图。日出村增加了井底。
 1. 修复无法退出的bug。
 1. 每次更新textArea时滚动到最下方。
-
-## 早期更新
 
 ### 2016年1月31日
 1. 在奶茶同学的要求下，分别封装了CUI和GUI两个版本，各自有各自的main。（工作量极大！！)
