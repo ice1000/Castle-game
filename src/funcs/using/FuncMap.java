@@ -36,6 +36,5 @@ public class FuncMap extends FuncSrc{
 	//	frame.pack();
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
-
 	}
 }
