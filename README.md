@@ -1,5 +1,5 @@
 # 城堡游戏
-![icon](https://github.com/ice1000/Castle-game/blob/master/src/drawable/ic_launcher.png)
+![icon](/src/drawable/ic_launcher.png)
 
 # 内容介绍
 
@@ -13,7 +13,9 @@
 所以现在就是双版本共存哦！既有CUI也有GUI哦！！<br/>
 存档就是根目录下的“save.ice”文件的说<br/>
 地图：<br/>
-![map](https://github.com/ice1000/Castle-game/blob/master/src/drawable/map.png)
+![map](/src/drawable/map.png)
+
+目前已经暂时停止更新。
 
 # 运行方法
 ### 首先你得安装了JRE7以上的环境。
@@ -31,6 +33,7 @@
 在终端先进入城堡游戏文件夹。<br/>
 如果你想尝试CUI版，请输入：<br/>
 > $ java -jar ./castle-cui.jar
+
 如果你想尝试GUI版，请输入：<br/>
 > $ java -jar ./castle-gui.jar
 
@@ -69,7 +72,7 @@ Windows平台不提供CUI的可执行文件，如果你执意运行的话，cmd�
 ## 早期更新
 
 ### 2016年2月1日
-1. 根据[j8的朋友的反馈](http://tieba.baidu.com/p/4332888079?pid=83364878659#83364878659)修复了一个空指针异常 感谢这位朋友！
+1. 根据[j8的朋友的反馈](http://tieba.baidu.com/p/4332888079?pid=83364878659#83364878659 "百度贴吧")修复了一个空指针异常 感谢这位朋友！
 1. 更改背景颜色。
 1. 增加3个新指令。
 1. 扩张地图。日出村增加了井底。
