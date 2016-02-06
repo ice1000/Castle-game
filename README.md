@@ -18,7 +18,7 @@
 目前已经暂时停止更新。
 
 # 运行方法
-### 首先你得安装了JRE7以上的环境。
+### 首先你得安装了JRE8以上的环境。
 然后根据你的个人情况进行选择：
 ## 你有Java的IDE或者你会命令行编译运行
 ~~有卵用~~<br/>
@@ -35,7 +35,7 @@
 > $ java -jar ./castle-cui.jar
 
 如果你想尝试GUI版，请输入：<br/>
-> $ java -jar ./castle-gui.jar
+> $ java -jar ./castle.jar
 
 按理说应该是可以运行的。
 
