@@ -2,15 +2,11 @@ package view;
 
 import castle.Game;
 import util.Echoer;
-import util.MessageHandler;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-
-import static javafx.scene.input.KeyCode.F;
-import static javafx.scene.input.KeyCode.X;
 
 /**
  * 视图
