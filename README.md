@@ -1,6 +1,8 @@
 # 城堡游戏
 ![icon](/src/drawable/ic_launcher.png)
 
+### [Android版传送门](https://github.com/ice1000/AIAndroid)
+
 # 内容介绍
 
 这是一个很~~猥琐~~励志的DOS游戏。你是一名勇士，你要闯荡城堡，~~推倒~~偶遇几个妹子。<br/>

@@ -27,13 +27,6 @@ public class FuncMap extends FuncSrc{
 				"." + File.separator + "src" + File.separator + "drawable" + File.separator + "map.png"
 		);
 		ImageIcon icon = new ImageIcon(image);
-//		ImageIcon icon = new ImageIcon(".\\233.png");
-//		Image img = icon.getImage();
-//		g.drawImage(img, 0, 0,
-//				icon.getIconWidth(),
-//				icon.getIconHeight(),
-//				icon.getImageObserver()
-//		);
 		label.setIcon(icon);
 		frame.setSize(icon.getIconWidth(), icon.getIconHeight());
 		panel.add(label);
