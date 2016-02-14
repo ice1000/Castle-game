@@ -47,6 +47,9 @@ public class Database {
 			Statement statement = connection.createStatement();
 			ResultSet set = statement.executeQuery("SELECT * FROM ROOM ORDER BY id ASC");
 
+			while (set.next()){
+				// TODO: 读取数据
+			}
 		} catch (Exception e) {
 			// e.printStackTrace();
 		}
