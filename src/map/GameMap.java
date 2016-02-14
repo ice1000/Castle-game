@@ -78,11 +78,11 @@ public class GameMap {
 		setExit(8, 7, pairs[0]);
 		setExit(9, 8, pairs[0]);
 		setExit(20,21,pairs[0]);
+		setExit(21,22,pairs[0]);
+		setExit(22,23,pairs[0]);
 		setExit(3, 0, pairs[1]);
 		setExit(20,19,pairs[1]);
 		setExit(4, 1, pairs[1]);
-		setExit(21,22,pairs[0]);
-		setExit(22,23,pairs[0]);
 		setExit(14,17,pairs[1]);
 		setExit(0, 1, pairs[2]);
 		setExit(2, 0, pairs[2]);

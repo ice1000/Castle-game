@@ -6,6 +6,7 @@ import map.GameMap;
 import map.Room;
 
 import java.io.*;
+import java.sql.*;
 import java.util.Arrays;
 
 /**
@@ -39,14 +40,21 @@ public class Database {
 			experience =  Integer.parseInt(reader.readLine());
 
 			reader.close();
+
+			Class.forName("org.sqlite.JDBC");
+
+			Connection connection = DriverManager.getConnection("jdbc:sqlite:db/data.db");
+			Statement statement = connection.createStatement();
+			ResultSet set = statement.executeQuery("SELECT * FROM ROOM ORDER BY id ASC");
+
 		} catch (Exception e) {
 			// e.printStackTrace();
 		}
 	}
 
-	public void loadMap(GameMap map, String defaultName){
+	public void loadMap(GameMap map, String defaultName) {
 		map.setRoomsState(roomsState);
-		if(roomName == null)
+		if (roomName == null)
 			roomName = defaultName;
 		map.loadRoom(roomName);
 	}

@@ -31,18 +31,18 @@ public class Room {
 	}
 
 	Room(String description,
-	     String BossName, int blood, int strike, int miss, int experience,@Nullable String dieText) {
-		this(description,"欢迎来到这里。", BossName, blood, strike, miss, experience, dieText);
+	     String BossName, int blood, int strike, int defence, int experience,@Nullable String dieText) {
+		this(description,"欢迎来到这里。", BossName, blood, strike, defence, experience, dieText);
 	}
 
 	Room(String description, String welcomeWord,
-	     String BossName, int blood, int strike, int miss, int experience,@Nullable String dieText) {
+	     String BossName, int blood, int strike, int defence, int experience,@Nullable String dieText) {
 		this(description, welcomeWord);
 		if(dieText != null){
-			boss = new Boss(BossName,blood,strike,miss,experience,dieText);
+			boss = new Boss(BossName,blood,strike,defence,experience,dieText);
 		}
 		else {
-			boss = new Boss(BossName,blood,strike,miss,experience);
+			boss = new Boss(BossName,blood,strike,defence,experience);
 		}
 		NPCs = new ArrayList<>();
 		exits = new HashMap<>();
