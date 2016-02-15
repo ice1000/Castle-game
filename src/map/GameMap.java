@@ -74,34 +74,43 @@ public class GameMap {
 
 		try {
 			theRooms = Database.getRooms();
+			System.out.println("theRooms.size = " + theRooms.size());
+			for (Exits exit : Database.getExits()) {
+				setExit(
+						exit.from,
+						exit.to,
+						pairs[exit.dir]
+				);
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 
-		setExit(1, 5, pairs[0]);
-		setExit(5, 10,pairs[0]);
-		setExit(10,11,pairs[0]);
-		setExit(6, 1, pairs[0]);
-		setExit(7, 6, pairs[0]);
-		setExit(8, 7, pairs[0]);
-		setExit(9, 8, pairs[0]);
-		setExit(20,21,pairs[0]);
-		setExit(21,22,pairs[0]);
-		setExit(22,23,pairs[0]);
-		setExit(3, 0, pairs[1]);
-		setExit(20,19,pairs[1]);
-		setExit(4, 1, pairs[1]);
-		setExit(14,17,pairs[1]);
-		setExit(0, 1, pairs[2]);
-		setExit(2, 0, pairs[2]);
-		setExit(3, 4, pairs[2]);
-		setExit(12,2, pairs[2]);
-		setExit(13,12,pairs[2]);
-		setExit(15,14,pairs[2]);
-		setExit(14,16,pairs[2]);
-		setExit(17,14,pairs[2]);
-		setExit(18,13,pairs[2]);
-		setExit(19,18,pairs[2]);
+
+//		setExit(1, 5, pairs[0]);
+//		setExit(5, 10,pairs[0]);
+//		setExit(10,11,pairs[0]);
+//		setExit(6, 1, pairs[0]);
+//		setExit(7, 6, pairs[0]);
+//		setExit(8, 7, pairs[0]);
+//		setExit(9, 8, pairs[0]);
+//		setExit(20,21,pairs[0]);
+//		setExit(21,22,pairs[0]);
+//		setExit(22,23,pairs[0]);
+//		setExit(3, 0, pairs[1]);
+//		setExit(20,19,pairs[1]);
+//		setExit(4, 1, pairs[1]);
+//		setExit(14,17,pairs[1]);
+//		setExit(0, 1, pairs[2]);
+//		setExit(2, 0, pairs[2]);
+//		setExit(3, 4, pairs[2]);
+//		setExit(12,2, pairs[2]);
+//		setExit(13,12,pairs[2]);
+//		setExit(15,14,pairs[2]);
+//		setExit(14,16,pairs[2]);
+//		setExit(17,14,pairs[2]);
+//		setExit(18,13,pairs[2]);
+//		setExit(19,18,pairs[2]);
 
 		// 从女仆那里开始
 		currentRoom = theRooms.get(4);

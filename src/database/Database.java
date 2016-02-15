@@ -2,6 +2,7 @@ package database;
 
 import castle.Game;
 import cells.Player;
+import map.Exits;
 import map.GameMap;
 import map.Room;
 
@@ -137,25 +138,21 @@ public class Database {
 		return new File(savePath).exists();
 	}
 
-	public static ArrayList<Room> getRooms() throws ClassNotFoundException, SQLException {
+	private static Statement getStatement() throws ClassNotFoundException, SQLException{
 		Class.forName("org.sqlite.JDBC");
-
 		Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
-		Statement statement = connection.createStatement();
-		ResultSet set = statement.executeQuery("SELECT * FROM ROOM ORDER BY id ASC");
+		return connection.createStatement();
+	}
 
+	/**
+	 CREATE TABLE ROOM(id INTEGER PRIMARY KEY AUTOINCREMENT,
+	 disc TEXT, welc TEXT,boss TEXT,blood INTEGER,
+	 strike INTEGER, defence INTEGER,exp INTEGER, die TEXT);
+	 */
+	public static ArrayList<Room> getRooms() throws ClassNotFoundException, SQLException {
+		ResultSet set = getStatement().executeQuery("SELECT * FROM ROOM ORDER BY id ASC");
 		ArrayList<Room> rooms = new ArrayList<>();
-		/*
-CREATE TABLE ROOM(
-id INTEGER PRIMARY KEY AUTOINCREMENT,
-disc TEXT, welc TEXT,
-boss TEXT,blood INTEGER,
-strike INTEGER, defence INTEGER,
-exp INTEGER, die TEXT
-);
-		 */
 		while (set.next()){
-			// TODO: 读取数据
 			rooms.add(new Room(
 					set.getString("disc"),
 					set.getString("welc"),
@@ -169,5 +166,18 @@ exp INTEGER, die TEXT
 		}
 		set.close();
 		return rooms;
+	}
+
+	/**
+	 *  CREATE TABLE DIR(id INTEGER PRIMARY KEY AUTOINCREMENT, from_text TEXT, to_text TEXT);
+	 */
+	public static ArrayList<Exits> getExits() throws ClassNotFoundException, SQLException{
+		ResultSet set = getStatement().executeQuery("SELECT * FROM DIR ORDER BY id ASC");
+		ArrayList<Exits> exitses = new ArrayList<>();
+		while(set.next()){
+			//
+		}
+		set.close();
+		return exitses;
 	}
 }
