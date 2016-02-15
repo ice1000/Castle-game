@@ -140,7 +140,7 @@ public class Database {
 	public static ArrayList<Room> getRooms() throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");
 
-		Connection connection = DriverManager.getConnection("jdbc:sqlite:db/data.db");
+		Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
 		Statement statement = connection.createStatement();
 		ResultSet set = statement.executeQuery("SELECT * FROM ROOM ORDER BY id ASC");
 
