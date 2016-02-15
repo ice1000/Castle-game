@@ -7,6 +7,7 @@ import map.Room;
 
 import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -136,4 +137,37 @@ public class Database {
 		return new File(savePath).exists();
 	}
 
+	public static ArrayList<Room> getRooms() throws ClassNotFoundException, SQLException {
+		Class.forName("org.sqlite.JDBC");
+
+		Connection connection = DriverManager.getConnection("jdbc:sqlite:db/data.db");
+		Statement statement = connection.createStatement();
+		ResultSet set = statement.executeQuery("SELECT * FROM ROOM ORDER BY id ASC");
+
+		ArrayList<Room> rooms = new ArrayList<>();
+		/*
+CREATE TABLE ROOM(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+disc TEXT, welc TEXT,
+boss TEXT,blood INTEGER,
+strike INTEGER, defence INTEGER,
+exp INTEGER, die TEXT
+);
+		 */
+		while (set.next()){
+			// TODO: 读取数据
+			rooms.add(new Room(
+					set.getString("disc"),
+					set.getString("welc"),
+					set.getString("boss"),
+					set.getInt("blood"),
+					set.getInt("strike"),
+					set.getInt("defence"),
+					set.getInt("exp"),
+					set.getString("die")
+			));
+		}
+		set.close();
+		return rooms;
+	}
 }
