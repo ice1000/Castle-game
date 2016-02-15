@@ -172,6 +172,7 @@ public class Database {
 	 *  CREATE TABLE MAP( id INTEGER PRIMARY KEY AUTOINCREMENT, fromid INTEGER, toid INTEGER, dir INTEGER);
 	 */
 	public static ArrayList<Exits> getExits() throws ClassNotFoundException, SQLException{
+		// 与顺序无关
 		ResultSet set = getStatement().executeQuery("SELECT * FROM MAP");
 		ArrayList<Exits> exitses = new ArrayList<>();
 		while(set.next()){
