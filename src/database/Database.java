@@ -41,15 +41,6 @@ public class Database {
 
 			reader.close();
 
-			Class.forName("org.sqlite.JDBC");
-
-			Connection connection = DriverManager.getConnection("jdbc:sqlite:db/data.db");
-			Statement statement = connection.createStatement();
-			ResultSet set = statement.executeQuery("SELECT * FROM ROOM ORDER BY id ASC");
-
-			while (set.next()){
-				// TODO: 读取数据
-			}
 		} catch (Exception e) {
 			// e.printStackTrace();
 		}
@@ -144,4 +135,5 @@ public class Database {
 	public static boolean isFileExists(){
 		return new File(savePath).exists();
 	}
+
 }
