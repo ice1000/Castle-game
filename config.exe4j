@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <exe4j version="4.5" transformSequenceNumber="1">
-  <directoryPresets config="C:/Program Files/Java" />
+  <directoryPresets config="C:/Users/asus1/Desktop/git-repos/城堡游戏/lib" />
   <application name="城堡游戏" distributionSourceDir="C:/Users/asus1/Desktop/git-repos/城堡游戏">
     <languages>
       <principalLanguage id="en" customLocalizationFile="" />
@@ -24,6 +24,7 @@
     </searchSequence>
     <classPath>
       <archive location="./castle.jar" failOnError="false" />
+      <archive location="./lib/sqlite-jdbc-3.8.11.1.jar" failOnError="false" />
     </classPath>
     <nativeLibraryDirectories />
   </java>
