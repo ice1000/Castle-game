@@ -1,5 +1,5 @@
 # 城堡游戏
-![icon](/src/drawable/ic_launcher.png)
+![icon](/drawable/ic_launcher.png)
 
 ### [Android版传送门](https://github.com/ice1000/AIAndroid)
 
@@ -15,7 +15,7 @@
 所以现在就是双版本共存哦！既有CUI也有GUI哦！！<br/>
 存档就是根目录下的“save.ice”文件的说<br/>
 地图：<br/>
-![map](/src/drawable/map.png)
+![map](/drawable/map.png)
 
 ~~目前已经暂时停止更新。~~谁说停止更新了！本项目从未停止更新！
 
@@ -67,11 +67,14 @@ Windows平台不提供CUI的可执行文件，如果你执意运行的话，cmd�
 
 ## 本次更新
 
+### 2016年2月15日
+1.
+
+## 早期更新
+
 ### 2016年2月11日、12日
 1. 地图数据库移植到SQLite中。
 [SQLite脚本](./source/data.sql)
-
-## 早期更新
 
 ### 2016年2月2日
 1. 更新了map指令图片显示不出来的bug

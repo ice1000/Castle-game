@@ -40,9 +40,8 @@ public class Room {
 			else
 				boss = new Boss(BossName, blood, strike, defence, experience);
 		}
-		else {
+		else
 			boss = null;
-		}
 
 		NPCs = new ArrayList<>();
 		exits = new HashMap<>();

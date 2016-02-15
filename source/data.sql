@@ -6,76 +6,76 @@ CREATE TABLE ROOM(
   exp INTEGER, die TEXT
 );
 INSERT INTO ROOM(id, disc, boss, blood, strike, defence, exp, die) VALUES (
-  0, '�Ǳ���','Ӣ����С͵ͷĿ', 200,25,10,15, 'С͵ͷĿ��Ǯȫ�������ˣ�'                        -- 0
+  0, '城堡外','英俊的小偷头目', 200,25,10,15, '小偷头目的钱全掉出来了！'                        -- 0
 );
 INSERT INTO ROOM(disc, welc, boss, blood, strike, defence, exp, die) VALUES (
-  'һ¥����','��ӭ�����Ǳ���','��ò�Ĵ��þ���',100,15,12,8,'���þ�����������ˣ�'              -- 1
+  '一楼大堂','欢迎来到城堡！','礼貌的大堂经理',100,15,12,8,'大堂经理的帐算错了！'              -- 1
 );
 INSERT INTO ROOM(disc, welc, boss, blood, strike, defence, exp, die) VALUES (
-  'С�ư�','һ��ɾ���Ʈ����','�����ľư���å', 150,10,5,5,'�ư���å�����ˣ�'                  -- 2
+  '小酒吧','一大股酒香飘来。','潇洒的酒吧流氓', 150,10,5,5,'酒吧流氓喝醉了！'                  -- 2
 );
 INSERT INTO ROOM(disc, welc, boss, blood, strike, defence, exp, die) VALUES (
-  '�鷿','��������պ�Ũ��' , '���ŵĶ�����',100,7,5,3,'�����˵���������ˣ�'                -- 3
+  '书房','读书的气氛很浓厚。' , '优雅的读书人',100,7,5,3,'读书人的书掉出来了！'                -- 3
 );
 INSERT INTO ROOM(disc, welc, boss, blood, strike, defence, exp, die) VALUES (
-  '�ù�', '��Χ�ɾ����ࡣ', '�ɰ���Ů��', 10,6,3,2,'Ů�ͱ����Ƶ��ˣ�'                          -- 4
+  '旅馆', '周围干净整洁。', '可爱的女仆', 10,6,3,2,'女仆被你推倒了！'                          -- 4
 );
 INSERT INTO ROOM(disc, boss, blood, strike, defence, exp, die) VALUES (
-  '��¥˯��','�����Ĺܼ�', 300,20,5,25,'�ܼ��˽֡����������Ƶ��ˣ�'                            -- 5
+  '二楼睡房','公主的管家', 300,20,5,25,'管家扑街、公主被你推倒了！'                            -- 5
 );
 INSERT INTO ROOM(disc, boss, blood, strike, defence, exp, die) VALUES (
-  '��һ¥','��ֵ�����',200,30,15,25,'��������վ����һ���������˵�Ů������'                    -- 6
+  '负一楼','奇怪的男人',200,30,15,25,'男人身边站出来一名浑身是伤的女孩。。'                    -- 6
 );
 INSERT INTO ROOM(disc, boss, blood, strike, defence, exp, die) VALUES (
-  '����¥','���Ű�������ʿ',100,50,35,35,'��ʿ���·����ˣ�'                                    -- 7
+  '负二楼','穿着霸气的绅士',100,50,35,35,'绅士的衣服脏了！'                                    -- 7
 );
 INSERT INTO ROOM(disc, boss, blood, strike, defence, exp, die) VALUES (
-  '����¥','�������׵�սʿ',300,30,25,45,'սʿ���Լ������ˣ�'                                  -- 8
+  '负三楼','身穿铠甲的战士',300,30,25,45,'战士被自己绊倒了！'                                  -- 8
 );
 INSERT INTO ROOM(disc, boss, blood, strike, defence, exp, die) VALUES (
-  '����¥','�ֽ�����ʿ',400,40,35,60,'��ʿ�Ľ����ˣ�'                                          -- 9
+  '负四楼','持剑的骑士',400,40,35,60,'骑士的剑断了！'                                          -- 9
 );
 INSERT INTO ROOM(disc) VALUES (
-  '��¥��̨'                                                                                   -- 10
+  '三楼阳台'                                                                                   -- 10
 );
 INSERT INTO ROOM(disc, boss, blood, strike, defence, exp, die) VALUES (
-  '�Ǳ������t����', '�t��������',150, 20, 2, 20, '���������ˣ�'                                -- 11
+  '城堡顶部瞭望塔', '瞭望塔守卫',150, 20, 2, 20, '守卫倒下了！'                                -- 11
 );
 INSERT INTO ROOM(disc, boss, blood, strike, defence, exp) VALUES (
-  '��С��', '�ֱ�С���',100,30,1,20                                                         -- 12
+  '羊肠小道', '街边小混混',100,30,1,20                                                         -- 12
 );
 INSERT INTO ROOM(disc, welc, boss, blood, strike, defence, exp, die) VALUES (
-  '�ճ������','��ӭ�����Ǳ����ߵ��ճ��壡', '���Ƶ�����',150,20,20,30 ,'����¶���˺��Ƶ�Ц��' -- 13
+  '日出村大门','欢迎来到城堡西边的日出村！', '和善的门卫',150,20,20,30 ,'门卫露出了和善的笑容' -- 13
 );
 INSERT INTO ROOM(disc, boss, blood, strike, defence, exp, die) VALUES (
-  '���ؿռ��̳','����',1000,150,100,200,'���������д�ſͻ��ˡ�����'                          -- 14
+  '神秘空间祭坛','冰封',1000,150,100,200,'冰封认真地写着客户端。。。'                          -- 14
 );
 INSERT INTO ROOM(disc, boss, blood, strike, defence, exp, die) VALUES (
-  '���ؿռ���','��',1000,150,100,200,'�������д��������ˡ�����'                              -- 15
+  '神秘空间西','无',1000,150,100,200,'无认真地写这服务器端。。。'                              -- 15
 );
 INSERT INTO ROOM(disc,boss, blood, strike, defence, exp, die) VALUES (
-  '���ؿռ䶫','�̲�',1000,150,100,200,'�̲�ȥ��ϰ�����ˡ�����'                                -- 16
+  '神秘空间东','奶茶',1000,150,100,200,'奶茶去复习考试了。。。'                                -- 16
 );
 INSERT INTO ROOM(disc,  boss, blood, strike, defence, exp, die) VALUES (
-  '���ؿռ䱱','����',1000,150,100,200,'�������ڴ��͡�����'                                  -- 17
+  '神秘空间北','果冻',1000,150,100,200,'果冻正在打酱油。。。'                                  -- 17
 );
 INSERT INTO ROOM(disc) VALUES (
-  '�ճ������'                                                                                 -- 18
+  '日出村民居'                                                                                 -- 18
 );
 INSERT INTO ROOM(disc, welc, boss, blood, strike, defence, exp, die) VALUES (
-  '�ճ������','��˲�䱻������ʥ����Ϣ��Ϲ�ˡ�' , '������ڵ���ʦ',200, 30, 20, 40, '��ʦ��������ڡ�' -- 19
+  '日出村教堂','你瞬间被这里神圣的气息闪瞎了。' , '聆听忏悔的牧师',200, 30, 20, 40, '牧师聆听着忏悔。' -- 19
 );
 INSERT INTO ROOM(disc, boss, blood, strike, defence, exp, die) VALUES (
-  '���صľ�', '��ˮ���ܺ���',50, 10, 1, 5, '�ܺ��ӵ�ͷ���ܡ�'                                 -- 20
+  '神秘的井', '打水的熊孩子',50, 10, 1, 5, '熊孩子掉头就跑。'                                 -- 20
 );
 INSERT INTO ROOM(disc, welc, boss, blood, strike, defence, exp, die) VALUES (
-  '����', '����ܳ�ʪ����ɭ�ֲ���', '���ܹ�',300, 80, 50, 70, '���ֱܹ������ˣ�'              -- 21
+  '井底', '这里很潮湿，阴森恐怖。', '青蛙怪',300, 80, 50, 70, '青蛙怪被烤熟了！'              -- 21
 );
 INSERT INTO ROOM(disc, welc, boss, blood, strike, defence, exp, die) VALUES (
-  '���ױ�', '���ӳ�ʪ�ˡ�', '���ʹڵ����ܹ���',500, 100, 40, 100, '���ܹ����Ļʹڵ���������'  -- 22
+  '井底北', '更加潮湿了。', '戴皇冠的青蛙怪王',500, 100, 40, 100, '青蛙怪王的皇冠掉了下来！'  -- 22
 );
 INSERT INTO ROOM(disc, welc, boss, blood, strike, defence, exp, die) VALUES (
-  '��������', '���������������䳱ʪ����Ϣ��', '��ͷ�Ƶ�̽�ռ�',400, 80, 30, 80, '̽�ռҵ�ͷ��û���ˣ�' -- 23
+  '井底密室', '空气中弥漫着阴冷潮湿的气息。', '戴头灯的探险家',400, 80, 30, 80, '探险家的头灯没电了！' -- 23
 );
 
 CREATE TABLE DIR(id INTEGER PRIMARY KEY AUTOINCREMENT, from_text TEXT, to_text TEXT);

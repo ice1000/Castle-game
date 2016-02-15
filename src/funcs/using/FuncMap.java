@@ -19,12 +19,11 @@ public class FuncMap extends FuncSrc{
 
 	@Override
 	public void DoFunc(String cmd) {
-//		.
 		JFrame frame = new JFrame("地图");
 		JPanel panel = new JPanel();
 		JLabel label = new JLabel();
 		Image image = Toolkit.getDefaultToolkit().getImage(
-				"." + File.separator + "src" + File.separator + "drawable" + File.separator + "map.png"
+				"." + File.separator + "drawable" + File.separator + "map.png"
 		);
 		ImageIcon icon = new ImageIcon(image);
 		label.setIcon(icon);
