@@ -169,13 +169,17 @@ public class Database {
 	}
 
 	/**
-	 *  CREATE TABLE DIR(id INTEGER PRIMARY KEY AUTOINCREMENT, from_text TEXT, to_text TEXT);
+	 *  CREATE TABLE MAP( id INTEGER PRIMARY KEY AUTOINCREMENT, fromid INTEGER, toid INTEGER, dir INTEGER);
 	 */
 	public static ArrayList<Exits> getExits() throws ClassNotFoundException, SQLException{
-		ResultSet set = getStatement().executeQuery("SELECT * FROM DIR ORDER BY id ASC");
+		ResultSet set = getStatement().executeQuery("SELECT * FROM MAP ORDER BY id ASC");
 		ArrayList<Exits> exitses = new ArrayList<>();
 		while(set.next()){
-			//
+			exitses.add(new Exits(
+					set.getInt("fromid"),
+					set.getInt("toid"),
+					set.getInt("dir")
+			));
 		}
 		set.close();
 		return exitses;
