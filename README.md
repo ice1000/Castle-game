@@ -79,7 +79,7 @@ Windows平台不提供CUI的可执行文件，如果你执意运行的话，cmd�
 
 ### 2016年2月11日、12日
 1. 地图数据库移植到SQLite中。<br/>
-[SQLite脚本](./source/data.sql "这个是直接复制的，用DataGrip搞的")
+[SQLite脚本](./source/data.sql "这个是直接复制的脚本，用DataGrip搞的")
 
 ### 2016年2月2日
 1. 更新了map指令图片显示不出来的bug
