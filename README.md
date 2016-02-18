@@ -1,5 +1,5 @@
 # 城堡游戏
-![icon](/drawable/ic_launcher.png)
+![icon](./drawable/ic_launcher.png)
 
 ### [Android版传送门](https://github.com/ice1000/AIAndroid)
 
@@ -15,12 +15,15 @@
 所以现在就是双版本共存哦！既有CUI也有GUI哦！！<br/>
 存档就是根目录下的“save.ice”文件的说<br/>
 地图：<br/>
-![map](/drawable/map.png)
+![map](./drawable/map.png)
 
 ~~目前已经暂时停止更新。~~谁说停止更新了！本项目从未停止更新！
 
 # 运行方法
+这个必须看哦！
 ### 首先你得安装了JRE8以上的环境。
+必须安装jre8以上的环境。<br/>
+百度搜索“jre”就能找到下载链接。或者前往甲骨文官网下载。<br/>
 然后根据你的个人情况进行选择：
 ## 你有Java的IDE或者你会命令行编译运行
 ~~有卵用~~<br/>
@@ -43,7 +46,8 @@
 
 ## 你使用瘟都死操作系统
 ~~滚去学习如何编译运行~~<br/>
-首先确保你安装了Java环境。<br/>
+首先确保你安装了Java8的环境。<br/>
+如果没有的话，请百度“jre”。<br/>
 右上角"download zip"看到了吗，下载下来，解压，<br/>
 然后根据你的需求，找到“城堡游戏-GUI.exe”<br/>
 双击运行就行了。<br/>
@@ -59,6 +63,7 @@ Windows平台不提供CUI的可执行文件，如果你执意运行的话，cmd�
 - [X] 等级系统(较为完善)
 - [X] ~~GUI~~封装的CUI
 - [X] GUI、CUI双版本共存
+- [X] 地图存储在SQLite中。
 - [ ] 物品、背包系统
 - [ ] NPC系统
 - [ ] 与服务器端的通讯。
@@ -68,13 +73,13 @@ Windows平台不提供CUI的可执行文件，如果你执意运行的话，cmd�
 ## 本次更新
 
 ### 2016年2月15日
-1.
+1. 更多的移植到SQLite。
 
 ## 早期更新
 
 ### 2016年2月11日、12日
-1. 地图数据库移植到SQLite中。
-[SQLite脚本](./source/data.sql)
+1. 地图数据库移植到SQLite中。<br/>
+[SQLite脚本](./source/data.sql "这个是直接复制的，用DataGrip搞的")
 
 ### 2016年2月2日
 1. 更新了map指令图片显示不出来的bug
