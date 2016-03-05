@@ -102,6 +102,10 @@ public class Database {
 				;
 	}
 
+	/**
+	 * @param player 玩家指针
+	 * 读取数据
+	 */
 	public void loadState(Player player){
 		player.setValues(
 				playerName,
