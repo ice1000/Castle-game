@@ -1,6 +1,6 @@
 package cells;
 
-import funcs.FuncSleep;
+import funcs.using.FuncSleep;
 import util.Echoer;
 
 //import java.util.Scanner;
@@ -11,13 +11,13 @@ public class Boss extends Player {
 	private boolean survive = true;
 	private boolean getItem = true;
 
-	public Boss(String name, int blood, int strike, int miss, int experience, String dieText) {
-		this(name,blood,strike,miss,experience);
+	public Boss(String name, int blood, int strike, int defence, int experience, String dieText) {
+		this(name,blood,strike,defence,experience);
 		this.dieText = dieText;
 	}
 
-	public Boss(String name, int blood, int strike, int miss, int experience) {
-		super(name,blood,strike,miss);
+	public Boss(String name, int blood, int strike, int defence, int experience) {
+		super(name,blood,strike,defence);
 		this.experience = experience;
 		dieText = name + "跪着向你哀求，不过你残忍地！";
 	}
@@ -65,7 +65,7 @@ public class Boss extends Player {
 							.append(player.blood)
 							.append("点体力值！\n")
 							.append("本次战斗获得了")
-							.append(player.win(getExperience()))
+							.append(player.win(getExperience(), echoer))
 							.append("点经验值！\n");
 					survive = false;
 					getItem = false;

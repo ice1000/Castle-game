@@ -2,10 +2,13 @@ package database;
 
 import castle.Game;
 import cells.Player;
+import map.Exits;
 import map.GameMap;
 import map.Room;
 
 import java.io.*;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -39,14 +42,15 @@ public class Database {
 			experience =  Integer.parseInt(reader.readLine());
 
 			reader.close();
+
 		} catch (Exception e) {
 			// e.printStackTrace();
 		}
 	}
 
-	public void loadMap(GameMap map, String defaultName){
+	public void loadMap(GameMap map, String defaultName) {
 		map.setRoomsState(roomsState);
-		if(roomName == null)
+		if (roomName == null)
 			roomName = defaultName;
 		map.loadRoom(roomName);
 	}
@@ -58,7 +62,7 @@ public class Database {
 		}
 		file.createNewFile();
 		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-		this.roomName = map.getRoomData();
+		this.roomName = map.getCurrentRoom().toString();
 		this.roomsState = map.getRoomsState();
 		writer.write(this.toString());
 		writer.close();
@@ -71,7 +75,7 @@ public class Database {
 		}
 		file.createNewFile();
 		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-		this.roomName = map.getRoomData();
+		this.roomName = map.getCurrentRoom().toString();
 		this.roomsState = map.getRoomsState();
 		this.playerName = player.toString();
 		this.blood      = player.getBlood();
@@ -132,5 +136,53 @@ public class Database {
 
 	public static boolean isFileExists(){
 		return new File(savePath).exists();
+	}
+
+	private static Statement getStatement() throws ClassNotFoundException, SQLException{
+		Class.forName("org.sqlite.JDBC");
+		Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
+		return connection.createStatement();
+	}
+
+	/**
+	 CREATE TABLE ROOM(id INTEGER PRIMARY KEY AUTOINCREMENT,
+	 disc TEXT, welc TEXT,boss TEXT,blood INTEGER,
+	 strike INTEGER, defence INTEGER,exp INTEGER, die TEXT);
+	 */
+	public static ArrayList<Room> getRooms() throws ClassNotFoundException, SQLException {
+		ResultSet set = getStatement().executeQuery("SELECT * FROM ROOM ORDER BY id ASC");
+		ArrayList<Room> rooms = new ArrayList<>();
+		while (set.next()){
+			rooms.add(new Room(
+					set.getString("disc"),
+					set.getString("welc"),
+					set.getString("boss"),
+					set.getInt("blood"),
+					set.getInt("strike"),
+					set.getInt("defence"),
+					set.getInt("exp"),
+					set.getString("die")
+			));
+		}
+		set.close();
+		return rooms;
+	}
+
+	/**
+	 *  CREATE TABLE MAP( id INTEGER PRIMARY KEY AUTOINCREMENT, fromid INTEGER, toid INTEGER, dir INTEGER);
+	 */
+	public static ArrayList<Exits> getExits() throws ClassNotFoundException, SQLException{
+		// 与顺序无关
+		ResultSet set = getStatement().executeQuery("SELECT * FROM MAP");
+		ArrayList<Exits> exitses = new ArrayList<>();
+		while(set.next()){
+			exitses.add(new Exits(
+					set.getInt("fromid"),
+					set.getInt("toid"),
+					set.getInt("dir")
+			));
+		}
+		set.close();
+		return exitses;
 	}
 }

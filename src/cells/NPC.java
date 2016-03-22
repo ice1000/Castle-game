@@ -1,7 +1,5 @@
 package cells;
 
-import util.Echoer;
-
 import java.util.ArrayList;
 
 public class NPC extends Cell {
@@ -22,8 +20,7 @@ public class NPC extends Cell {
 //		items.get(index).getNumOf(num);
 //	}
 
-	public void talk(Echoer echoer){
-		echoer.echoln(chat);
+	public String getChat() {
+		return chat;
 	}
-
 }

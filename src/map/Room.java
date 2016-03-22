@@ -18,7 +18,7 @@ public class Room {
 	private ArrayList<NPC> NPCs;
 
 	//构造方法
-	Room(String description) {
+	public Room(String description) {
 		this.description = description;
 		exits = new HashMap<>();
 		boss = null;
@@ -26,37 +26,23 @@ public class Room {
 
 	//构造方法
 	Room(String description, String welcomeWord) {
-		this.description = description;
-		this.welcomeWord = welcomeWord;
-		exits = new HashMap<>();
-		boss = null;
-	}
-
-	Room(String description,
-	     String BossName, int blood, int strike, int miss, int experience,@Nullable String dieText) {
-		this(description);
-		welcomeWord = "欢迎来到这里。";
-		if(dieText != null){
-			boss = new Boss(BossName,blood,strike,miss,experience,dieText);
-		}
-		else {
-			boss = new Boss(BossName,blood,strike,miss,experience);
-		}
-		NPCs = new ArrayList<>();
-		exits = new HashMap<>();
-//		NPCs.add(boss);
-	}
-
-	Room(String description, String welcomeWord,
-	     String BossName, int blood, int strike, int miss, int experience,@Nullable String dieText) {
 		this(description);
 		this.welcomeWord = welcomeWord;
-		if(dieText != null){
-			boss = new Boss(BossName,blood,strike,miss,experience,dieText);
+	}
+
+	public Room(String description,@Nullable String welcomeWord,
+	        @Nullable String BossName, int blood, int strike, int defence, int experience,
+            @Nullable String dieText) {
+		this(description, welcomeWord == null ? "欢迎来到这里。" : welcomeWord);
+		if(BossName != null){
+			if (dieText != null)
+				boss = new Boss(BossName, blood, strike, defence, experience, dieText);
+			else
+				boss = new Boss(BossName, blood, strike, defence, experience);
 		}
-		else {
-			boss = new Boss(BossName,blood,strike,miss,experience);
-		}
+		else
+			boss = null;
+
 		NPCs = new ArrayList<>();
 		exits = new HashMap<>();
 //		NPCs.add(boss);
@@ -78,9 +64,9 @@ public class Room {
 	void setExit(String str, int targetRoomId){
 		exits.put(str, targetRoomId);
 	}
-	//   显示房间的详情。
 
-	String getPrompt() {
+	//   显示房间的详情。
+	public String getPrompt() {
 		StringBuilder sb = new StringBuilder();
 		String ifaBoss = "这里安全。";
 		sb.append(welcomeWord).append('\n');
@@ -99,10 +85,11 @@ public class Room {
 				ifaBoss = "这里的Boss是"+ boss +",已经被你打败过啦O(∩_∩)O哈哈~";
 		}
 		sb.append(ifaBoss);
-		if(NPCs.size() > 0)
+		if(NPCs != null && NPCs.size() > 0) {
 			sb.append("这里还有：\n");
-		for (NPC npc : NPCs) {
-			sb.append(npc.getName());
+			for (NPC npc : NPCs) {
+				sb.append(npc.getName());
+			}
 		}
 		return sb.toString();
 	}
@@ -116,7 +103,7 @@ public class Room {
 	}
 
 	//    检查Boss是否已经被挑战过
-	boolean isBossGetItem() {
+	public boolean isBossGetItem() {
 		try {
 			return boss.ifGet();
 		} catch (NullPointerException e){
@@ -128,6 +115,14 @@ public class Room {
 		if(boss != null){
 			boss.setGetItem(isGet);
 		}
+	}
+
+	public NPC isNPCExists(String name) {
+		for (NPC npc : NPCs) {
+			if(name.equals(npc.getName()))
+				return npc;
+		}
+		return null;
 	}
 
 	boolean checkExit(String exit) {
