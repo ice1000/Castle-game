@@ -1,6 +1,5 @@
 package funcs.using;
 
-import castle.Game;
 import funcs.FuncSrc;
 
 /**

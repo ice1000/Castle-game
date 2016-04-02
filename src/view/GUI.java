@@ -1,6 +1,5 @@
 package view;
 
-import castle.Game;
 import util.Echoer;
 
 import javax.swing.*;

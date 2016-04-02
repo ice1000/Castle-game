@@ -1,6 +1,5 @@
 package funcs.using;
 
-import castle.Game;
 import cells.NPC;
 import funcs.FuncSrc;
 

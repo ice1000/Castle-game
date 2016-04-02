@@ -3,7 +3,6 @@ package map;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import cells.Boss;
 import cells.NPC;
 import cells.Player;
 import com.sun.istack.internal.Nullable;
