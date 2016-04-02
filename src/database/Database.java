@@ -69,11 +69,7 @@ public class Database {
 	}
 
 	public void saveMapAndState(GameMap map, Player player) throws IOException{
-		File file = new File(savePath);
-		if(file.exists()){
-			file.delete();
-		}
-		file.createNewFile();
+		File file = openFile();
 		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 		this.roomName = map.getCurrentRoom().toString();
 		this.roomsState = map.getRoomsState();
@@ -119,12 +115,8 @@ public class Database {
 
 	public void saveState(Player player) throws IOException {
 //		System.out.println("正在保存数据。。");
-		File file = new File(savePath);
+		File file = openFile();
 		BufferedWriter writer;
-		if(file.exists()){
-			file.delete();
-		}
-		file.createNewFile();
 		writer = new BufferedWriter(new FileWriter(file));
 		this.playerName = player.toString();
 		this.blood      = player.getBlood();
@@ -142,11 +134,11 @@ public class Database {
 		return new File(savePath).exists();
 	}
 
-//	private static Statement getStatement() throws ClassNotFoundException, SQLException{
-//		Class.forName("org.sqlite.JDBC");
-//		Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
-//		return connection.createStatement();
-//	}
+	private static Statement getStatement() throws ClassNotFoundException, SQLException{
+		Class.forName("org.sqlite.JDBC");
+		Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
+		return connection.createStatement();
+	}
 
 	/**
 	 CREATE TABLE ROOM(id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -154,9 +146,7 @@ public class Database {
 	 strike INTEGER, defence INTEGER,exp INTEGER, die TEXT);
 	 */
 	public static ArrayList<Room> getRooms() throws ClassNotFoundException, SQLException {
-		Class.forName("org.sqlite.JDBC");
-		Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
-		ResultSet set = connection.createStatement().executeQuery("SELECT * FROM ROOM ORDER BY id ASC");
+		ResultSet set = getStatement().executeQuery("SELECT * FROM ROOM ORDER BY id ASC");
 		ArrayList<Room> rooms = new ArrayList<>();
 		while (set.next()){
 			rooms.add(new Room(
@@ -171,7 +161,6 @@ public class Database {
 			));
 		}
 		set.close();
-		connection.close();
 		return rooms;
 	}
 
@@ -180,9 +169,7 @@ public class Database {
 	 */
 	public static ArrayList<Exits> getExits() throws ClassNotFoundException, SQLException{
 		// 与顺序无关
-		Class.forName("org.sqlite.JDBC");
-		Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
-		ResultSet set = connection.createStatement().executeQuery("SELECT * FROM MAP");
+		ResultSet set = getStatement().executeQuery("SELECT * FROM MAP");
 		ArrayList<Exits> exitses = new ArrayList<>();
 		while(set.next()){
 			exitses.add(new Exits(
@@ -192,7 +179,15 @@ public class Database {
 			));
 		}
 		set.close();
-		connection.close();
 		return exitses;
+	}
+
+	private File openFile() throws IOException {
+		File file = new File(savePath);
+		if(file.exists()){
+			file.delete();
+		}
+		file.createNewFile();
+		return file;
 	}
 }
