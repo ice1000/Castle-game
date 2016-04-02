@@ -1,4 +1,4 @@
-CREATE TABLE ROOM(
+﻿CREATE TABLE ROOM(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   disc TEXT, welc TEXT,
   boss TEXT,blood INTEGER,
@@ -77,6 +77,15 @@ INSERT INTO ROOM(disc, welc, boss, blood, strike, defence, exp, die) VALUES (
 INSERT INTO ROOM(disc, welc, boss, blood, strike, defence, exp, die) VALUES (
   '井底密室', '空气中弥漫着阴冷潮湿的气息。', '戴头灯的探险家',400, 80, 30, 80, '探险家的头灯没电了！' -- 23
 );
+INSERT INTO ROOM(disc, boss, blood, strike, defence, exp, die) VALUES (
+  '井底东',  '大青蛙怪',400, 80, 30, 80, '大青蛙怪死了。。'                                      -- 24
+);
+INSERT INTO ROOM(disc) VALUES (
+  '日出村民居'                                                                                 -- 25
+);
+INSERT INTO ROOM(disc, boss, blood, strike, defence, exp) VALUES (
+  '羊肠小道', '高级小混混',300,30,1,230                                                         -- 26
+);
 
 CREATE TABLE DIR(id INTEGER PRIMARY KEY AUTOINCREMENT, from_text TEXT, to_text TEXT);
 INSERT INTO DIR(from_text, to_text) VALUES ('up', 'down');
@@ -98,6 +107,8 @@ INSERT INTO MAP(fromid, toid, dir) VALUES (3, 0, 2);
 INSERT INTO MAP(fromid, toid, dir) VALUES (20,19,2);
 INSERT INTO MAP(fromid, toid, dir) VALUES (4, 1, 2);
 INSERT INTO MAP(fromid, toid, dir) VALUES (14,17,2);
+INSERT INTO MAP(fromid, toid, dir) VALUES (25,20,2);
+INSERT INTO MAP(fromid, toid, dir) VALUES (26,25,2);
 INSERT INTO MAP(fromid, toid, dir) VALUES (0, 1, 3);
 INSERT INTO MAP(fromid, toid, dir) VALUES (2, 0, 3);
 INSERT INTO MAP(fromid, toid, dir) VALUES (3, 4, 3);
@@ -108,6 +119,7 @@ INSERT INTO MAP(fromid, toid, dir) VALUES (14,16,3);
 INSERT INTO MAP(fromid, toid, dir) VALUES (17,14,3);
 INSERT INTO MAP(fromid, toid, dir) VALUES (18,13,3);
 INSERT INTO MAP(fromid, toid, dir) VALUES (19,18,3);
+INSERT INTO MAP(fromid, toid, dir) VALUES (21,24,3);
 
 
 SELECT * FROM ROOM ORDER BY id ASC;
