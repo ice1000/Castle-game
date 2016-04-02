@@ -1,5 +1,6 @@
 package funcs.using;
 
+import castle.Game;
 import funcs.FuncSrc;
 
 public class FuncState extends FuncSrc {

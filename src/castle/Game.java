@@ -1,17 +1,18 @@
 package castle;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
+import cells.Item;
+import cells.Player;
 import database.Database;
-import funcs.*;
-import cells.*;
+import funcs.FuncSrc;
 import funcs.using.*;
 import map.GameMap;
 import util.Echoer;
 import util.MessageHandler;
 import util.NameGenerator;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class Game
 implements  MessageHandler ,Echoer{
@@ -63,7 +64,7 @@ implements  MessageHandler ,Echoer{
 //        echoln("不过在经过了冰封的改造后，你会觉得这个很有意思。");
 		if(!Database.isFileExists()){
 			echoln("您可以稍后使用\"rename [新名字]\"命令来更改自己的名字。");
-			player = new Player(NameGenerator.generate(),200,10,5);
+			player = new Player(new NameGenerator().generate(),200,10,5);
 			saveData();
 		}
 

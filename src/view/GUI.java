@@ -1,5 +1,7 @@
 package view;
 
+import castle.Game;
+import org.jetbrains.annotations.NotNull;
 import util.Echoer;
 
 import javax.swing.*;
@@ -49,7 +51,7 @@ public class GUI extends Game
 			public void mouseExited(MouseEvent e) {}
 		});
 		textArea.setBackground(new Color(12, 29, 39));
-		textArea.setForeground(new Color(151, 212, 30));
+		textArea.setForeground(new Color(203, 212, 188));
 		textArea.setEditable(false);
 		frame.setIconImage(Toolkit.getDefaultToolkit().createImage(
 				"." + File.separator + "src" + File.separator + "drawable" + File.separator + "ic_launcher.png"
@@ -73,7 +75,7 @@ public class GUI extends Game
 	}
 
 	@Override
-	public void echo(String words){
+	public void echo(@NotNull String words){
 //		System.out.print(words);
 		textArea.append(words);
 		int i = textArea.getText().length();
@@ -92,7 +94,7 @@ public class GUI extends Game
 	}
 
 	@Override
-	public void echoln(String words){
+	public void echoln(@NotNull String words){
 		echo(words + "\n");
 	}
 
