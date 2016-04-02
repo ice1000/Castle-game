@@ -142,11 +142,11 @@ public class Database {
 		return new File(savePath).exists();
 	}
 
-	private static Statement getStatement() throws ClassNotFoundException, SQLException{
-		Class.forName("org.sqlite.JDBC");
-		Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
-		return connection.createStatement();
-	}
+//	private static Statement getStatement() throws ClassNotFoundException, SQLException{
+//		Class.forName("org.sqlite.JDBC");
+//		Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
+//		return connection.createStatement();
+//	}
 
 	/**
 	 CREATE TABLE ROOM(id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -154,7 +154,9 @@ public class Database {
 	 strike INTEGER, defence INTEGER,exp INTEGER, die TEXT);
 	 */
 	public static ArrayList<Room> getRooms() throws ClassNotFoundException, SQLException {
-		ResultSet set = getStatement().executeQuery("SELECT * FROM ROOM ORDER BY id ASC");
+		Class.forName("org.sqlite.JDBC");
+		Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
+		ResultSet set = connection.createStatement().executeQuery("SELECT * FROM ROOM ORDER BY id ASC");
 		ArrayList<Room> rooms = new ArrayList<>();
 		while (set.next()){
 			rooms.add(new Room(
@@ -169,6 +171,7 @@ public class Database {
 			));
 		}
 		set.close();
+		connection.close();
 		return rooms;
 	}
 
@@ -177,7 +180,9 @@ public class Database {
 	 */
 	public static ArrayList<Exits> getExits() throws ClassNotFoundException, SQLException{
 		// 与顺序无关
-		ResultSet set = getStatement().executeQuery("SELECT * FROM MAP");
+		Class.forName("org.sqlite.JDBC");
+		Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
+		ResultSet set = connection.createStatement().executeQuery("SELECT * FROM MAP");
 		ArrayList<Exits> exitses = new ArrayList<>();
 		while(set.next()){
 			exitses.add(new Exits(
@@ -187,6 +192,7 @@ public class Database {
 			));
 		}
 		set.close();
+		connection.close();
 		return exitses;
 	}
 }
