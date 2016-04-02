@@ -30,9 +30,8 @@ public class Boss extends Player {
 		int beBeat = (this.strike - player.getDefence());
 		int Beat = (player.getStrike() - this.defence);
 
-		if( beBeat <= 0 ) {
+		if( beBeat <= 0 )
 			beBeat = 0;
-		}
 //			打不过
 		if( Beat <= 0 ){
 			player.blood -= 10;
@@ -69,7 +68,6 @@ public class Boss extends Player {
 							.append("点经验值！\n");
 					survive = false;
 					getItem = false;
-					FuncSleep sleep = new FuncSleep();
 					stringBuffer.append("战斗结束");
 					stringBuffer.append("\n");
 				}

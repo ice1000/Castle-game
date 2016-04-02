@@ -84,10 +84,6 @@ public class Player extends Cell {
 			return false;
 	}
 
-	public Player getStateData(){
-		return this;
-	}
-
 	public void rename(String newName){this.name = newName;}
 	public int getBlood() {return blood;}
 	public int getLevel() {return level;}

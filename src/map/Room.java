@@ -34,12 +34,11 @@ public class Room {
 	        @Nullable String BossName, int blood, int strike, int defence, int experience,
             @Nullable String dieText) {
 		this(description, welcomeWord == null ? "欢迎来到这里。" : welcomeWord);
-		if(BossName != null){
+		if(BossName != null)
 			if (dieText != null)
 				boss = new Boss(BossName, blood, strike, defence, experience, dieText);
 			else
 				boss = new Boss(BossName, blood, strike, defence, experience);
-		}
 		else
 			boss = null;
 
@@ -72,24 +71,21 @@ public class Room {
 		sb.append(welcomeWord).append('\n');
 		sb.append("你在").append(this.description).append('\n');
 		sb.append("出口有: ");
-		for ( String str : exits.keySet() ){
+		for ( String str : exits.keySet() )
 			sb.append(str).append(' ');
-		}
 		sb.append('\n');
-		if(boss != null) {
+		if(boss != null)
 			if( boss.ifGet() )
 				ifaBoss = "冰封".equals(boss.toString()) ?
 						"你来到了神秘空间。这里只能通过\\wild传送离开。冰封正坐在这写码呢。"
 						: "这里的Boss是"+ boss +",正准备接受你的挑战呢！";
 			else
 				ifaBoss = "这里的Boss是"+ boss +",已经被你打败过啦O(∩_∩)O哈哈~";
-		}
 		sb.append(ifaBoss);
 		if(NPCs != null && NPCs.size() > 0) {
 			sb.append("这里还有：\n");
-			for (NPC npc : NPCs) {
+			for (NPC npc : NPCs)
 				sb.append(npc.getName());
-			}
 		}
 		return sb.toString();
 	}
