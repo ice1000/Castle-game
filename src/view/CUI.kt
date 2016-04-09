@@ -8,7 +8,7 @@ import java.util.Scanner
  * 这个是针对没有GUI的OS的CUI版
  * Created by asus1 on 2016/1/31.
  */
-class CUI private constructor() : Game() {
+open class CUI constructor() : Game() {
 
     override fun echo(words: String) {
         print(words)
@@ -22,7 +22,7 @@ class CUI private constructor() : Game() {
         System.exit(0)
     }
 
-    private fun onResume() {
+    protected fun onResume() {
         var line: String
         var loop = true
         val `in` = Scanner(System.`in`)
@@ -34,12 +34,4 @@ class CUI private constructor() : Game() {
         `in`.close()
     }
 
-    companion object {
-
-        @JvmStatic fun main(args: Array<String>) {
-            val game = CUI()
-            game.onStart()
-            game.onResume()
-        }
-    }
 }

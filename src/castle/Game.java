@@ -57,7 +57,7 @@ implements  MessageHandler ,Echoer{
 
 	}
 
-	protected void onStart() {
+	public void onStart() {
 		echoln("欢迎来到Castle Game！");
 		echoln("这是一个CUI游戏,也有GUI版本(不过那个GUI相当于一个CUI了)");
 		echoln("最新版本和源代码请见https://github.com/ice1000/Castle-game");

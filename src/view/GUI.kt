@@ -90,10 +90,6 @@ class GUI : Game(), Echoer {
         private val FRAME_X = 500
         private val FRAME_Y = 500
 
-		@JvmStatic fun main(args: Array<String>) {
-            val game = GUI()
-            game.onStart()
-        }
     }
 
 }
