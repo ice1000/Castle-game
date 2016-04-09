@@ -24,10 +24,6 @@
     </searchSequence>
     <classPath>
       <archive location="./castle.jar" failOnError="false" />
-      <archive location="./lib/sqlite-jdbc-3.8.11.1.jar" failOnError="false" />
-      <archive location="./lib/kotlin-runtime-sources.jar" failOnError="false" />
-      <archive location="./lib/kotlin-runtime.jar" failOnError="false" />
-      <archive location="./lib/kotlin-reflect.jar" failOnError="false" />
     </classPath>
     <nativeLibraryDirectories />
   </java>
