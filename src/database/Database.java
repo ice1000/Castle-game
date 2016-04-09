@@ -97,10 +97,10 @@ public class Database {
 	}
 
 	/**
-	 * @param player 玩家指针
 	 * 读取数据
 	 */
-	public void loadState(Player player){
+	public Player loadState(){
+		Player player = new Player("", -1, -1, -1);
 		player.setValues(
 				playerName,
 				blood,
@@ -109,6 +109,7 @@ public class Database {
 				level,
 				experience
 		);
+		return player;
 	}
 
 	public void saveState(Player player) throws IOException {

@@ -6,6 +6,7 @@ import database.Database;
 import funcs.FuncSrc;
 import funcs.using.*;
 import map.GameMap;
+import org.jetbrains.annotations.NotNull;
 import util.Echoer;
 import util.MessageHandler;
 import util.NameGenerator;
@@ -69,8 +70,7 @@ implements  MessageHandler ,Echoer{
 		}
 
 		else {
-			player = new Player(null,-1,-1,-1);
-			database.loadState(player);
+			player = database.loadState();
 			database.loadMap(map,"宾馆");
 			echoln("检测到存档。");
 		}
@@ -82,7 +82,7 @@ implements  MessageHandler ,Echoer{
 	}
 
 	@Override
-	public boolean HandleMessage(String line){
+	public boolean HandleMessage(@NotNull String line){
 		String[] words = line.split(" ");
 		FuncSrc func = funcs.get(words[0]);
 		String value2 = "";

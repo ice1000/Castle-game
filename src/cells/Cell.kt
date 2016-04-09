@@ -1,7 +1,7 @@
 package cells
 
 open class Cell {
-    private var name: String
+    public  var name: String
 
     internal constructor(name: String) {
         //		super();
@@ -10,8 +10,5 @@ open class Cell {
 
     constructor() {
         name = "unKown"
-    }
-    public fun setName(name: String){
-        this.name = name
     }
 }
