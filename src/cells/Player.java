@@ -24,7 +24,6 @@ public class Player extends Cell {
 			99999999,
 			99999999,
 	};
-
 	//	在玩家中，经验表示拥有的经验，在怪物中表示打败后得到的经验。
 	public Player(String name, int blood, int strike, int defence) {
 		super(name);
