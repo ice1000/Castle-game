@@ -58,7 +58,7 @@ implements  MessageHandler ,Echoer{
 
 	protected void onStart() {
 		echoln("欢迎来到Castle Game！");
-		echoln("这是一个超复古的CUI游戏。");
+		echoln("这是一个CUI游戏,也有GUI版本(不过那个GUI相当于一个CUI了)");
 		echoln("最新版本和源代码请见https://github.com/ice1000/Castle-game");
 		echoln("敬请期待OL版本https://github.com/ProgramLeague/Castle-Online");
 //        echoln("不过在经过了冰封的改造后，你会觉得这个很有意思。");
@@ -157,7 +157,7 @@ implements  MessageHandler ,Echoer{
 			database.saveMapAndState(map,player);
 			echoln("保存成功。");
 		} catch (IOException e){
-			echoln("保存失败，请检查是否有管理员权限！");
+			echoln("保存失败，请检查权限！");
 		}
 	}
 
