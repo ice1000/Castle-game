@@ -31,8 +31,8 @@ public class GameMap {
 //			System.out.println("theRooms.size = " + theRooms.size());
 			for (Exits exit : Database.getExits()) {
 				setExit(
-						exit.from, exit.to,
-						pairs[exit.dir]
+						exit.component1(), exit.component2(),
+						pairs[exit.component3()]
 				);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -84,10 +84,10 @@ public class GameMap {
 
 	public void loadRoom(String room_){
 		for (Room room : theRooms) {
-			if(room.equals(room_)){
-				currentRoom = room;
-				break;
-			}
+			if (!room.equals(room_))
+				continue;
+			currentRoom = room;
+			break;
 		}
 	}
 
