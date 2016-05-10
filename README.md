@@ -1,19 +1,14 @@
 # 城堡游戏
 ![icon](./drawable/ic_launcher.png)
 
-### [Android版传送门](https://github.com/ice1000/AIAndroid)
+### [Android版](https://github.com/ice1000/AIAndroid)
 
 # 内容介绍
 
-这是一个很~~猥琐~~励志的DOS游戏。你是一名勇士，你要闯荡城堡，~~推倒~~偶遇几个妹子。<br/>
-至于你最终要怎么样，我现在也不知道。<br/>
-如果你有好的想法请务必告诉我，谢谢！！！！<br/>
-我从初学Java开始就在写这个玩意了，这是一个纯Java项目，希望大家喜欢。<br/>
-随着我不断地更新，GUI也出来了<br/>
-不过根据无无的说法，这款游戏的特色就是只有CUI<br/>
-而且由于开发者之一的奶茶同学要求我做一个CUI的<br/>
-所以现在就是双版本共存哦！既有CUI也有GUI哦！！<br/>
-存档就是根目录下的“save.ice”文件的说<br/>
+GUI版与CUI版共存。<br/>
+[v1.0纯Java版](https://github.com/ice1000/Castle-game/releases/tag/v1.0)<br/>
+[v1.1Java&Kotlin版](https://github.com/ice1000/Castle-game/releases/tag/v1.1)<br/>
+Java初学者可通过此项目对于OOP的设计模式有一个初步的了解。<br/>
 地图：<br/>
 ![map](./drawable/map.png)
 
