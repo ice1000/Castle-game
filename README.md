@@ -1,56 +1,26 @@
 # 城堡游戏
 ![icon](./drawable/ic_launcher.png)
 
-### [Android版传送门](https://github.com/ice1000/AIAndroid)
+### [Android版](https://github.com/ice1000/AIAndroid)
 
 # 内容介绍
 
-这是一个很~~猥琐~~励志的DOS游戏。你是一名勇士，你要闯荡城堡，~~推倒~~偶遇几个妹子。<br/>
-至于你最终要怎么样，我现在也不知道。<br/>
-如果你有好的想法请务必告诉我，谢谢！！！！<br/>
-我从初学Java开始就在写这个玩意了，这是一个纯Java项目，希望大家喜欢。<br/>
-随着我不断地更新，GUI也出来了<br/>
-不过根据无无的说法，这款游戏的特色就是只有CUI<br/>
-而且由于开发者之一的奶茶同学要求我做一个CUI的<br/>
-所以现在就是双版本共存哦！既有CUI也有GUI哦！！<br/>
-存档就是根目录下的“save.ice”文件的说<br/>
+GUI版与CUI版共存。<br/>
+[v1.0纯Java版](https://github.com/ice1000/Castle-game/releases/tag/v1.0)<br/>
+[v1.2Java&Kotlin版](https://github.com/ice1000/Castle-game/releases/tag/v1.2)<br/>
+[v1.2.1含jar包Java&Kotlin版](https://github.com/ice1000/Castle-game/releases/tag/v1.2.1)<br/>
+Java初学者可通过此项目的v1.0对于OOP的设计模式有一个初步的了解。<br/>
+v1.1展示如何使用Kotlin和Java进行简单的对接。<br/>
 地图：<br/>
 ![map](./drawable/map.png)
 
 # 运行方法
 这个必须看哦！
-### 首先你得安装了JRE8以上的环境。
-必须安装jre8以上的环境。<br/>
-百度搜索“jre”就能找到下载链接。或者前往甲骨文官网下载。<br/>
-然后根据你的个人情况进行选择：
-## 你有Java的IDE或者你会命令行编译运行
-~~有卵用~~<br/>
-那就简单了，下载代码编译运行，<br/>
-由于你是编译运行，绝对能享受到最新的功能。<br/>
-~~其实直接像下面说的那样运行jar包是一样的。。。~~<br/>
-
-## 你使用基于Linux或者Unix的操作系统
-~~你了不起啊你这是歧视瘟都死吗~~<br/>
-看到那个jar包了吗，castle.jar，这个是我已经打包好了的。<br/>
-所以你们只需要打开终端<br/>
-在终端先进入城堡游戏文件夹。<br/>
-如果你想尝试CUI版，请输入：<br/>
-> $ java -jar ./castle-cui.jar
-
-如果你想尝试GUI版，请输入：<br/>
-> $ java -jar ./castle.jar
-
-~~按理说应该是可以运行的。~~
-
-## 你使用瘟都死操作系统
-~~滚去学习如何编译运行~~<br/>
-首先确保你安装了Java8的环境。<br/>
-如果没有的话，请百度“jre”。<br/>
-右上角"download zip"看到了吗，下载下来，解压，<br/>
-然后根据你的需求，找到“城堡游戏-GUI.exe”<br/>
-双击运行就行了。<br/>
-Windows平台不提供CUI的可执行文件，如果你执意运行的话，cmd运行jar包吧。<br/>
-方法和上面一样。
+1. 安装jre8
+1. 找到[CUI的jar包](./out/_CUI_jar/城堡游戏.jar)或者[GUI的jar包](./out/_GUI_jar/城堡游戏.jar)
+1. 使用以下命令运行：
+> java -jar 城堡游戏.jar
+1. enjoy
 
 # 实现情况
 - [X] 一个图标
@@ -70,13 +40,37 @@ Windows平台不提供CUI的可执行文件，如果你执意运行的话，cmd�
 
 ## 本次更新
 
+### 2016年4月19日
+删除过时的运行方法：<br/>
+> ## 你使用基于Linux或者Unix的操作系统
+~~你了不起啊你这是歧视瘟都死吗~~<br/>
+看到那个jar包了吗，castle.jar，这个是我已经打包好了的。<br/>
+所以你们只需要打开终端<br/>
+在终端先进入城堡游戏文件夹。<br/>
+如果你想尝试CUI版，请输入：<br/>
+>> $ java -jar ./castle-cui.jar
+
+> 如果你想尝试GUI版，请输入：<br/>
+>> $ java -jar ./castle.jar
+
+> ~~按理说应该是可以运行的。~~
+## 你使用瘟都死操作系统
+~~滚去学习如何编译运行~~<br/>
+首先确保你安装了Java8的环境。<br/>
+如果没有的话，请百度“jre”。<br/>
+右上角"download zip"看到了吗，下载下来，解压，<br/>
+然后根据你的需求，找到“城堡游戏-GUI.exe”<br/>
+双击运行就行了。<br/>
+Windows平台不提供CUI的可执行文件，如果你执意运行的话，cmd运行jar包吧。<br/>
+方法和上面一样。
+
+## 早期更新
+
 ### 2016年4月2日
 1. 挖坟——继续更项目
 1. 增加地图元素
 1. 将部分类转化为Kotlin代码
 1. 从此踏上了Kotlin的不归路
-
-## 早期更新
 
 ### 2016年2月15日
 1. 更多的移植到SQLite。
