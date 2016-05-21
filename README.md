@@ -16,6 +16,7 @@ v1.1展示如何使用Kotlin和Java进行简单的对接。<br/>
 
 # 运行方法
 这个必须看哦！
+
 1. 安装jre8
 1. 找到[CUI的jar包](./out/_CUI_jar/城堡游戏.jar)或者[GUI的jar包](./out/_GUI_jar/城堡游戏.jar)
 1. 使用以下命令运行：

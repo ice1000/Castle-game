@@ -7,7 +7,6 @@
       </element>
       <element id="module-output" name="城堡游戏" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/kotlin-runtime.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/kotlin-reflect.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/sqlite-jdbc-3.8.11.1.jar" path-in-jar="/" />
     </root>
   </artifact>
