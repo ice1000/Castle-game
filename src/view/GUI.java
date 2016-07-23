@@ -40,17 +40,25 @@ public class GUI extends Game
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {}
+			public void mousePressed(MouseEvent e) {
+			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {
+			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {
+			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {
+			}
 		});
-		textArea.setBackground(new Color(12, 29, 39));
-		textArea.setForeground(new Color(203, 212, 188));
+		textArea.setBackground(new Color(43, 43, 43));
+		textArea.setForeground(new Color(169, 183, 198));
 		textArea.setEditable(false);
 		frame.setIconImage(Toolkit.getDefaultToolkit().createImage(
 				"." + File.separator + "src" + File.separator + "drawable" + File.separator + "ic_launcher.png"
@@ -64,7 +72,7 @@ public class GUI extends Game
 		scrollBar = scrollPane.getVerticalScrollBar();
 		frame.add(scrollPane, BorderLayout.CENTER);
 		frame.setResizable(false);
-		frame.setLocation(FRAME_X / 8,FRAME_Y / 8);
+		frame.setLocation(FRAME_X / 8, FRAME_Y / 8);
 		frame.setVisible(true);
 	}
 
@@ -74,26 +82,26 @@ public class GUI extends Game
 	}
 
 	@Override
-	public void echo(String words){
+	public void echo(String words) {
 //		System.out.print(words);
 		textArea.append(words);
 		int i = textArea.getText().length();
 		int MAX_LENGTH = 10000;
-		if(i > MAX_LENGTH){
+		if (i > MAX_LENGTH) {
 			textArea.setText(textArea.getText().substring(
 					i - MAX_LENGTH, i
 			));
 		}
 //		scrollBar.setValue(scrollBar.getMaximum() - 20);
 		// 滚动到最底下
-		int height=10;
+		int height = 10;
 		Point p = new Point();
-		p.setLocation(0,this.textArea.getLineCount()*height);
+		p.setLocation(0, this.textArea.getLineCount() * height);
 		this.scrollPane.getViewport().setViewPosition(p);
 	}
 
 	@Override
-	public void echoln(String words){
+	public void echoln(String words) {
 		echo(words + "\n");
 	}
 

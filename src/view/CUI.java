@@ -33,7 +33,7 @@ public class CUI extends Game {
 		String line;
 		boolean loop = true;
 		Scanner in = new Scanner(System.in);
-		while ( loop ) {
+		while (loop) {
 			echoln("");
 			line = in.nextLine();
 			loop = HandleMessage(line);
