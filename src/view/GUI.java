@@ -19,7 +19,6 @@ public class GUI extends Game
 	private JTextArea textArea;
 	private JFrame frame;
 	private JScrollPane scrollPane;
-	private JScrollBar scrollBar;
 
 	private static int FRAME_X = 500;
 	private static int FRAME_Y = 500;
@@ -39,6 +38,7 @@ public class GUI extends Game
 		textArea.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				echoln("别点这里，点下面。");
 			}
 
 			@Override
@@ -47,6 +47,7 @@ public class GUI extends Game
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
+//				echoln("对，放开就好。");
 			}
 
 			@Override
@@ -57,6 +58,8 @@ public class GUI extends Game
 			public void mouseExited(MouseEvent e) {
 			}
 		});
+
+		/// IntelliJ IDEA 标准配色
 		textArea.setBackground(new Color(43, 43, 43));
 		textArea.setForeground(new Color(169, 183, 198));
 		textArea.setEditable(false);
@@ -69,7 +72,7 @@ public class GUI extends Game
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.add(textField, BorderLayout.SOUTH);
 		scrollPane = new JScrollPane(textArea);
-		scrollBar = scrollPane.getVerticalScrollBar();
+		JScrollBar scrollBar = scrollPane.getVerticalScrollBar();
 		frame.add(scrollPane, BorderLayout.CENTER);
 		frame.setResizable(false);
 		frame.setLocation(FRAME_X / 8, FRAME_Y / 8);

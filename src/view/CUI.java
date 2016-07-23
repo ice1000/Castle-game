@@ -26,6 +26,7 @@ public class CUI extends Game {
 	/**
 	 * 当游戏输出东西并换行的时候，调用这个方法并传入需要输出的字符串。
 	 * @param words 需要输出的字符串。
+	 * @see CUI#echo(String)
 	 */
 	@Override
 	public void echoln(String words) {

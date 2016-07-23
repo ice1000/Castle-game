@@ -9,7 +9,9 @@
 # 内容介绍
 
 GUI版与CUI版共存。<br/>
-[v1.0纯Java版](https://github.com/ice1000/Castle-game/releases/tag/v1.0)<br/>
+
+这是主分支的release：
+> [v1.0纯Java版](https://github.com/ice1000/Castle-game/releases/tag/v1.0)<br/>
 [v1.2Java&Kotlin版](https://github.com/ice1000/Castle-game/releases/tag/v1.2)<br/>
 [v1.2.1含jar包Java&Kotlin版](https://github.com/ice1000/Castle-game/releases/tag/v1.2.1)<br/>
 Java初学者可通过此项目的v1.0对于OOP的设计模式有一个初步的了解。<br/>
