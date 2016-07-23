@@ -3,6 +3,9 @@
 
 ### [Android版](https://github.com/ice1000/AIAndroid)
 
+目前我正在使用Java继续更新这个项目，请移步[Java分支](https://github.com/ice1000/Castle-game/tree/java)
+
+
 # 内容介绍
 
 GUI版与CUI版共存。<br/>
