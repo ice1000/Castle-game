@@ -1,19 +1,10 @@
 package cells;
 
-import castle.Game;
-import database.Database;
 import util.Echoer;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class Player extends Cell {
 
-	public int blood = 0;
+	int blood = 0;
 	int strike = 0;
 	int defence = 0;
 	private int level = 0;

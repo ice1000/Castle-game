@@ -1,6 +1,5 @@
 package database;
 
-import castle.Game;
 import cells.Player;
 import map.Exits;
 import map.GameMap;
@@ -9,7 +8,6 @@ import map.Room;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * 封装数据库操作

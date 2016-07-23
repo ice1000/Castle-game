@@ -50,7 +50,7 @@ public class GUI extends Game
 			public void mouseExited(MouseEvent e) {}
 		});
 		textArea.setBackground(new Color(12, 29, 39));
-		textArea.setForeground(new Color(151, 212, 30));
+		textArea.setForeground(new Color(203, 212, 188));
 		textArea.setEditable(false);
 		frame.setIconImage(Toolkit.getDefaultToolkit().createImage(
 				"." + File.separator + "src" + File.separator + "drawable" + File.separator + "ic_launcher.png"
